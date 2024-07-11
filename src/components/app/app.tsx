@@ -1,14 +1,15 @@
 import MainPage from '../../pages/main-page';
-import { CITIES } from '../../const';
+import { CITIES, SortList } from '../../const';
 
 type MainPageProps = {
   city: typeof CITIES;
+  sortType: typeof SortList;
 }
 
-function App ({city}: MainPageProps): JSX.Element {
+function App ({city, sortType}: MainPageProps): JSX.Element {
 
   return (
-    <MainPage city = {city} />
+    <MainPage city = {city} sortType={sortType} />
   );
 }
 
