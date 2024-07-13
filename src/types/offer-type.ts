@@ -9,6 +9,10 @@ type City = {
   location: Location;
 };
 
+type Id = string;
+
+type Rating = number;
+
 type Description = string;
 
 type Bedrooms = number;
@@ -26,7 +30,7 @@ type Images = string[];
 type MaxAdults = number;
 
 type Offer = {
-  id: string;
+  id: Id;
   title: string;
   type: string;
   price: number;
@@ -34,13 +38,15 @@ type Offer = {
   location: Location;
   isFavorite: boolean;
   isPremium: boolean;
-  rating: number;
+  rating: Rating;
   previewImage: string;
   };
 
 export type {
   Location,
   City,
+  Id,
+  Rating,
   Description,
   Bedrooms,
   Goods,

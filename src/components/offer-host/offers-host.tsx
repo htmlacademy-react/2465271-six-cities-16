@@ -1,6 +1,24 @@
 import { OfferHost } from '../../mocks/offer-host';
+import { offerDescriptions } from '../../mocks/offer-descriptions';
+import { Description } from '../../types/offer-type';
 
-function OffersHost (): JSX.Element {
+type OfferDescriptionsProps = {
+  Descriptions: typeof offerDescriptions;
+}
+
+type OfferDescription = {
+  offerDescription: Description;
+}
+
+function OfferDescription ({offerDescription}: OfferDescription): JSX.Element {
+  return (
+    <p className="offer__text">
+      {offerDescription}
+    </p>
+  );
+}
+
+function OffersHost ({Descriptions}: OfferDescriptionsProps): JSX.Element {
   return (
     <div className="offer__host">
       <h2 className="offer__host-title">Meet the host</h2>
@@ -16,12 +34,9 @@ function OffersHost (): JSX.Element {
         </span>
       </div>
       <div className="offer__description">
-        <p className="offer__text">
-          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-        </p>
-        <p className="offer__text">
-          An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-        </p>
+        {Descriptions.map((offerDescription) => (
+          <OfferDescription key={offerDescription} offerDescription={offerDescription}/>
+        ))}
       </div>
     </div>
   );
