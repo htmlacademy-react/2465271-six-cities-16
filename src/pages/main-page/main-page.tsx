@@ -1,10 +1,10 @@
-import Header from '../components/header/header';
-import MainLocationList from '../components/main-location-list/main-location-list';
-import PlacesFound from '../components/places-found/places-found';
-import PlacesSorting from '../components/places-sorting/places-sorting';
-import PlacesContainer from '../components/places-container/places-container';
-import PlaceMapContainer from '../components/place-map-container/place-map-container';
-import { CITIES, SortList } from '../const';
+import Header from '../../components/header/header';
+import MainLocationList from '../../components/main-location-list/main-location-list';
+import PlacesFound from '../../components/places-found/places-found';
+import PlacesSorting from '../../components/places-sorting/places-sorting';
+import PlacesContainer from '../../components/places-container/places-container';
+import PlaceMapContainer from '../../components/place-map-container/place-map-container';
+import { CITIES, SortList } from '../../const';
 
 type MainPageProps = {
   city: typeof CITIES;
