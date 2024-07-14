@@ -1,7 +1,7 @@
-import { offerGoods } from '../../mocks/offer-goods';
+import { OfferRequest } from '../../mocks/offer-request';
 
 type OfferGoodsProps = {
-  offerList: typeof offerGoods;
+  offerList: typeof OfferRequest;
 }
 
 type OfferGood = {
@@ -21,7 +21,7 @@ function OfferInside ({offerList}: OfferGoodsProps): JSX.Element {
     <div className="offer__inside">
       <h2 className="offer__inside-title">What&apos;s inside</h2>
       <ul className="offer__inside-list">
-        {offerList.map((offerGood) => (
+        {offerList.goods.map((offerGood) => (
           <OfferGoodsElement key={offerGood} offerGood={offerGood}/>
         ))}
       </ul>

@@ -1,7 +1,7 @@
-import { PLACESIMAGE } from '../../mocks/places-image';
+import { OfferRequest } from '../../mocks/offer-request';
 
 type PlacesImageProps = {
-  placesImage: typeof PLACESIMAGE;
+  placesImage: typeof OfferRequest;
 }
 
 type PlaceImage = {
@@ -20,7 +20,7 @@ function OfferGallery ({placesImage}: PlacesImageProps): JSX.Element {
   return (
     <div className="offer__gallery-container container">
       <div className="offer__gallery">
-        {placesImage.map((placeImage) => (
+        {placesImage.images.map((placeImage) => (
           <OfferImage key={placeImage} placeImage={placeImage}/>
         ))}
       </div>

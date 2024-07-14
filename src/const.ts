@@ -7,7 +7,10 @@ const SortList = {
   TopRatedFirst: 'Top rated first',
 };
 
+const RAITING = ['5', '4', '3', '2', '1'] as const;
+
 export {
   CITIES,
-  SortList
+  SortList,
+  RAITING
 };

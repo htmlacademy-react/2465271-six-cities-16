@@ -1,17 +1,29 @@
-import MainPage from '../../pages/main-page/main-page';
-import { CITIES, SortList } from '../../const';
+// import MainPage from '../../pages/main-page/main-page';
+import OfferPage from '../../pages/offer-page/offer-page';
+// import { CITIES, SortList } from '../../const';
+import { OfferRequest } from '../../mocks/offer-request';
+import { offerComments } from '../../mocks/offer-comments';
+import { RAITING } from '../../const';
 
 type AppProps = {
-  city: typeof CITIES;
-  sortType: typeof SortList;
+  // city: typeof CITIES;
+  // sortType: typeof SortList;
+  offerContainerProps: typeof OfferRequest;
+  offerCommentsProps: typeof offerComments;
+  ratingProps: typeof RAITING;
 }
 
-function App ({city, sortType}: AppProps): JSX.Element {
+function App ({offerContainerProps, offerCommentsProps, ratingProps}: AppProps): JSX.Element {
 
   return (
-    <MainPage
-      city = {city}
-      sortType={sortType}
+    // <MainPage
+    //   city = {city}
+    //   sortType={sortType}
+    // />
+    <OfferPage
+      offerContainerProps={offerContainerProps}
+      offerCommentsProps={offerCommentsProps}
+      ratingProps={ratingProps}
     />
   );
 }

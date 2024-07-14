@@ -1,7 +1,11 @@
 import { Offer } from '../../types/offer-type';
 import { capitalizeFirstLetter } from '../../utils';
 
-function PlaceCard ({placeCard}: {placeCard: Offer}): JSX.Element {
+type PlaceCardProps = {
+  placeCard: Offer;
+}
+
+function PlaceCard ({placeCard}: PlaceCardProps): JSX.Element {
   return (
     <article className="cities__card place-card">
       { placeCard.isPremium && (
