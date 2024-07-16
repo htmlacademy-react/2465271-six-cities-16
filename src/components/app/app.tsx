@@ -1,19 +1,21 @@
-import MainPage from '../../pages/main-page/main-page';
-import { CITIES, SortList } from '../../const';
+// import MainPage from '../../pages/main-page/main-page';
+// import { CITIES, SortList } from '../../const';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
 
 
-type AppProps = {
-  city: typeof CITIES;
-  sortType: typeof SortList;
-}
+// type AppProps = {
+//   city: typeof CITIES;
+//   sortType: typeof SortList;
+// }
 
-function App ({city, sortType}: AppProps): JSX.Element {
+function App (): JSX.Element {
 
   return (
-    <MainPage
-      city = {city}
-      sortType={sortType}
-    />
+    // <MainPage
+    //   city = {city}
+    //   sortType={sortType}
+    // />
+    <NotFoundPage/>
   );
 }
 
