@@ -6,6 +6,7 @@ import { OfferRequest } from '../../mocks/offer-request';
 import { offerComments } from '../../mocks/offer-comments';
 import { placesOffers } from '../../mocks/places-offers';
 import { RAITING } from '../../const';
+import { Helmet } from 'react-helmet-async';
 
 type OfferPageProps = {
   offerContainerProps: typeof OfferRequest;
@@ -16,6 +17,9 @@ type OfferPageProps = {
 function OfferPage ({offerContainerProps, offerCommentsProps, ratingProps}: OfferPageProps):JSX.Element {
   return (
     <div className="page">
+      <Helmet>
+        <title>6 cities. Предложения</title>
+      </Helmet>
       <Header/>
 
       <main className="page__main page__main--offer">
