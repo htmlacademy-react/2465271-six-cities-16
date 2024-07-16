@@ -17,9 +17,16 @@ enum AppRoute {
 
 }
 
+enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN'
+}
+
 export {
   CITIES,
   SortList,
   RAITING,
-  AppRoute
+  AppRoute,
+  AuthorizationStatus
 };

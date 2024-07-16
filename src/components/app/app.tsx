@@ -5,7 +5,8 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import FavoritePage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import { CITIES, SortList, RAITING, AppRoute } from '../../const';
+import PrivateRoute from '../private-route/private-route';
+import { CITIES, SortList, RAITING, AppRoute, AuthorizationStatus } from '../../const';
 import { offerComments } from '../../mocks/offer-comments';
 import { OfferRequest } from '../../mocks/offer-request';
 
@@ -34,7 +35,13 @@ function App ({city, sortType, offerContainerProps, offerCommentsProps, ratingPr
           />
           <Route
             path={AppRoute.Favorites}
-            element={<FavoritePage/>}
+            element={
+              <PrivateRoute
+                authorizationStatus={AuthorizationStatus.NoAuth}
+              >
+                <FavoritePage/>
+              </PrivateRoute>
+            }
           />
           <Route
             path={AppRoute.Login}
