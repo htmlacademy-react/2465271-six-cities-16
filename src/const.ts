@@ -9,8 +9,17 @@ const SortList = {
 
 const RAITING = ['5', '4', '3', '2', '1'] as const;
 
+enum AppRoute {
+  Main = '/',
+  Login = '/login',
+  Favorites = '/favorites',
+  Offer = '/offer/:id'
+
+}
+
 export {
   CITIES,
   SortList,
-  RAITING
+  RAITING,
+  AppRoute
 };
