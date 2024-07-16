@@ -1,9 +1,6 @@
 import Header from '../../components/header/header';
 import MainLocationList from '../../components/main-location-list/main-location-list';
-import PlacesFound from '../../components/places-found/places-found';
-import PlacesSorting from '../../components/places-sorting/places-sorting';
-import PlacesContainer from '../../components/places-container/places-container';
-import PlaceMapContainer from '../../components/place-map-container/place-map-container';
+import PlacesMainContainer from '../../components/places-main-conteiner/places-main-container';
 import { CITIES, SortList } from '../../const';
 
 type MainPageProps = {
@@ -18,15 +15,7 @@ function MainPage ({city, sortType}: MainPageProps): JSX.Element {
       <Header/>
       <MainLocationList cities = {city} />
       <div className="cities">
-        <div className="cities__places-container container">
-          <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
-            <PlacesFound/>
-            <PlacesSorting sortType={sortType}/>
-            <PlacesContainer/>
-          </section>
-          <PlaceMapContainer/>
-        </div>
+        <PlacesMainContainer sortType={sortType}/>
       </div>
     </div>
   );

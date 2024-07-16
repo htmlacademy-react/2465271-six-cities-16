@@ -1,7 +1,7 @@
 import { placesOffers } from '../../mocks/places-offers';
 import PlaceCard from '../place-card/place-card';
 
-function PlacesContainer (): JSX.Element {
+function PlacesCardContainer (): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {placesOffers.map((placeCard) => (
@@ -11,4 +11,4 @@ function PlacesContainer (): JSX.Element {
   );
 }
 
-export default PlacesContainer;
+export default PlacesCardContainer;
