@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Евгений](https://up.htmlacademy.ru/react/16/user/2465271).
-* Наставник: Yulia Volkova.
+* Наставник: [Юлия Волкова](https://htmlacademy.ru/profile/id423707).
 
 ---
 
