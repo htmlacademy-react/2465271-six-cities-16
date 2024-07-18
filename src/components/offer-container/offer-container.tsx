@@ -55,7 +55,7 @@ function OfferContainer ({offerContainerProps, offerCommentsProps, ratingProps}:
           <b className="offer__price-value">&euro;{offerContainerProps.price}</b>
           <span className="offer__price-text">&nbsp; night</span>
         </div>
-        <OfferInside key={offerContainerProps.id} offerList={offerContainerProps}/>
+        <OfferInside key={offerContainerProps.type} offerList={offerContainerProps}/>
         <OffersHost key={offerContainerProps.id} offersDescriptions={offerContainerProps}/>
         <OfferReviews
           offerCommentsProps={offerCommentsProps}
