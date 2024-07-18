@@ -1,5 +1,6 @@
 import { AppRoute, CITIES } from '../../const';
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 
 type MainLocationProps = {
   cities: typeof CITIES;
@@ -10,11 +11,23 @@ type City = {
 }
 
 function MainLocationElement ({city}: City): JSX.Element {
+  const [myClassName, setMyClassName] = useState('locations__item-link');
+
+  function SetNewClass(){
+    setMyClassName('locations__item-link tabs__item tabs__item--active');
+  }
+
+  function SetOldClass() {
+    setMyClassName('locations__item-link');
+  }
+
   return (
     <li className="locations__item">
       <NavLink
         to={AppRoute.Main}
-        className={({isActive}) => isActive ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}
+        className={myClassName}
+        onMouseOver={SetNewClass}
+        onMouseOut={SetOldClass}
       >
         <span>{city}</span>
       </NavLink>
