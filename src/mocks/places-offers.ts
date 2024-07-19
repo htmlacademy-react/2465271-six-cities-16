@@ -20,7 +20,7 @@ const placesOffers: Offer[] = [
       'longitude': 2.342499,
       'zoom': 16
     },
-    'isFavorite': true,
+    'isFavorite': false,
     'isPremium': false,
     'rating': 4.8
   },
@@ -43,7 +43,7 @@ const placesOffers: Offer[] = [
       'longitude': 2.330499,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': false,
     'rating': 2.8
   },
@@ -135,7 +135,7 @@ const placesOffers: Offer[] = [
       'longitude': 2.353499,
       'zoom': 16
     },
-    'isFavorite': true,
+    'isFavorite': false,
     'isPremium': false,
     'rating': 4.6
   },
@@ -181,7 +181,7 @@ const placesOffers: Offer[] = [
       'longitude': 2.3454990000000002,
       'zoom': 16
     },
-    'isFavorite': true,
+    'isFavorite': false,
     'isPremium': true,
     'rating': 3.9
   },
@@ -273,7 +273,7 @@ const placesOffers: Offer[] = [
       'longitude': 2.340499,
       'zoom': 16
     },
-    'isFavorite': true,
+    'isFavorite': false,
     'isPremium': false,
     'rating': 1.1
   },
@@ -365,7 +365,7 @@ const placesOffers: Offer[] = [
       'longitude': 2.350499,
       'zoom': 16
     },
-    'isFavorite': true,
+    'isFavorite': false,
     'isPremium': false,
     'rating': 4.5
   },
@@ -802,7 +802,7 @@ const placesOffers: Offer[] = [
       'longitude': 6.978974,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'rating': 4.7
   },
@@ -825,7 +825,7 @@ const placesOffers: Offer[] = [
       'longitude': 6.960974,
       'zoom': 16
     },
-    'isFavorite': false,
+    'isFavorite': true,
     'isPremium': true,
     'rating': 2.9
   }
