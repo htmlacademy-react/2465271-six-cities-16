@@ -39,7 +39,7 @@ function App ({city, sortType, placesOffersProps, offerContainerProps, offerComm
             path={AppRoute.Favorites}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.NoAuth}
+                authorizationStatus={AuthorizationStatus.Auth}
               >
                 <FavoritePage/>
               </PrivateRoute>
