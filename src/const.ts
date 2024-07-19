@@ -5,7 +5,7 @@ const SortList = {
   PriceLowToHigh: 'Price: low to high',
   PriceHighToLow: 'Price: high to low',
   TopRatedFirst: 'Top rated first',
-};
+} as const;
 
 const RAITING = ['5', '4', '3', '2', '1'] as const;
 
@@ -23,10 +23,16 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
+const Sign = {
+  SignIn: 'Sign in',
+  SignOut: 'Sign out'
+} as const;
+
 export {
   CITIES,
   SortList,
   RAITING,
   AppRoute,
-  AuthorizationStatus
+  AuthorizationStatus,
+  Sign
 };

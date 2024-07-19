@@ -6,4 +6,4 @@ export const User: UserType = {
   isPro: false,
   email: 'Oliver.conner@gmail.com',
   token: 'T2xpdmVyLmNvbm5lckBnbWFpbC5jb20='
-};
+} as const;

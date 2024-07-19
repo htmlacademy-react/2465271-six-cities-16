@@ -5,22 +5,23 @@ import OfferCard from '../../components/offer-card/offer-card';
 import { OfferRequest } from '../../mocks/offer-request';
 import { offerComments } from '../../mocks/offer-comments';
 import { placesOffers } from '../../mocks/places-offers';
-import { RAITING } from '../../const';
+import { RAITING, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 type OfferPageProps = {
   offerContainerProps: typeof OfferRequest;
   offerCommentsProps: typeof offerComments;
   ratingProps: typeof RAITING;
+  sign: typeof Sign;
 }
 
-function OfferPage ({offerContainerProps, offerCommentsProps, ratingProps}: OfferPageProps):JSX.Element {
+function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps}: OfferPageProps):JSX.Element {
   return (
     <div className="page">
       <Helmet>
         <title>6 cities. Предложения</title>
       </Helmet>
-      <Header/>
+      <Header sign={sign}/>
 
       <main className="page__main page__main--offer">
         <section className="offer">
