@@ -1,4 +1,6 @@
-export const OfferRequest = {
+import { IncommingOffer } from '../types/offer-type';
+
+export const OfferRequest: IncommingOffer = {
   id: '3af6f711-c28d-4121-52cd-e0b462a27f00',
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',
@@ -19,7 +21,7 @@ export const OfferRequest = {
   isFavorite: false,
   isPremium: true,
   rating: 4.8,
-  description: ['A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.'],
+  description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
   bedrooms: 3,
   goods: [
     'Wi-Fi',

@@ -9,17 +9,19 @@ import PrivateRoute from '../private-route/private-route';
 import { CITIES, SortList, RAITING, AppRoute, AuthorizationStatus } from '../../const';
 import { offerComments } from '../../mocks/offer-comments';
 import { OfferRequest } from '../../mocks/offer-request';
+import { placesOffers } from '../../mocks/places-offers';
 
 
 type AppProps = {
   city: typeof CITIES;
   sortType: typeof SortList;
+  placesOffersProps: typeof placesOffers;
   offerContainerProps: typeof OfferRequest;
   offerCommentsProps: typeof offerComments;
   ratingProps: typeof RAITING;
 }
 
-function App ({city, sortType, offerContainerProps, offerCommentsProps, ratingProps}: AppProps): JSX.Element {
+function App ({city, sortType, placesOffersProps, offerContainerProps, offerCommentsProps, ratingProps}: AppProps): JSX.Element {
 
   return (
     <HelmetProvider>
@@ -27,7 +29,7 @@ function App ({city, sortType, offerContainerProps, offerCommentsProps, ratingPr
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage city={city} sortType={sortType}/>}
+            element={<MainPage city={city} sortType={sortType} placesOffersProps={placesOffersProps}/>}
           />
           <Route
             path={AppRoute.Offer}
