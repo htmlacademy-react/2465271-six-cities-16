@@ -12,6 +12,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App city = {CITIES} sortType={SortList} sign={Sign} placesOffersProps={placesOffers} offerContainerProps={OfferRequest} offerCommentsProps={offerComments} ratingProps={RAITING}/>
+    <App city={CITIES} sortType={SortList} sign={Sign} placesOffersProps={placesOffers} offerContainerProps={OfferRequest} offerCommentsProps={offerComments} ratingProps={RAITING} />
   </React.StrictMode>
 );

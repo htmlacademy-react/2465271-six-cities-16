@@ -28,11 +28,14 @@ const Sign = {
   SignOut: 'Sign out'
 } as const;
 
+const IsActive = true;
+
 export {
   CITIES,
   SortList,
   RAITING,
   AppRoute,
   AuthorizationStatus,
-  Sign
+  Sign,
+  IsActive
 };

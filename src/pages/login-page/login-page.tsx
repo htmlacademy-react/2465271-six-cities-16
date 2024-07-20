@@ -1,22 +1,19 @@
 import { Helmet } from 'react-helmet-async';
+import Header from '../../components/header/header';
+import { Sign } from '../../const';
 
-function LoginPage ():JSX.Element {
+type LoginPageProps = {
+  sign: typeof Sign;
+  isLogin?: true;
+}
+
+function LoginPage ({sign, isLogin = true}: LoginPageProps):JSX.Element {
   return (
     <div className="page page--gray page--login">
       <Helmet>
         <title>6 cities. Авторизация</title>
       </Helmet>
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header sign={sign} isLogin={isLogin}/>
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">

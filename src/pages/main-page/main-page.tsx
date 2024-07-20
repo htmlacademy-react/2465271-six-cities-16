@@ -11,15 +11,16 @@ type MainPageProps = {
   sortType: typeof SortList;
   placesOffersProps: typeof placesOffers;
   sign: typeof Sign;
+  isActive?: true;
 }
 
-function MainPage ({city, sortType, sign, placesOffersProps}: MainPageProps): JSX.Element {
+function MainPage ({city, sortType, sign, placesOffersProps, isActive = true}: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
         <title>6 cities. Главная страница</title>
       </Helmet>
-      <Header sign={sign}/>
+      <Header sign={sign} isActive={isActive}/>
       <main className={`page__main page__main--index ${placesOffers.length === 0 ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
         {placesOffers.length === 0 ?

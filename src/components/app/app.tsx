@@ -6,7 +6,7 @@ import FavoritePage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import { CITIES, SortList, RAITING, AppRoute, AuthorizationStatus, Sign } from '../../const';
+import { CITIES, SortList, RAITING, AppRoute, AuthorizationStatus, Sign} from '../../const';
 import { offerComments } from '../../mocks/offer-comments';
 import { OfferRequest } from '../../mocks/offer-request';
 import { placesOffers } from '../../mocks/places-offers';
@@ -30,7 +30,7 @@ function App ({city, sortType, sign, placesOffersProps, offerContainerProps, off
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage city={city} sortType={sortType} sign={sign} placesOffersProps={placesOffersProps}/>}
+            element={<MainPage city={city} sortType={sortType} sign={sign} placesOffersProps={placesOffersProps} />}
           />
           <Route
             path={AppRoute.Offer}
@@ -42,13 +42,13 @@ function App ({city, sortType, sign, placesOffersProps, offerContainerProps, off
               <PrivateRoute
                 authorizationStatus={AuthorizationStatus.Auth}
               >
-                <FavoritePage sign={sign}/>
+                <FavoritePage sign={sign} />
               </PrivateRoute>
             }
           />
           <Route
             path={AppRoute.Login}
-            element={<LoginPage />}
+            element={<LoginPage sign={sign}/>}
           />
           <Route
             path='*'

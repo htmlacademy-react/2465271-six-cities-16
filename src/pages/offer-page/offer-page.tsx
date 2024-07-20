@@ -21,7 +21,7 @@ function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps}
       <Helmet>
         <title>6 cities. Предложения</title>
       </Helmet>
-      <Header sign={sign}/>
+      <Header sign={sign} />
 
       <main className="page__main page__main--offer">
         <section className="offer">
