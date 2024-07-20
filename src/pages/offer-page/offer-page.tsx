@@ -1,7 +1,7 @@
 import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferContainer from '../../components/offer-container/offer-container';
-import OfferCard from '../../components/offer-card/offer-card';
+import PlaceCard from '../../components/place-card/place-card';
 import { OfferRequest } from '../../mocks/offer-request';
 import { offerComments } from '../../mocks/offer-comments';
 import { placesOffers } from '../../mocks/places-offers';
@@ -13,9 +13,10 @@ type OfferPageProps = {
   offerCommentsProps: typeof offerComments;
   ratingProps: typeof RAITING;
   sign: typeof Sign;
+  isMainCard?: true | false;
 }
 
-function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps}: OfferPageProps):JSX.Element {
+function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps, isMainCard = false}: OfferPageProps):JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -38,7 +39,7 @@ function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps}
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
               {placesOffers.slice(0,3).map((offerCard) => (
-                <OfferCard key={offerCard.id} offerCard={offerCard}/>
+                <PlaceCard key={offerCard.id} placeCard={offerCard} isMainCard={isMainCard}/>
               ))}
             </div>
           </section>

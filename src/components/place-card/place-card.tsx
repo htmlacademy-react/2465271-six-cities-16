@@ -5,17 +5,18 @@ import { Link } from 'react-router-dom';
 
 type PlaceCardProps = {
   placeCard: Offer;
+  isMainCard?: true | false;
 }
 
-function PlaceCard ({placeCard}: PlaceCardProps): JSX.Element {
+function PlaceCard ({placeCard, isMainCard = true}: PlaceCardProps): JSX.Element {
   return (
-    <article className="cities__card place-card">
+    <article className={`${isMainCard ? 'cities__card' : 'near-places__card'} place-card`}>
       { placeCard.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${isMainCard ? 'cities__image-wrapper' : 'near-places__image-wrapper'} place-card__image-wrapper`}>
         <Link to={AppRoute.Offer} key={placeCard.id}>
           <img className="place-card__image" src={ placeCard.previewImage } width="260" height="200" alt="Place image" />
         </Link>
