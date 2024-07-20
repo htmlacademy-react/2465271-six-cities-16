@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import { Sign } from '../../const';
+import { AppRoute, Sign } from '../../const';
+import { Link } from 'react-router-dom';
 
 type LoginPageProps = {
   sign: typeof Sign;
@@ -33,9 +34,9 @@ function LoginPage ({sign, isLogin = true}: LoginPageProps):JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <Link to={AppRoute.Main} className="locations__item-link">
                 <span>Amsterdam</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>
