@@ -3,13 +3,14 @@ import PlaceCard from '../place-card/place-card';
 
 type PlacesOffersProps = {
   placesOffersProps: typeof placesOffers;
+  isMainCard?: true | false;
 }
 
-function PlacesCardContainer ({placesOffersProps}: PlacesOffersProps): JSX.Element {
+function PlacesCardContainer ({placesOffersProps, isMainCard = true}: PlacesOffersProps): JSX.Element {
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className="cities__places-list places__list tabs__content" >
       {placesOffersProps.map((placeCard) => (
-        <PlaceCard key={placeCard.id} placeCard={placeCard} />
+        <PlaceCard key={placeCard.id} placeCard={placeCard} isMainCard={isMainCard}/>
       ))}
     </div>
   );

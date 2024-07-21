@@ -6,22 +6,36 @@ import { Link } from 'react-router-dom';
 type PlaceCardProps = {
   placeCard: Offer;
   isMainCard?: true | false;
+  isFavoriteCard?: true | false;
+  isOfferCard?: true | false;
 }
 
-function PlaceCard ({placeCard, isMainCard = true}: PlaceCardProps): JSX.Element {
+function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOfferCard = false}: PlaceCardProps): JSX.Element {
   return (
-    <article className={`${isMainCard ? 'cities__card' : 'near-places__card'} place-card`}>
+    <article className={
+      `${isMainCard ? 'cities__card' : ''}
+      ${isFavoriteCard ? 'favorites__card' : ''}
+      ${isOfferCard ? 'near-places__card' : ''}
+      place-card`
+    }
+    >
       { placeCard.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className={`${isMainCard ? 'cities__image-wrapper' : 'near-places__image-wrapper'} place-card__image-wrapper`}>
-        <Link to={AppRoute.Offer} key={placeCard.id}>
+      <div className={
+        `${isMainCard ? 'cities__image-wrapper' : ''}
+        ${isFavoriteCard ? 'favorites__image-wrapper' : ''}
+        ${isOfferCard ? 'near-places__image-wrapper' : ''}
+        place-card__image-wrapper`
+      }
+      >
+        <Link to={`${AppRoute.Offer}/${placeCard.id}`}>
           <img className="place-card__image" src={ placeCard.previewImage } width="260" height="200" alt="Place image" />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={`${isFavoriteCard ? 'favorites__card-info' : 'place-card__info'}`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{ placeCard.price }</b>
@@ -41,7 +55,7 @@ function PlaceCard ({placeCard, isMainCard = true}: PlaceCardProps): JSX.Element
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{ placeCard.title }</a>
+          <Link to={`${AppRoute.Offer}/${placeCard.id}`}>{ placeCard.title }</Link>
         </h2>
         <p className="place-card__type">{ capitalizeFirstLetter(placeCard.type) }</p>
       </div>

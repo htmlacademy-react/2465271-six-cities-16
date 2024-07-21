@@ -2,9 +2,9 @@ import { placesOffers } from '../../mocks/places-offers';
 import { Offer } from '../../types/offer-type';
 import FavoritePlace from '../favorite-place/favorite-place';
 
-function groupLocationByFavoriteStatus (offers: Offer[]) {
+function groupLocationByFavoriteStatus (offers: typeof placesOffers) {
   return (
-    offers.reduce((accumulator: Record <string, Offer[]>, offer) => {
+    offers.reduce((accumulator: Record <string, typeof placesOffers>, offer) => {
       const cityName = offer.city.name;
       if(!accumulator[cityName]) {
         accumulator[cityName] = [];

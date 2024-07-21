@@ -13,10 +13,10 @@ type OfferPageProps = {
   offerCommentsProps: typeof offerComments;
   ratingProps: typeof RAITING;
   sign: typeof Sign;
-  isMainCard?: true | false;
+  isOfferCard?: true | false;
 }
 
-function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps, isMainCard = false}: OfferPageProps):JSX.Element {
+function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps, isOfferCard = true}: OfferPageProps):JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -39,7 +39,7 @@ function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps,
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
               {placesOffers.slice(0,3).map((offerCard) => (
-                <PlaceCard key={offerCard.id} placeCard={offerCard} isMainCard={isMainCard}/>
+                <PlaceCard key={offerCard.id} placeCard={offerCard} isOfferCard={isOfferCard}/>
               ))}
             </div>
           </section>
