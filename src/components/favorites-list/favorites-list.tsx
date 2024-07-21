@@ -1,6 +1,6 @@
 import { placesOffers } from '../../mocks/places-offers';
 import { Offer } from '../../types/offer-type';
-import FavoritePlace from '../favorite-place/favorite-place';
+import FavoriteCardContainer from '../favorite-card-container/favorite-card-container';
 
 function groupLocationByFavoriteStatus (offers: typeof placesOffers) {
   return (
@@ -22,7 +22,7 @@ function FavoritesList (): JSX.Element {
   return (
     <ul className="favorites__list">
       {Object.entries(getOffersGroup).map(([city, offers]) => (
-        <FavoritePlace key={city} city={city} offers={offers}/>
+        <FavoriteCardContainer key={city} city={city} offers={offers}/>
       ))}
     </ul>
   );

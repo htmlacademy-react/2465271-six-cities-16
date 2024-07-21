@@ -13,7 +13,7 @@ type OfferPageProps = {
   offerCommentsProps: typeof offerComments;
   ratingProps: typeof RAITING;
   sign: typeof Sign;
-  isOfferCard?: true | false;
+  isOfferCard?: boolean;
 }
 
 function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps, isOfferCard = true}: OfferPageProps):JSX.Element {

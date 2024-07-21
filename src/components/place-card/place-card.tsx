@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 type PlaceCardProps = {
   placeCard: Offer;
-  isMainCard?: true | false;
-  isFavoriteCard?: true | false;
-  isOfferCard?: true | false;
+  isMainCard?: boolean;
+  isFavoriteCard?: boolean;
+  isOfferCard?: boolean;
 }
 
 function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOfferCard = false}: PlaceCardProps): JSX.Element {
@@ -32,7 +32,7 @@ function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOf
       }
       >
         <Link to={`${AppRoute.Offer}/${placeCard.id}`}>
-          <img className="place-card__image" src={ placeCard.previewImage } width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={ placeCard.previewImage } width={`${isFavoriteCard ? '150' : '260'}`} height={`${isFavoriteCard ? '110' : '200'}`} alt="Place image" />
         </Link>
       </div>
       <div className={`${isFavoriteCard ? 'favorites__card-info' : 'place-card__info'}`}>

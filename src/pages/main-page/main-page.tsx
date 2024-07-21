@@ -1,6 +1,6 @@
 import Header from '../../components/header/header';
 import MainLocationList from '../../components/main-location-list/main-location-list';
-import PlacesMainContainer from '../../components/places-main-conteiner/places-main-container';
+import PlacesMainContainer from '../../components/places-main-container/places-main-container';
 import EmptyPlaces from '../../components/empty-places/empty-places';
 import { placesOffers } from '../../mocks/places-offers';
 import { CITIES, SortList, Sign } from '../../const';

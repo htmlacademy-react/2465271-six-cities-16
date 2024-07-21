@@ -4,9 +4,9 @@ import { placesOffers } from '../../mocks/places-offers';
 type FavoritePlacesProps = {
   city: string;
   offers: typeof placesOffers;
-  isFavoriteCard?: true | false;
+  isFavoriteCard?: boolean;
 }
-function FavoritePlace ({city, offers, isFavoriteCard = true}: FavoritePlacesProps): JSX.Element {
+function FavoriteCardContainer ({city, offers, isFavoriteCard = true}: FavoritePlacesProps): JSX.Element {
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -25,4 +25,4 @@ function FavoritePlace ({city, offers, isFavoriteCard = true}: FavoritePlacesPro
   );
 }
 
-export default FavoritePlace;
+export default FavoriteCardContainer;

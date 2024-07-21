@@ -3,7 +3,7 @@ import PlaceCard from '../place-card/place-card';
 
 type PlacesOffersProps = {
   placesOffersProps: typeof placesOffers;
-  isMainCard?: true | false;
+  isMainCard?: boolean;
 }
 
 function PlacesCardContainer ({placesOffersProps, isMainCard = true}: PlacesOffersProps): JSX.Element {
