@@ -31,7 +31,7 @@ function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOf
         place-card__image-wrapper`
       }
       >
-        <Link to={`${AppRoute.Offer}/${placeCard.id}`}>
+        <Link to={`${AppRoute.Offer}${placeCard.id}`}>
           <img className="place-card__image" src={ placeCard.previewImage } width={`${isFavoriteCard ? '150' : '260'}`} height={`${isFavoriteCard ? '110' : '200'}`} alt="Place image" />
         </Link>
       </div>

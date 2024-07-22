@@ -22,7 +22,7 @@ export const offerRequest: IncommingOffer = {
   isPremium: true,
   rating: 4.8,
   description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-  bedrooms: 3,
+  bedrooms: 1,
   goods: [
     'Wi-Fi',
     'Washing machine',

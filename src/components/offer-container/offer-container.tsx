@@ -45,7 +45,7 @@ function OfferContainer ({offerContainerProps, offerCommentsProps, ratingProps}:
             {capitalizeFirstLetter(offerContainerProps.type)}
           </li>
           <li className="offer__feature offer__feature--bedrooms">
-            {`${offerContainerProps.bedrooms} Bedrooms`}
+            {`${offerContainerProps.bedrooms} ${offerContainerProps.bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}`}
           </li>
           <li className="offer__feature offer__feature--adults">
             {`Max ${offerContainerProps.maxAdults} adults`}
