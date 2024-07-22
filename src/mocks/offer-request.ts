@@ -1,5 +1,7 @@
-export const OfferRequest = {
-  id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
+import { IncommingOffer } from '../types/offer-type';
+
+export const offerRequest: IncommingOffer = {
+  id: '3af6f711-c28d-4121-52cd-e0b462a27f00',
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',
   price: 120,
@@ -19,7 +21,7 @@ export const OfferRequest = {
   isFavorite: false,
   isPremium: true,
   rating: 4.8,
-  description: ['A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.'],
+  description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
   bedrooms: 3,
   goods: [
     'Wi-Fi',
@@ -44,7 +46,7 @@ export const OfferRequest = {
     'img/apartment-02.jpg',
     'img/apartment-03.jpg',
     'img/studio-01.jpg',
-    'img/apartment-01.jpg'
+    'img/apartment-small-03.jpg'
   ],
   maxAdults: 4
 };

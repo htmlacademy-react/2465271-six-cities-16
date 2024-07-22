@@ -1,25 +1,3 @@
-type Id = string;
-
-type Rating = number;
-
-type Comment = string;
-
-type Description = string;
-
-type Bedrooms = number;
-
-type Goods = string[];
-
-type IsFavorite = true | false;
-
-type Images = string[];
-
-type MaxAdult = number;
-
-type Date = string;
-
-type Type = string;
-
 type Location = {
   latitude: number;
   longitude: number;
@@ -35,65 +13,44 @@ type City = {
 type User = {
   name: string;
   avatarUrl: string;
-  isPro?: boolean;
+  isPro: boolean;
 };
 
-
-type Offer = {
-  id: Id;
+type OfferTemplate = {
+  id: string;
   title: string;
-  type: Type;
+  type: string;
   price: number;
   city: City;
   location: Location;
   isFavorite: boolean;
   isPremium: boolean;
-  rating: Rating;
+  rating: number;
+}
+
+type Offer = OfferTemplate & {
   previewImage: string;
   };
 
 type OfferComment = {
-  id?: Id;
-  date: Date;
+  id: string;
+  date: string;
   user: User;
-  comment: Comment;
-  rating: Rating;
+  comment: string;
+  rating: number;
 }
 
-type IncommingOffer = {
-    id: Id;
-    title: string;
-    type: Type;
-    price: number;
-    city: City;
-    location: Location;
-    isFavorite: IsFavorite;
-    isPremium: IsFavorite;
-    rating: Rating;
-    description: Description;
-    bedrooms: Bedrooms;
-    goods: Goods;
+type IncommingOffer = OfferTemplate & {
+    description: string;
+    bedrooms: number;
+    goods: string[];
     host: User;
-    images: [string];
-    maxAdults: MaxAdult;
+    images: string[];
+    maxAdults: number;
   }
 
 export type {
-  Location,
-  City,
-  Id,
-  Rating,
-  Comment,
-  Description,
-  Bedrooms,
-  Goods,
-  User,
-  Images,
-  MaxAdult,
-  Date,
-  Type,
   Offer,
   OfferComment,
-  IsFavorite,
-  IncommingOffer
+  IncommingOffer,
 };

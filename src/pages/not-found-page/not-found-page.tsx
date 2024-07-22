@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import Footer from '../../components/footer/footer';
 import { AppRoute } from '../../const';
+import styles from './not-found-page.module.css';
 
 function NotFoundPage (): JSX.Element {
   return (
     <>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
-        <div style={{display: 'block', paddingTop: '20px'}} >
+      <div className={styles.notFoundContainer}>
+        <div className={styles.notFoundElement} >
           <Link to={AppRoute.Main}>
             <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
           </Link>
@@ -18,7 +19,7 @@ function NotFoundPage (): JSX.Element {
           <h1 className="favorites__status">Page Not Found</h1>
         </div>
         <Link to={AppRoute.Main}>
-          <span className='back_main_link' style={{display: 'block', textAlign: 'center', marginTop: '20px', color: 'purple', fontStyle: 'italic', fontSize: '14px'}}>Вернуться на главную страницу</span>
+          <span className={styles.notFoundLink}>Вернуться на главную страницу</span>
         </Link>
       </div>
       <Footer/>

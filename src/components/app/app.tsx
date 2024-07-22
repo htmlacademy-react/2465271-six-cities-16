@@ -6,20 +6,23 @@ import FavoritePage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import { CITIES, SortList, RAITING, AppRoute, AuthorizationStatus } from '../../const';
+import { CITIES, SortList, RATING, AppRoute, AuthorizationStatus, Sign} from '../../const';
 import { offerComments } from '../../mocks/offer-comments';
-import { OfferRequest } from '../../mocks/offer-request';
+import { offerRequest } from '../../mocks/offer-request';
+import { placesOffers } from '../../mocks/places-offers';
 
 
 type AppProps = {
-  city: typeof CITIES;
+  cities: typeof CITIES;
   sortType: typeof SortList;
-  offerContainerProps: typeof OfferRequest;
+  placesOffersProps: typeof placesOffers;
+  offerContainerProps: typeof offerRequest;
   offerCommentsProps: typeof offerComments;
-  ratingProps: typeof RAITING;
+  ratingProps: typeof RATING;
+  sign: typeof Sign;
 }
 
-function App ({city, sortType, offerContainerProps, offerCommentsProps, ratingProps}: AppProps): JSX.Element {
+function App ({cities, sortType, sign, placesOffersProps, offerContainerProps, offerCommentsProps, ratingProps}: AppProps): JSX.Element {
 
   return (
     <HelmetProvider>
@@ -27,25 +30,25 @@ function App ({city, sortType, offerContainerProps, offerCommentsProps, ratingPr
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage city={city} sortType={sortType}/>}
+            element={<MainPage cities={cities} sortType={sortType} sign={sign} placesOffersProps={placesOffersProps}/>}
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage offerContainerProps={offerContainerProps} offerCommentsProps={offerCommentsProps} ratingProps={ratingProps} />}
+            element={<OfferPage sign={sign} offerContainerProps={offerContainerProps} offerCommentsProps={offerCommentsProps} ratingProps={ratingProps} />}
           />
           <Route
             path={AppRoute.Favorites}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.NoAuth}
+                authorizationStatus={AuthorizationStatus.Auth}
               >
-                <FavoritePage/>
+                <FavoritePage sign={sign} />
               </PrivateRoute>
             }
           />
           <Route
             path={AppRoute.Login}
-            element={<LoginPage/>}
+            element={<LoginPage sign={sign}/>}
           />
           <Route
             path='*'

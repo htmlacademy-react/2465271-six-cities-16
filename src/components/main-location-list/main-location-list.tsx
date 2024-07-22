@@ -1,5 +1,6 @@
 import { AppRoute, CITIES } from '../../const';
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 
 type MainLocationProps = {
   cities: typeof CITIES;
@@ -10,11 +11,17 @@ type City = {
 }
 
 function MainLocationElement ({city}: City): JSX.Element {
+  const [activeCity, setActiveCity] = useState('locations__item-link tabs__item');
+  function handleCityClick () {
+    setActiveCity('locations__item-link tabs__item tabs__item--active');
+  }
+
   return (
     <li className="locations__item">
       <NavLink
         to={AppRoute.Main}
-        className={({isActive}) => isActive ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}
+        className={activeCity}
+        onClick={handleCityClick}
       >
         <span>{city}</span>
       </NavLink>

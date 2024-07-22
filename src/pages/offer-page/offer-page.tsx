@@ -1,26 +1,28 @@
 import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferContainer from '../../components/offer-container/offer-container';
-import OfferCard from '../../components/offer-card/offer-card';
-import { OfferRequest } from '../../mocks/offer-request';
+import PlaceCard from '../../components/place-card/place-card';
+import { offerRequest } from '../../mocks/offer-request';
 import { offerComments } from '../../mocks/offer-comments';
 import { placesOffers } from '../../mocks/places-offers';
-import { RAITING } from '../../const';
+import { RATING, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 type OfferPageProps = {
-  offerContainerProps: typeof OfferRequest;
+  offerContainerProps: typeof offerRequest;
   offerCommentsProps: typeof offerComments;
-  ratingProps: typeof RAITING;
+  ratingProps: typeof RATING;
+  sign: typeof Sign;
+  isOfferCard?: boolean;
 }
 
-function OfferPage ({offerContainerProps, offerCommentsProps, ratingProps}: OfferPageProps):JSX.Element {
+function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps, isOfferCard = true}: OfferPageProps):JSX.Element {
   return (
     <div className="page">
       <Helmet>
         <title>6 cities. Предложения</title>
       </Helmet>
-      <Header/>
+      <Header sign={sign} />
 
       <main className="page__main page__main--offer">
         <section className="offer">
@@ -37,7 +39,7 @@ function OfferPage ({offerContainerProps, offerCommentsProps, ratingProps}: Offe
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
               {placesOffers.slice(0,3).map((offerCard) => (
-                <OfferCard key={offerCard.id} offerCard={offerCard}/>
+                <PlaceCard key={offerCard.id} placeCard={offerCard} isOfferCard={isOfferCard}/>
               ))}
             </div>
           </section>

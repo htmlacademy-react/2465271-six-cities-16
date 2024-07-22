@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import { CITIES, SortList } from './const';
-import { OfferRequest } from './mocks/offer-request';
+import { CITIES, SortList, RATING, Sign } from './const';
+import { placesOffers } from './mocks/places-offers';
+import { offerRequest } from './mocks/offer-request';
 import { offerComments } from './mocks/offer-comments';
-import { RAITING } from './const';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,6 +12,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App city = {CITIES} sortType={SortList} offerContainerProps={OfferRequest} offerCommentsProps={offerComments} ratingProps={RAITING}/>
+    <App cities={CITIES} sortType={SortList} sign={Sign} placesOffersProps={placesOffers} offerContainerProps={offerRequest} offerCommentsProps={offerComments} ratingProps={RATING} />
   </React.StrictMode>
 );
