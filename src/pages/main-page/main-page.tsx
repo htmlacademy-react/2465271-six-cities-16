@@ -1,20 +1,19 @@
 import Header from '../../components/header/header';
 import MainLocationList from '../../components/main-location-list/main-location-list';
 import PlacesMainContainer from '../../components/places-main-container/places-main-container';
-import EmptyPlaces from '../../components/empty-places/empty-places';
 import { placesOffers } from '../../mocks/places-offers';
 import { CITIES, SortList, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 type MainPageProps = {
-  city: typeof CITIES;
+  cities: typeof CITIES;
   sortType: typeof SortList;
   placesOffersProps: typeof placesOffers;
   sign: typeof Sign;
-  isActive?: true;
+  isActive?: boolean;
 }
 
-function MainPage ({city, sortType, sign, placesOffersProps, isActive = true}: MainPageProps): JSX.Element {
+function MainPage ({cities, sortType, sign, placesOffersProps, isActive = true}: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -23,15 +22,8 @@ function MainPage ({city, sortType, sign, placesOffersProps, isActive = true}: M
       <Header sign={sign} isActive={isActive}/>
       <main className={`page__main page__main--index ${placesOffers.length === 0 ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
-        {placesOffers.length === 0 ?
-          <>
-            <MainLocationList cities={city} />
-            <EmptyPlaces />
-          </> :
-          <>
-            <MainLocationList cities={city} />
-            <PlacesMainContainer sortType={sortType} placesOffersProps={placesOffersProps} />
-          </>}
+        <MainLocationList cities={cities} />
+        <PlacesMainContainer sortType={sortType} placesOffersProps={placesOffersProps} />
       </main>
     </div>
   );

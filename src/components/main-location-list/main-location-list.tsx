@@ -11,23 +11,17 @@ type City = {
 }
 
 function MainLocationElement ({city}: City): JSX.Element {
-  const [myClassName, setMyClassName] = useState('locations__item-link');
-
-  function SetNewClass(){
-    setMyClassName('locations__item-link tabs__item tabs__item--active');
-  }
-
-  function SetOldClass() {
-    setMyClassName('locations__item-link');
+  const [activeCity, setActiveCity] = useState('locations__item-link tabs__item');
+  function handleCityClick () {
+    setActiveCity('locations__item-link tabs__item tabs__item--active');
   }
 
   return (
     <li className="locations__item">
       <NavLink
         to={AppRoute.Main}
-        className={myClassName}
-        onMouseOver={SetNewClass}
-        onMouseOut={SetOldClass}
+        className={activeCity}
+        onClick={handleCityClick}
       >
         <span>{city}</span>
       </NavLink>

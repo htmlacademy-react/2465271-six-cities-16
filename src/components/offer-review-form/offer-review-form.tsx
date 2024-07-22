@@ -1,8 +1,8 @@
-import { RAITING } from '../../const';
+import { RATING } from '../../const';
 import React, { Fragment, useState } from 'react';
 
 type RatingProps = {
-  ratingProps: typeof RAITING;
+  ratingProps: typeof RATING;
 }
 
 function OfferReviewForm ({ratingProps}: RatingProps): JSX.Element {

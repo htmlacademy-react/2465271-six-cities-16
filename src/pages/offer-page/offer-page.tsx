@@ -2,16 +2,16 @@ import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferContainer from '../../components/offer-container/offer-container';
 import PlaceCard from '../../components/place-card/place-card';
-import { OfferRequest } from '../../mocks/offer-request';
+import { offerRequest } from '../../mocks/offer-request';
 import { offerComments } from '../../mocks/offer-comments';
 import { placesOffers } from '../../mocks/places-offers';
-import { RAITING, Sign } from '../../const';
+import { RATING, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 type OfferPageProps = {
-  offerContainerProps: typeof OfferRequest;
+  offerContainerProps: typeof offerRequest;
   offerCommentsProps: typeof offerComments;
-  ratingProps: typeof RAITING;
+  ratingProps: typeof RATING;
   sign: typeof Sign;
   isOfferCard?: boolean;
 }

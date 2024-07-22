@@ -1,7 +1,7 @@
-import { OfferRequest } from '../../mocks/offer-request';
+import { offerRequest } from '../../mocks/offer-request';
 
 type OfferGoodsProps = {
-  offerList: typeof OfferRequest;
+  offerList: typeof offerRequest;
 }
 
 type OfferGood = {

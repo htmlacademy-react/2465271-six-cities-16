@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 type LoginPageProps = {
   sign: typeof Sign;
-  isLogin?: true;
+  isLogin?: boolean;
 }
 
 function LoginPage ({sign, isLogin = true}: LoginPageProps):JSX.Element {

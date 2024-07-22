@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
 type HeaderLogoProps = {
-  isActive?: true | false;
+  isActive?: boolean;
 }
 
 function HeaderLogo ({isActive = false}: HeaderLogoProps): JSX.Element {

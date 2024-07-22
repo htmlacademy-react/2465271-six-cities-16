@@ -1,16 +1,16 @@
 // import { IncommingOffer } from '../../types/offer-type';
-import { OfferRequest } from '../../mocks/offer-request';
+import { offerRequest } from '../../mocks/offer-request';
 import OfferInside from '../offer-inside/offer-inside';
 import OffersHost from '../offer-host/offers-host';
 import OfferReviews from '../offer-reviews/offer-reviews';
 import { offerComments } from '../../mocks/offer-comments';
-import { RAITING } from '../../const';
+import { RATING } from '../../const';
 import { capitalizeFirstLetter } from '../../utils';
 
 type OfferContainerProps = {
-  offerContainerProps: typeof OfferRequest;
+  offerContainerProps: typeof offerRequest;
   offerCommentsProps: typeof offerComments;
-  ratingProps: typeof RAITING;
+  ratingProps: typeof RATING;
 }
 
 function OfferContainer ({offerContainerProps, offerCommentsProps, ratingProps}: OfferContainerProps): JSX.Element {

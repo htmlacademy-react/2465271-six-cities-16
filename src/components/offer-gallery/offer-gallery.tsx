@@ -1,7 +1,7 @@
-import { OfferRequest } from '../../mocks/offer-request';
+import { offerRequest } from '../../mocks/offer-request';
 
 type PlacesImageProps = {
-  placesImage: typeof OfferRequest;
+  placesImage: typeof offerRequest;
 }
 
 type PlaceImage = {

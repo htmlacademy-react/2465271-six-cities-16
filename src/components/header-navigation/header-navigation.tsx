@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { AppRoute, Sign } from '../../const';
 import { placesOffers } from '../../mocks/places-offers';
-import { User } from '../../mocks/user';
+import { user } from '../../mocks/user';
 import { checkMassiveLength } from '../../utils';
 
 type HeaderNavigationProps = {
@@ -26,15 +26,15 @@ function HeaderNavigation ({sign}: HeaderNavigationProps): JSX.Element {
           <a className="header__nav-link header__nav-link--profile" href="#">
             <div className="header__avatar-wrapper user__avatar-wrapper">
             </div>
-            {User ?
+            {user ?
               <>
-                <span className="header__user-name user__name">{User.email}</span>
+                <span className="header__user-name user__name">{user.email}</span>
                 <span className="header__favorite-count">{checkMassiveLength(placesOffers, 'isFavorite').length}</span>
               </> :
               <span className="header__login">{sign.SignIn}</span>}
           </a>
         </li>
-        {User && <HeaderSignOut sign={sign}/>}
+        {user && <HeaderSignOut sign={sign}/>}
       </ul>
     </nav>
   );

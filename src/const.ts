@@ -7,7 +7,7 @@ const SortList = {
   TopRatedFirst: 'Top rated first',
 } as const;
 
-const RAITING = ['5', '4', '3', '2', '1'] as const;
+const RATING = ['5', '4', '3', '2', '1'] as const;
 
 enum AppRoute {
   Main = '/',
@@ -28,14 +28,11 @@ const Sign = {
   SignOut: 'Sign out'
 } as const;
 
-const IsActive = true;
-
 export {
   CITIES,
   SortList,
-  RAITING,
+  RATING,
   AppRoute,
   AuthorizationStatus,
   Sign,
-  IsActive
 };

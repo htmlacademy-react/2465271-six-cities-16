@@ -1,6 +1,6 @@
 import { IncommingOffer } from '../types/offer-type';
 
-export const OfferRequest: IncommingOffer = {
+export const offerRequest: IncommingOffer = {
   id: '3af6f711-c28d-4121-52cd-e0b462a27f00',
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',

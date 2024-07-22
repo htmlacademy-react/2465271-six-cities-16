@@ -4,8 +4,8 @@ import { Sign } from '../../const';
 
 type HeaderProps = {
   sign: typeof Sign;
-  isActive?: true | false;
-  isLogin?: true | false;
+  isActive?: boolean;
+  isLogin?: boolean;
 }
 
 function Header ({sign, isActive = false, isLogin = false}: HeaderProps) {
