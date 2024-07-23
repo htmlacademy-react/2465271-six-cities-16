@@ -22,7 +22,8 @@ function OfferReviewForm ({ratingProps}: RatingProps): JSX.Element {
             <input
               onChange={handleRatingValue}
               className="form__rating-input visually-hidden"
-              name="rating" value={ratingValue}
+              name="rating"
+              value={ratingValue}
               id={`${ratingValue}-stars`}
               type="radio"
             />

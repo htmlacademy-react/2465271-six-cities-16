@@ -8,9 +8,22 @@ type PlaceCardProps = {
   isMainCard?: boolean;
   isFavoriteCard?: boolean;
   isOfferCard?: boolean;
+  handleActiveCardChange: (arg: Offer | null) => void;
 }
 
-function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOfferCard = false}: PlaceCardProps): JSX.Element {
+function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOfferCard = false, handleActiveCardChange}: PlaceCardProps): JSX.Element {
+  const handleMouseEnter = () => {
+    if(handleActiveCardChange) {
+      handleActiveCardChange(placeCard);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (handleActiveCardChange) {
+      handleActiveCardChange(null);
+    }
+  };
+
   return (
     <article className={
       `${isMainCard ? 'cities__card' : ''}
@@ -18,6 +31,8 @@ function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOf
       ${isOfferCard ? 'near-places__card' : ''}
       place-card`
     }
+    onMouseEnter={handleMouseEnter}
+    onMouseLeave={handleMouseLeave}
     >
       { placeCard.isPremium && (
         <div className="place-card__mark">
