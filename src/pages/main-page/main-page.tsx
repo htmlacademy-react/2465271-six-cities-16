@@ -15,8 +15,8 @@ type MainPageProps = {
 }
 
 function MainPage ({cities, sortType, sign, offersProps, isActive = true}: MainPageProps): JSX.Element {
-  const [activeCard, setActiveCard] = useState<Offer | null>(null);
-  const handleActiveCardChange = (card: Offer | null) => {
+  const [activeCard, setActiveCard] = useState<Offer | null | undefined>(null);
+  const handleActiveCardChange = (card?: Offer | null) => {
     setActiveCard(card);
     return activeCard;
   };

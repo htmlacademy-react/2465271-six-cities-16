@@ -1,9 +1,9 @@
 import PlaceCard from '../place-card/place-card';
-import { placesOffers } from '../../mocks/places-offers';
+import { Offer } from '../../types/offer-type';
 
 type FavoritePlacesProps = {
   city: string;
-  offers: typeof placesOffers;
+  offers: Offer[];
   isFavoriteCard?: boolean;
 }
 function FavoriteCardContainer ({city, offers, isFavoriteCard = true}: FavoritePlacesProps): JSX.Element {

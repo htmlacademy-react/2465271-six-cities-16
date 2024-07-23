@@ -4,7 +4,7 @@ import PlaceCard from '../place-card/place-card';
 type PlacesOffersProps = {
   offersProps: Offer[];
   isMainCard?: boolean;
-  handleActiveCardChange: (arg: Offer | null) => void;
+  handleActiveCardChange?: (arg?: Offer | null) => void;
 }
 
 function PlacesCardContainer ({offersProps, isMainCard = true, handleActiveCardChange}: PlacesOffersProps): JSX.Element {

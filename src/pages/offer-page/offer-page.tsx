@@ -4,11 +4,12 @@ import OfferContainer from '../../components/offer-container/offer-container';
 import PlaceCard from '../../components/place-card/place-card';
 import { offerRequest } from '../../mocks/offer-request';
 import { offerComments } from '../../mocks/offer-comments';
-import { placesOffers } from '../../mocks/places-offers';
+import { Offer } from '../../types/offer-type';
 import { RATING, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 type OfferPageProps = {
+  offersProps: Offer[];
   offerContainerProps: typeof offerRequest;
   offerCommentsProps: typeof offerComments;
   ratingProps: typeof RATING;
@@ -16,7 +17,7 @@ type OfferPageProps = {
   isOfferCard?: boolean;
 }
 
-function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps, isOfferCard = true}: OfferPageProps):JSX.Element {
+function OfferPage ({offersProps, sign, offerContainerProps, offerCommentsProps, ratingProps, isOfferCard = true}: OfferPageProps):JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -38,8 +39,8 @@ function OfferPage ({sign, offerContainerProps, offerCommentsProps, ratingProps,
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {placesOffers.slice(0,3).map((offerCard) => (
-                <PlaceCard key={offerCard.id} placeCard={offerCard} isOfferCard={isOfferCard}/>
+              {offersProps.slice(0,3).map((offerCard) => (
+                <PlaceCard key={offerCard.id} placeCard={offerCard} isOfferCard={isOfferCard} />
               ))}
             </div>
           </section>

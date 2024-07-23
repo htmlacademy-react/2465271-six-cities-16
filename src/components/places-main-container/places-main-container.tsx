@@ -9,7 +9,7 @@ import { SortList } from '../../const';
 type PlacesMainContainerProps = {
   sortType: typeof SortList;
   offersProps: Offer[];
-  handleActiveCardChange: (arg: Offer | null) => void;
+  handleActiveCardChange?: (arg?: Offer | null) => void;
 }
 
 function PlacesMainContainer ({sortType, offersProps, handleActiveCardChange}: PlacesMainContainerProps): JSX.Element {
