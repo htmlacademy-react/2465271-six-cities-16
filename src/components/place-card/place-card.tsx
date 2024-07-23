@@ -70,7 +70,7 @@ function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOf
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.Offer}/${placeCard.id}`}>{ placeCard.title }</Link>
+          <Link to={`${AppRoute.Offer}${placeCard.id}`}>{ placeCard.title }</Link>
         </h2>
         <p className="place-card__type">{ capitalizeFirstLetter(placeCard.type) }</p>
       </div>

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AppRoute, Sign } from '../../const';
 import { placesOffers } from '../../mocks/places-offers';
 import { user } from '../../mocks/user';
@@ -23,7 +23,7 @@ function HeaderNavigation ({sign}: HeaderNavigationProps): JSX.Element {
     <nav className="header__nav">
       <ul className="header__nav-list">
         <li className="header__nav-item user">
-          <a className="header__nav-link header__nav-link--profile" href="#">
+          <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
             <div className="header__avatar-wrapper user__avatar-wrapper">
             </div>
             {user ?
@@ -32,7 +32,7 @@ function HeaderNavigation ({sign}: HeaderNavigationProps): JSX.Element {
                 <span className="header__favorite-count">{checkMassiveLength(placesOffers, 'isFavorite').length}</span>
               </> :
               <span className="header__login">{sign.SignIn}</span>}
-          </a>
+          </Link>
         </li>
         {user && <HeaderSignOut sign={sign}/>}
       </ul>

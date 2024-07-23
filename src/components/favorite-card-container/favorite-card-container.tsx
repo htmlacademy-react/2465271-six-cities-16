@@ -1,5 +1,7 @@
 import PlaceCard from '../place-card/place-card';
 import { Offer } from '../../types/offer-type';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 type FavoritePlacesProps = {
   city: string;
@@ -11,9 +13,9 @@ function FavoriteCardContainer ({city, offers, isFavoriteCard = true}: FavoriteP
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
-          <a className="locations__item-link" href="#">
+          <Link to={AppRoute.Main} className="locations__item-link">
             <span>{city}</span>
-          </a>
+          </Link>
         </div>
       </div>
       <div className="favorites__places">

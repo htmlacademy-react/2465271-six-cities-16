@@ -10,10 +10,6 @@ import { CITIES, SortList, RATING, AppRoute, AuthorizationStatus, Sign} from '..
 import { Offer } from '../../types/offer-type';
 import { OfferComment } from '../../types/offer-type';
 import { IncommingOffer } from '../../types/offer-type';
-// import { offerComments } from '../../mocks/offer-comments';
-// import { offerRequest } from '../../mocks/offer-request';
-// import { placesOffers } from '../../mocks/places-offers';
-
 
 type AppProps = {
   cities: typeof CITIES;
@@ -36,8 +32,8 @@ function App ({cities, sortType, sign, offersProps, offerContainerProps, offerCo
             element={<MainPage cities={cities} sortType={sortType} sign={sign} offersProps={offersProps}/>}
           />
           <Route
-            path={AppRoute.Offer}
-            element={<OfferPage sign={sign} offerContainerProps={offerContainerProps} offerCommentsProps={offerCommentsProps} ratingProps={ratingProps} />}
+            path={`${AppRoute.Offer}:id`}
+            element={<OfferPage sign={sign} offerContainerProps={offerContainerProps} offerCommentsProps={offerCommentsProps} ratingProps={ratingProps} offersProps={offersProps} />}
           />
           <Route
             path={AppRoute.Favorites}
