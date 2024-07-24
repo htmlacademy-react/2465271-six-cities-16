@@ -2,22 +2,22 @@ import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferContainer from '../../components/offer-container/offer-container';
 import PlaceCard from '../../components/place-card/place-card';
-import { offerRequest } from '../../mocks/offer-request';
-import { offerComments } from '../../mocks/offer-comments';
+import { OfferComment } from '../../types/offer-type';
+import { IncomingOffer } from '../../types/offer-type';
 import { Offer } from '../../types/offer-type';
 import { RATING, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 type OfferPageProps = {
-  offersProps: Offer[];
-  offerContainerProps: typeof offerRequest;
-  offerCommentsProps: typeof offerComments;
-  ratingProps: typeof RATING;
+  offers: Offer[];
+  incomingOffer: IncomingOffer;
+  offerComments: OfferComment[];
+  rating: typeof RATING;
   sign: typeof Sign;
   isOfferCard?: boolean;
 }
 
-function OfferPage ({offersProps, sign, offerContainerProps, offerCommentsProps, ratingProps, isOfferCard = true}: OfferPageProps):JSX.Element {
+function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOfferCard = true}: OfferPageProps):JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -27,11 +27,11 @@ function OfferPage ({offersProps, sign, offerContainerProps, offerCommentsProps,
 
       <main className="page__main page__main--offer">
         <section className="offer">
-          <OfferGallery placesImage={offerContainerProps}/>
+          <OfferGallery placesImage={incomingOffer}/>
           <OfferContainer
-            offerContainerProps={offerContainerProps}
-            offerCommentsProps={offerCommentsProps}
-            ratingProps={ratingProps}
+            incomingOffer={incomingOffer}
+            offerComments={offerComments}
+            rating={rating}
           />
           <section className="offer__map map"></section>
         </section>
@@ -39,7 +39,7 @@ function OfferPage ({offersProps, sign, offerContainerProps, offerCommentsProps,
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {offersProps.slice(0,3).map((offerCard) => (
+              {offers.slice(0,3).map((offerCard) => (
                 <PlaceCard key={offerCard.id} placeCard={offerCard} isOfferCard={isOfferCard} />
               ))}
             </div>

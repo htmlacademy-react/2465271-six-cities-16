@@ -9,12 +9,12 @@ import { useState } from 'react';
 type MainPageProps = {
   cities: typeof CITIES;
   sortType: typeof SortList;
-  offersProps: Offer[];
+  offers: Offer[];
   sign: typeof Sign;
   isActive?: boolean;
 }
 
-function MainPage ({cities, sortType, sign, offersProps, isActive = true}: MainPageProps): JSX.Element {
+function MainPage ({cities, sortType, sign, offers, isActive = true}: MainPageProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<Offer | null | undefined>(null);
   const handleActiveCardChange = (card?: Offer | null) => {
     setActiveCard(card);
@@ -26,10 +26,10 @@ function MainPage ({cities, sortType, sign, offersProps, isActive = true}: MainP
         <title>6 cities. Главная страница</title>
       </Helmet>
       <Header sign={sign} isActive={isActive}/>
-      <main className={`page__main page__main--index ${offersProps.length === 0 ? 'page__main--index-empty' : ''}`}>
+      <main className={`page__main page__main--index ${offers.length === 0 ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
         <MainLocationList cities={cities} />
-        <PlacesMainContainer sortType={sortType} offersProps={offersProps} handleActiveCardChange={handleActiveCardChange}/>
+        <PlacesMainContainer sortType={sortType} offers={offers} onActiveCardHover={handleActiveCardChange}/>
       </main>
     </div>
   );

@@ -2,10 +2,10 @@ import { RATING } from '../../const';
 import React, { Fragment, useState } from 'react';
 
 type RatingProps = {
-  ratingProps: typeof RATING;
+  ratings: typeof RATING;
 }
 
-function OfferReviewForm ({ratingProps}: RatingProps): JSX.Element {
+function OfferReviewForm ({ratings}: RatingProps): JSX.Element {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const handleCommentValue = (evt: React.ChangeEvent<HTMLTextAreaElement>): void => setComment(evt.currentTarget.value);
@@ -17,7 +17,7 @@ function OfferReviewForm ({ratingProps}: RatingProps): JSX.Element {
         className="reviews__rating-form form__rating"
         defaultValue={rating}
       >
-        {ratingProps.map((ratingValue) => (
+        {ratings.map((ratingValue) => (
           <Fragment key={ratingValue}>
             <input
               onChange={handleRatingValue}

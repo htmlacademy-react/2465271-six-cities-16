@@ -8,19 +8,19 @@ type PlaceCardProps = {
   isMainCard?: boolean;
   isFavoriteCard?: boolean;
   isOfferCard?: boolean;
-  handleActiveCardChange?: (arg?: Offer | null) => void;
+  onActiveCardHover?: (arg?: Offer | null) => void;
 }
 
-function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOfferCard = false, handleActiveCardChange}: PlaceCardProps): JSX.Element {
+function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOfferCard = false, onActiveCardHover}: PlaceCardProps): JSX.Element {
   const handleMouseEnter = () => {
-    if(handleActiveCardChange) {
-      handleActiveCardChange(placeCard);
+    if(onActiveCardHover) {
+      onActiveCardHover(placeCard);
     }
   };
 
   const handleMouseLeave = () => {
-    if (handleActiveCardChange) {
-      handleActiveCardChange(null);
+    if (onActiveCardHover) {
+      onActiveCardHover(null);
     }
   };
 

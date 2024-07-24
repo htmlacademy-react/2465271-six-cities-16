@@ -40,7 +40,7 @@ type OfferComment = {
   rating: number;
 }
 
-type IncommingOffer = OfferTemplate & {
+type IncomingOffer = OfferTemplate & {
     description: string;
     bedrooms: number;
     goods: string[];
@@ -52,5 +52,5 @@ type IncommingOffer = OfferTemplate & {
 export type {
   Offer,
   OfferComment,
-  IncommingOffer,
+  IncomingOffer,
 };

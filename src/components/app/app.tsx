@@ -9,19 +9,19 @@ import PrivateRoute from '../private-route/private-route';
 import { CITIES, SortList, RATING, AppRoute, AuthorizationStatus, Sign} from '../../const';
 import { Offer } from '../../types/offer-type';
 import { OfferComment } from '../../types/offer-type';
-import { IncommingOffer } from '../../types/offer-type';
+import { IncomingOffer } from '../../types/offer-type';
 
 type AppProps = {
   cities: typeof CITIES;
   sortType: typeof SortList;
-  offersProps: Offer[];
-  offerContainerProps: IncommingOffer;
-  offerCommentsProps: OfferComment[];
-  ratingProps: typeof RATING;
+  offers: Offer[];
+  incomingOffer: IncomingOffer;
+  offerComments: OfferComment[];
+  rating: typeof RATING;
   sign: typeof Sign;
 }
 
-function App ({cities, sortType, sign, offersProps, offerContainerProps, offerCommentsProps, ratingProps}: AppProps): JSX.Element {
+function App ({cities, sortType, sign, offers, incomingOffer, offerComments, rating}: AppProps): JSX.Element {
 
   return (
     <HelmetProvider>
@@ -29,11 +29,11 @@ function App ({cities, sortType, sign, offersProps, offerContainerProps, offerCo
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage cities={cities} sortType={sortType} sign={sign} offersProps={offersProps}/>}
+            element={<MainPage cities={cities} sortType={sortType} sign={sign} offers={offers}/>}
           />
           <Route
             path={`${AppRoute.Offer}:id`}
-            element={<OfferPage sign={sign} offerContainerProps={offerContainerProps} offerCommentsProps={offerCommentsProps} ratingProps={ratingProps} offersProps={offersProps} />}
+            element={<OfferPage sign={sign} incomingOffer={incomingOffer} offerComments={offerComments} rating={rating} offers={offers} />}
           />
           <Route
             path={AppRoute.Favorites}

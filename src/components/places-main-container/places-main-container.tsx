@@ -8,21 +8,21 @@ import { SortList } from '../../const';
 
 type PlacesMainContainerProps = {
   sortType: typeof SortList;
-  offersProps: Offer[];
-  handleActiveCardChange?: (arg?: Offer | null) => void;
+  offers: Offer[];
+  onActiveCardHover?: (arg?: Offer | null) => void;
 }
 
-function PlacesMainContainer ({sortType, offersProps, handleActiveCardChange}: PlacesMainContainerProps): JSX.Element {
+function PlacesMainContainer ({sortType, offers, onActiveCardHover}: PlacesMainContainerProps): JSX.Element {
   return (
     <div className="cities">
-      {offersProps.length === 0 ?
+      {offers.length === 0 ?
         <EmptyPlaces/> :
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <PlacesFound/>
             <PlacesSorting sortType={sortType}/>
-            <PlacesCardContainer offersProps={offersProps} handleActiveCardChange={handleActiveCardChange}/>
+            <PlacesCardContainer offers={offers} onActiveCardHover={onActiveCardHover}/>
           </section>
           <PlaceMapContainer/>
         </div>}
