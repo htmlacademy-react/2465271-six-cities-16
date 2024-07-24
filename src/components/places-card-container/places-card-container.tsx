@@ -4,7 +4,7 @@ import PlaceCard from '../place-card/place-card';
 type PlacesOffersProps = {
   offers: Offer[];
   isMainCard?: boolean;
-  onActiveCardHover?: (card?: Offer | null) => void;
+  onActiveCardHover?: (card: Offer | null) => void;
 }
 
 function PlacesCardContainer ({offers, isMainCard = true, onActiveCardHover}: PlacesOffersProps): JSX.Element {

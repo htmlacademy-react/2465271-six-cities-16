@@ -8,7 +8,7 @@ type PlaceCardProps = {
   isMainCard?: boolean;
   isFavoriteCard?: boolean;
   isOfferCard?: boolean;
-  onActiveCardHover?: (card?: Offer | null) => void;
+  onActiveCardHover?: (card: Offer | null) => void;
 }
 
 function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOfferCard = false, onActiveCardHover}: PlaceCardProps): JSX.Element {
