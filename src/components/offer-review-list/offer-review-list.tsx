@@ -1,8 +1,7 @@
-import { offerComments } from '../../mocks/offer-comments';
 import { OfferComment } from '../../types/offer-type';
 
 type OfferCommentsProps = {
-  offerCommentsProps: typeof offerComments;
+  offerComments: OfferComment[];
 }
 
 type OfferCommentElement = {
@@ -36,10 +35,10 @@ function OfferReview ({offerCommentElement}: OfferCommentElement): JSX.Element {
   );
 }
 
-function OfferReviewList ({offerCommentsProps}: OfferCommentsProps): JSX.Element {
+function OfferReviewList ({offerComments}: OfferCommentsProps): JSX.Element {
   return (
     <ul className="reviews__list">
-      {offerCommentsProps.map((offerCommentElement) => (
+      {offerComments.map((offerCommentElement) => (
         <OfferReview key={offerCommentElement.id} offerCommentElement={offerCommentElement}/>
       ))}
     </ul>

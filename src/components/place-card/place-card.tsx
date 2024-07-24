@@ -8,9 +8,22 @@ type PlaceCardProps = {
   isMainCard?: boolean;
   isFavoriteCard?: boolean;
   isOfferCard?: boolean;
+  onActiveCardHover?: (card: Offer | null) => void;
 }
 
-function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOfferCard = false}: PlaceCardProps): JSX.Element {
+function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOfferCard = false, onActiveCardHover}: PlaceCardProps): JSX.Element {
+  const handleMouseEnter = () => {
+    if(onActiveCardHover) {
+      onActiveCardHover(placeCard);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (onActiveCardHover) {
+      onActiveCardHover(null);
+    }
+  };
+
   return (
     <article className={
       `${isMainCard ? 'cities__card' : ''}
@@ -18,6 +31,8 @@ function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOf
       ${isOfferCard ? 'near-places__card' : ''}
       place-card`
     }
+    onMouseEnter={handleMouseEnter}
+    onMouseLeave={handleMouseLeave}
     >
       { placeCard.isPremium && (
         <div className="place-card__mark">
@@ -31,7 +46,7 @@ function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOf
         place-card__image-wrapper`
       }
       >
-        <Link to={`${AppRoute.Offer}/${placeCard.id}`}>
+        <Link to={`${AppRoute.Offer}${placeCard.id}`}>
           <img className="place-card__image" src={ placeCard.previewImage } width={`${isFavoriteCard ? '150' : '260'}`} height={`${isFavoriteCard ? '110' : '200'}`} alt="Place image" />
         </Link>
       </div>
@@ -55,7 +70,7 @@ function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOf
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.Offer}/${placeCard.id}`}>{ placeCard.title }</Link>
+          <Link to={`${AppRoute.Offer}${placeCard.id}`}>{ placeCard.title }</Link>
         </h2>
         <p className="place-card__type">{ capitalizeFirstLetter(placeCard.type) }</p>
       </div>
