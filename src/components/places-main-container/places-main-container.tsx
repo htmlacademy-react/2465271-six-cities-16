@@ -10,9 +10,10 @@ type PlacesMainContainerProps = {
   sortType: typeof SortList;
   offers: Offer[];
   onActiveCardHover?: (card: Offer | null) => void;
+  activeCity: string;
 }
 
-function PlacesMainContainer ({sortType, offers, onActiveCardHover}: PlacesMainContainerProps): JSX.Element {
+function PlacesMainContainer ({sortType, offers, onActiveCardHover, activeCity}: PlacesMainContainerProps): JSX.Element {
   return (
     <div className="cities">
       {offers.length === 0 ?
@@ -20,7 +21,7 @@ function PlacesMainContainer ({sortType, offers, onActiveCardHover}: PlacesMainC
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <PlacesFound/>
+            <PlacesFound activeCity={activeCity} offers={offers}/>
             <PlacesSorting sortType={sortType}/>
             <PlacesCardContainer offers={offers} onActiveCardHover={onActiveCardHover}/>
           </section>

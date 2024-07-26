@@ -16,10 +16,15 @@ type MainPageProps = {
 
 function MainPage ({cities, sortType, sign, offers, isActive = true}: MainPageProps): JSX.Element {
   const [activeCard, setActiveCard] = useState<Offer | null>(null);
+  const [activeCity, setActiveCity] = useState<string>('Paris');
   const handleActiveCardChange = (card: Offer | null) => {
     setActiveCard(card);
     return activeCard;
   };
+  const handleActiveCtyClick = (evt: React.MouseEvent<HTMLSpanElement>) => {
+    setActiveCity(evt.currentTarget.innerText);
+  };
+  const filterOffers = offers.filter((offer) => offer.city.name === activeCity);
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -28,8 +33,8 @@ function MainPage ({cities, sortType, sign, offers, isActive = true}: MainPagePr
       <Header sign={sign} isActive={isActive}/>
       <main className={`page__main page__main--index ${offers.length === 0 ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
-        <MainLocationList cities={cities} />
-        <PlacesMainContainer sortType={sortType} offers={offers} onActiveCardHover={handleActiveCardChange}/>
+        <MainLocationList cities={cities} activeCity={activeCity} onActiveCityClick={handleActiveCtyClick}/>
+        <PlacesMainContainer sortType={sortType} offers={filterOffers} onActiveCardHover={handleActiveCardChange} activeCity={activeCity}/>
       </main>
     </div>
   );

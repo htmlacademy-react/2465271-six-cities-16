@@ -1,8 +1,13 @@
-import { placesOffers } from '../../mocks/places-offers';
+import { Offer } from '../../types/offer-type';
 
-function PlacesFound ():JSX.Element {
+type PlacesFoundProps = {
+  activeCity: string;
+  offers: Offer[];
+}
+
+function PlacesFound ({activeCity, offers}: PlacesFoundProps):JSX.Element {
   return (
-    <b className="places__found">{placesOffers.length} places to stay in Amsterdam</b>
+    <b className="places__found">{offers.length} places to stay in {activeCity}</b>
   );
 }
 
