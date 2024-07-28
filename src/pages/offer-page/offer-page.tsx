@@ -2,6 +2,7 @@ import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferContainer from '../../components/offer-container/offer-container';
 import PlaceCard from '../../components/place-card/place-card';
+import MapContainer from '../../components/map-container/map-container';
 import { OfferComment } from '../../types/offer-type';
 import { IncomingOffer } from '../../types/offer-type';
 import { Offer } from '../../types/offer-type';
@@ -15,9 +16,10 @@ type OfferPageProps = {
   rating: typeof RATING;
   sign: typeof Sign;
   isOfferCard?: boolean;
+  selectedPoint?: string;
 }
 
-function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOfferCard = true}: OfferPageProps):JSX.Element {
+function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOfferCard = true, selectedPoint}: OfferPageProps):JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -33,7 +35,7 @@ function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOffer
             offerComments={offerComments}
             rating={rating}
           />
-          <section className="offer__map map"></section>
+          <MapContainer offers={offers.slice(0,3)} selectedPoint={selectedPoint}/>
         </section>
         <div className="container">
           <section className="near-places places">

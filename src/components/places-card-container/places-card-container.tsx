@@ -5,15 +5,16 @@ type PlacesOffersProps = {
   offers: Offer[];
   isMainCard?: boolean;
   onActiveCardHover?: (card: Offer | null) => void;
-  // activeCity: string;
+  onContainerItemHover?: (evt: string) => void;
 }
 
-function PlacesCardContainer ({offers, isMainCard = true, onActiveCardHover}: PlacesOffersProps): JSX.Element {
+function PlacesCardContainer ({offers, isMainCard = true, onActiveCardHover, onContainerItemHover}: PlacesOffersProps): JSX.Element {
+
   // const filterOffers = offers.filter((offer) => offer.city.name === activeCity);
   return (
-    <div className="cities__places-list places__list tabs__content" >
+    <div className="cities__places-list places__list tabs__content">
       {offers.map((placeCard) => (
-        <PlaceCard key={placeCard.id} placeCard={placeCard} isMainCard={isMainCard} onActiveCardHover={onActiveCardHover}/>
+        <PlaceCard key={placeCard.id} placeCard={placeCard} isMainCard={isMainCard} onActiveCardHover={onActiveCardHover} onContainerItemHover={onContainerItemHover}/>
       ))}
     </div>
   );

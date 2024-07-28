@@ -51,6 +51,8 @@ type IncomingOffer = OfferTemplate & {
 
 export type {
   Offer,
+  Location,
   OfferComment,
+  OfferTemplate,
   IncomingOffer,
 };
