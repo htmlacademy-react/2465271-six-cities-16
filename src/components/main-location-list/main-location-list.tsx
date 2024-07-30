@@ -1,22 +1,28 @@
-import { AppRoute, CITIES } from '../../const';
+import { AppRoute, CITIES, Locations } from '../../const';
 import { Link } from 'react-router-dom';
 
 type MainLocationListProps = {
   cities: typeof CITIES;
-  activeCity: string;
-  onActiveCityClick: (evt: React.MouseEvent<HTMLSpanElement>) => void;
+  activeCity: keyof typeof Locations;
+  onActiveCityClick: (city: keyof typeof Locations) => void;
 }
 
 type MainLocationElementProps = {
-  city: string;
-  activeCity: string;
-  onActiveCityClick: (evt: React.MouseEvent<HTMLSpanElement>) => void;
+  city: keyof typeof Locations;
+  activeCity: keyof typeof Locations;
+  onActiveCityClick: (city: keyof typeof Locations) => void;
 }
 
 function MainLocationElement ({city, activeCity, onActiveCityClick}: MainLocationElementProps): JSX.Element {
+  const handleCityClick = () => {
+    if (onActiveCityClick) {
+      onActiveCityClick(city);
+    }
+  };
+
   return (
     <li
-      onClick={onActiveCityClick}
+      onClick={handleCityClick}
       className="locations__item"
     >
       <Link

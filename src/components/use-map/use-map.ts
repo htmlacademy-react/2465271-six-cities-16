@@ -1,39 +1,38 @@
-import { useEffect, useRef, useState } from 'react';
-import leaflet from 'leaflet';
-import { Offer } from '../../types/offer-type';
+import {useEffect, useState, MutableRefObject, useRef} from 'react';
+import {Map, TileLayer} from 'leaflet';
+import { Location } from '../../types/offer-type';
 
-// type UseMapProps = {
-//   mapRef: React.MutableRefObject<null>;
-//   city: Offer;
-// }
-
-function useMap(mapRef: React.MutableRefObject<null>, city: Offer) {
-  const [map, setMap] = useState(null);
-  const isRenderedRef = useRef(false);
+function useMap(
+  mapRef: MutableRefObject<HTMLElement | null>,
+  cityWithLocation: Location
+): Map | null {
+  const [map, setMap] = useState<Map | null>(null);
+  const isRenderedRef = useRef<boolean>(false);
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
-      const instance = leaflet.map(mapRef.current, {
+      const instance = new Map(mapRef.current, {
         center: {
-          lat: city.city.location.latitude,
-          lng: city.city.location.longitude,
+          lat: cityWithLocation.latitude,
+          lng: cityWithLocation.longitude
         },
-        zoom: city.city.location.zoom,
+        zoom: cityWithLocation.zoom
       });
 
-      leaflet
-        .tileLayer(
-          'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-          {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-          },
-        )
-        .addTo(instance);
+      const layer = new TileLayer(
+        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+        {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }
+      );
+
+      instance.addLayer(layer);
 
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city]);
+  }, [mapRef, cityWithLocation]);
 
   return map;
 }

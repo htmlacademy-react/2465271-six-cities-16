@@ -8,11 +8,10 @@ type PlaceCardProps = {
   isMainCard?: boolean;
   isFavoriteCard?: boolean;
   isOfferCard?: boolean;
-  onActiveCardHover?: (card: Offer | null) => void;
-  onContainerItemHover?: (evt: string) => void;
+  onActiveCardHover?: (card: Offer | undefined) => void;
 }
 
-function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOfferCard = false, onActiveCardHover, onContainerItemHover}: PlaceCardProps): JSX.Element {
+function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOfferCard = false, onActiveCardHover}: PlaceCardProps): JSX.Element {
   const handleMouseEnter = () => {
     if(onActiveCardHover) {
       onActiveCardHover(placeCard);
@@ -21,13 +20,7 @@ function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOf
 
   const handleMouseLeave = () => {
     if (onActiveCardHover) {
-      onActiveCardHover(null);
-    }
-  };
-
-  const handleContainerItemHover = () => {
-    if(onContainerItemHover) {
-      onContainerItemHover(placeCard.id);
+      onActiveCardHover(undefined);
     }
   };
 
@@ -40,7 +33,6 @@ function PlaceCard ({placeCard, isMainCard = false, isFavoriteCard = false, isOf
     }
     onMouseEnter={handleMouseEnter}
     onMouseLeave={handleMouseLeave}
-    onMouseOver={handleContainerItemHover}
     >
       { placeCard.isPremium && (
         <div className="place-card__mark">

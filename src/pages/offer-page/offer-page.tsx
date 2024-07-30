@@ -6,7 +6,7 @@ import MapContainer from '../../components/map-container/map-container';
 import { OfferComment } from '../../types/offer-type';
 import { IncomingOffer } from '../../types/offer-type';
 import { Offer } from '../../types/offer-type';
-import { RATING, Sign } from '../../const';
+import { RATING, Sign, Locations } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 type OfferPageProps = {
@@ -16,10 +16,11 @@ type OfferPageProps = {
   rating: typeof RATING;
   sign: typeof Sign;
   isOfferCard?: boolean;
-  selectedPoint?: string;
+  selectedPoint?: Offer | undefined;
+  activeCity: keyof typeof Locations;
 }
 
-function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOfferCard = true, selectedPoint}: OfferPageProps):JSX.Element {
+function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOfferCard = true, selectedPoint, activeCity}: OfferPageProps):JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -35,7 +36,7 @@ function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOffer
             offerComments={offerComments}
             rating={rating}
           />
-          <MapContainer offers={offers.slice(0,3)} selectedPoint={selectedPoint}/>
+          <MapContainer offers={offers.slice(0,3)} selectedPoint={selectedPoint} activeCity={activeCity}/>
         </section>
         <div className="container">
           <section className="near-places places">

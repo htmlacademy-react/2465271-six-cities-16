@@ -4,17 +4,14 @@ import PlaceCard from '../place-card/place-card';
 type PlacesOffersProps = {
   offers: Offer[];
   isMainCard?: boolean;
-  onActiveCardHover?: (card: Offer | null) => void;
-  onContainerItemHover?: (evt: string) => void;
+  onActiveCardHover?: (card: Offer | undefined) => void;
 }
 
-function PlacesCardContainer ({offers, isMainCard = true, onActiveCardHover, onContainerItemHover}: PlacesOffersProps): JSX.Element {
-
-  // const filterOffers = offers.filter((offer) => offer.city.name === activeCity);
+function PlacesCardContainer ({offers, isMainCard = true, onActiveCardHover}: PlacesOffersProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((placeCard) => (
-        <PlaceCard key={placeCard.id} placeCard={placeCard} isMainCard={isMainCard} onActiveCardHover={onActiveCardHover} onContainerItemHover={onContainerItemHover}/>
+        <PlaceCard key={placeCard.id} placeCard={placeCard} isMainCard={isMainCard} onActiveCardHover={onActiveCardHover}/>
       ))}
     </div>
   );

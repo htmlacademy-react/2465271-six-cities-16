@@ -1,15 +1,18 @@
 import Map from '../map/map';
 import { Offer } from '../../types/offer-type';
+import { Locations } from '../../const';
 
 type Offers = {
+  // offer: Offer;
   offers: Offer[];
-  selectedPoint?: string;
+  selectedPoint?: Offer | undefined;
+  activeCity: keyof typeof Locations;
 }
 
-function MapContainer ({offers, selectedPoint}: Offers): JSX.Element {
+function MapContainer ({offers, selectedPoint, activeCity}: Offers): JSX.Element {
   return (
     <section className="cities__map map">
-      <Map offers={offers} selectedPoint={selectedPoint}/>
+      <Map offers={offers} selectedPoint={selectedPoint} activeCity={activeCity}/>
     </section>
   );
 }
