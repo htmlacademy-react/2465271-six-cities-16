@@ -18,7 +18,7 @@ function PlacesMainContainer ({sortType, offers, onActiveCardHover, activeCity, 
   return (
     <div className="cities">
       {offers.length === 0 ?
-        <EmptyPlaces/> :
+        <EmptyPlaces activeCity={activeCity}/> :
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>

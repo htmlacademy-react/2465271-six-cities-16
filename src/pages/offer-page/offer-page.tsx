@@ -42,8 +42,8 @@ function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOffer
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {offers.slice(0,3).map((offerCard) => (
-                <PlaceCard key={offerCard.id} placeCard={offerCard} isOfferCard={isOfferCard} />
+              {offers.slice(0,3).map((offer) => (
+                <PlaceCard key={offer.id} offer={offer} isOfferCard={isOfferCard} />
               ))}
             </div>
           </section>

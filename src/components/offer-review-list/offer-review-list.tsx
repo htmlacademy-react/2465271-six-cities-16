@@ -1,14 +1,14 @@
 import { OfferComment } from '../../types/offer-type';
 
-type OfferCommentsProps = {
+type OfferReviewListProps = {
   offerComments: OfferComment[];
 }
 
-type OfferCommentElement = {
+type OfferReviewProps = {
   offerCommentElement: OfferComment;
 }
 
-function OfferReview ({offerCommentElement}: OfferCommentElement): JSX.Element {
+function OfferReview ({offerCommentElement}: OfferReviewProps): JSX.Element {
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -35,7 +35,7 @@ function OfferReview ({offerCommentElement}: OfferCommentElement): JSX.Element {
   );
 }
 
-function OfferReviewList ({offerComments}: OfferCommentsProps): JSX.Element {
+function OfferReviewList ({offerComments}: OfferReviewListProps): JSX.Element {
   return (
     <ul className="reviews__list">
       {offerComments.map((offerCommentElement) => (

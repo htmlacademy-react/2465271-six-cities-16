@@ -1,20 +1,20 @@
 import { SortList } from '../../const';
 
-type SortListProps = {
+type PlacesSortingProps = {
   sortType: typeof SortList;
 }
 
-type SortType = {
+type SortListItemProps = {
   sortType: string;
 }
 
-function SortListItem ({sortType}: SortType): JSX.Element {
+function SortListItem ({sortType}: SortListItemProps): JSX.Element {
   return (
     <li className="places__option places__option--active" tabIndex={0}>{sortType}</li>
   );
 }
 
-function PlacesSorting ({sortType}: SortListProps): JSX.Element {
+function PlacesSorting ({sortType}: PlacesSortingProps): JSX.Element {
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
