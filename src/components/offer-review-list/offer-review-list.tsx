@@ -1,4 +1,5 @@
 import { OfferComment } from '../../types/offer-type';
+import { getDateFormat, getDateToLocaleFormat } from '../../utils';
 
 type OfferReviewListProps = {
   offerComments: OfferComment[];
@@ -29,7 +30,7 @@ function OfferReview ({offerCommentElement}: OfferReviewProps): JSX.Element {
         <p className="reviews__text">
           {offerCommentElement.comment}
         </p>
-        <time className="reviews__time" dateTime={offerCommentElement.date}>{offerCommentElement.date}</time>
+        <time className="reviews__time" dateTime={getDateFormat(offerCommentElement.date)}>{getDateToLocaleFormat(offerCommentElement.date)}</time>
       </div>
     </li>
   );

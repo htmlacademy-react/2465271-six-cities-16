@@ -26,7 +26,7 @@ function App ({cities, sortType, sign, offers, incomingOffer, offerComments, rat
 
   const [activeCard, setActiveCard] = useState<Offer | undefined>();
 
-  const [activeCity, setActiveCity] = useState<keyof typeof Locations>('Amsterdam');
+  const [activeCity, setActiveCity] = useState<keyof typeof Locations>('Paris');
 
   const handleActiveCardChange = (card: Offer | undefined) => {
     setActiveCard(card);

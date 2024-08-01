@@ -1,52 +1,54 @@
 import { IncomingOffer } from '../types/offer-type';
 
 export const offerRequest: IncomingOffer = {
-  id: '3af6f711-c28d-4121-52cd-e0b462a27f00',
-  title: 'Beautiful & luxurious studio at great location',
+  id: 'c8926a0e-aefb-441f-9de6-6d9a94f866bd',
+  title: 'Beautiful & luxurious apartment at great location',
+  description:
+    'I rent out a very sunny and bright apartment only 7 minutes walking distance to the metro station. The apartment has a spacious living room with a kitchen, one bedroom and a bathroom with mit bath. A terrace can be used in summer.',
   type: 'apartment',
-  price: 120,
+  price: 362,
+  images: [
+    'https://16.design.htmlacademy.pro/static/hotel/4.jpg',
+    'https://16.design.htmlacademy.pro/static/hotel/15.jpg',
+    'https://16.design.htmlacademy.pro/static/hotel/13.jpg',
+    'https://16.design.htmlacademy.pro/static/hotel/10.jpg',
+    'https://16.design.htmlacademy.pro/static/hotel/2.jpg',
+    'https://16.design.htmlacademy.pro/static/hotel/1.jpg',
+  ],
   city: {
-    name: 'Amsterdam',
+    name: 'Paris',
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
-      zoom: 8
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13,
     },
   },
   location: {
-    latitude: 52.35514938496378,
-    longitude: 4.673877537499948,
-    zoom: 8
+    latitude: 48.868610000000004,
+    longitude: 2.342499,
+    zoom: 16,
   },
-  isFavorite: false,
-  isPremium: true,
-  rating: 4.8,
-  description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-  bedrooms: 1,
   goods: [
-    'Wi-Fi',
-    'Washing machine',
-    'Towels',
+    'Washer',
+    'Cable TV',
     'Heating',
-    'Coffee machine',
+    'Wi-Fi',
+    'Breakfast',
     'Baby seat',
-    'Kitchen',
     'Dishwasher',
-    'Cabel TV',
-    'Fridge'
+    'Air conditioning',
+    'Laptop friendly workspace',
+    'Washing machine',
   ],
   host: {
+    isPro: true,
     name: 'Angelina',
-    avatarUrl: 'img/avatar-angelina.jpg',
-    isPro: true
+    avatarUrl:
+      'https://16.design.htmlacademy.pro/static/host/avatar-angelina.jpg',
   },
-  images: [
-    'img/room.jpg',
-    'img/apartment-01.jpg',
-    'img/apartment-02.jpg',
-    'img/apartment-03.jpg',
-    'img/studio-01.jpg',
-    'img/apartment-small-03.jpg'
-  ],
-  maxAdults: 4
+  isPremium: true,
+  isFavorite: false,
+  rating: 2.8,
+  bedrooms: 1,
+  maxAdults: 9,
 };

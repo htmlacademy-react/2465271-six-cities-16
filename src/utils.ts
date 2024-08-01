@@ -2,4 +2,17 @@ const capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str
 
 const checkMassiveLength = <T, K extends keyof T> (massive: T[], key: K) => massive.filter((element) => element[key]);
 
-export { capitalizeFirstLetter, checkMassiveLength };
+const getDateFormat = (dateString: string): string => {
+  const date = new Date(dateString).toISOString().slice(0, 10);
+  return date;
+};
+
+const getDateToLocaleFormat = (dateString: string): string => {
+  const date: Date = new Date(dateString);
+  const option: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' };
+
+  const formatedDate = date.toLocaleDateString('en-US', option);
+  return formatedDate;
+};
+
+export { capitalizeFirstLetter, checkMassiveLength, getDateFormat, getDateToLocaleFormat };
