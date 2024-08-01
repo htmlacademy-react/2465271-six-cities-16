@@ -2,7 +2,7 @@ import { placesOffers } from '../../mocks/places-offers';
 import { Offer } from '../../types/offer-type';
 import FavoriteCardContainer from '../favorite-card-container/favorite-card-container';
 
-function groupLocationByFavoriteStatus (offers: Offer[]) {
+function groupFavoriteOffersByLocation (offers: Offer[]) {
   return (
     offers.reduce((accumulator: Record <string, Offer[]>, offer) => {
       const cityName = offer.city.name;
@@ -17,7 +17,7 @@ function groupLocationByFavoriteStatus (offers: Offer[]) {
 
 function FavoritesList (): JSX.Element {
   const getFavoriteOffers = placesOffers.filter((offer) => offer.isFavorite);
-  const getOffersGroup = groupLocationByFavoriteStatus(getFavoriteOffers);
+  const getOffersGroup = groupFavoriteOffersByLocation(getFavoriteOffers);
 
   return (
     <ul className="favorites__list">

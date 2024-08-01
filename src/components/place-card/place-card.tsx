@@ -1,4 +1,4 @@
-import { AppRoute } from '../../const';
+import { AppRoute, ImageSize, SVGSize } from '../../const';
 import { Offer } from '../../types/offer-type';
 import { capitalizeFirstLetter } from '../../utils';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,7 @@ type PlaceCardProps = {
 }
 
 function PlaceCard ({offer, isMainCard = false, isFavoriteCard = false, isOfferCard = false, onActiveCardHover}: PlaceCardProps): JSX.Element {
+  const {isPremium, isFavorite, id, previewImage, price, type, title} = offer;
   const handleMouseEnter = () => {
     if(onActiveCardHover) {
       onActiveCardHover(offer);
@@ -34,7 +35,7 @@ function PlaceCard ({offer, isMainCard = false, isFavoriteCard = false, isOfferC
     onMouseEnter={handleMouseEnter}
     onMouseLeave={handleMouseLeave}
     >
-      { offer.isPremium && (
+      { isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
@@ -46,21 +47,21 @@ function PlaceCard ({offer, isMainCard = false, isFavoriteCard = false, isOfferC
         place-card__image-wrapper`
       }
       >
-        <Link to={`${AppRoute.Offer}${offer.id}`}>
-          <img className="place-card__image" src={ offer.previewImage } width={`${isFavoriteCard ? '150' : '260'}`} height={`${isFavoriteCard ? '110' : '200'}`} alt="Place image" />
+        <Link to={`${AppRoute.Offer}${id}`}>
+          <img className="place-card__image" src={ previewImage } width={`${isFavoriteCard ? ImageSize.FAVORITE_WIDTH : ImageSize.DEFAULT_WIDTH}`} height={`${isFavoriteCard ? ImageSize.FAVORITE_HEIGHT : ImageSize.DEFAULT_HEIGHT}`} alt="Place image" />
         </Link>
       </div>
       <div className={`${isFavoriteCard ? 'favorites__card-info' : 'place-card__info'}`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{ offer.price }</b>
+            <b className="place-card__price-value">&euro;{ price }</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''} button`} type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
+          <button className={`place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : ''} button`} type="button">
+            <svg className="place-card__bookmark-icon" width={SVGSize.WIDTH} height={SVGSize.HEIGHT}>
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">{ offer.isFavorite ? 'In bookmarks' : 'To bookmarks' }</span>
+            <span className="visually-hidden">{ isFavorite ? 'In bookmarks' : 'To bookmarks' }</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -70,9 +71,9 @@ function PlaceCard ({offer, isMainCard = false, isFavoriteCard = false, isOfferC
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.Offer}${offer.id}`}>{ offer.title }</Link>
+          <Link to={`${AppRoute.Offer}${id}`}>{ title }</Link>
         </h2>
-        <p className="place-card__type">{ capitalizeFirstLetter(offer.type) }</p>
+        <p className="place-card__type">{ capitalizeFirstLetter(type) }</p>
       </div>
     </article>
   );

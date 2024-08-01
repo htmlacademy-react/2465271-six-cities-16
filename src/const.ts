@@ -64,15 +64,33 @@ const Locations = {
     longitude: 6.776314,
     zoom: 13,
   },
-};
+} as const;
+
+const DEFAULT_CITY = 'Paris' as const;
+
+const ImageSize = {
+  DEFAULT_WIDTH: '260',
+  FAVORITE_WIDTH: '150',
+  DEFAULT_HEIGHT: '200',
+  FAVORITE_HEIGHT: '110',
+
+} as const;
+
+const SVGSize = {
+  WIDTH: '18',
+  HEIGHT: '19'
+} as const;
 
 export {
   CITIES,
+  DEFAULT_CITY,
   SortList,
   RATING,
   AppRoute,
   AuthorizationStatus,
   Sign,
   Markers,
-  Locations
+  Locations,
+  ImageSize,
+  SVGSize
 };

@@ -16,7 +16,7 @@ type OfferPageProps = {
   rating: typeof RATING;
   sign: typeof Sign;
   isOfferCard?: boolean;
-  selectedPoint?: Offer | undefined;
+  selectedPoint?: Offer;
   activeCity: keyof typeof Locations;
 }
 

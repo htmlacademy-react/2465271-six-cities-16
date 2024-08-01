@@ -14,7 +14,7 @@ type MainPageProps = {
   onActiveCardHover?: (card: Offer | undefined) => void;
   onActiveCityClick: (city: keyof typeof Locations) => void;
   activeCity: keyof typeof Locations;
-  selectedPoint: Offer | undefined;
+  selectedPoint?: Offer;
 }
 
 function MainPage ({cities, sortType, sign, offers, isActive = true, onActiveCityClick, onActiveCardHover, activeCity, selectedPoint}: MainPageProps): JSX.Element {

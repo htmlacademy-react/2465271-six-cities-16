@@ -1,5 +1,5 @@
 import {useRef, useEffect} from 'react';
-import {Icon, Marker, layerGroup} from 'leaflet';
+import {Icon, LayerGroup, Marker, layerGroup} from 'leaflet';
 import useMap from '../../hooks/use-map/use-map';
 import { Offer, Location } from '../../types/offer-type';
 import {Locations, Markers} from '../../const';
@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 type MapProps = {
   activeCity: keyof typeof Locations;
   offers: Offer[];
-  selectedPoint: Offer | undefined;
+  selectedPoint?: Offer;
 };
 
 const defaultCustomIcon = new Icon({
@@ -28,10 +28,18 @@ function Map(props: MapProps): JSX.Element {
   const cityWithLocation: Location = Locations[activeCity];
   const mapRef = useRef(null);
   const map = useMap(mapRef, cityWithLocation);
+  const markerLayer = useRef<LayerGroup>(layerGroup());
 
   useEffect(() => {
     if (map) {
-      const markerLayer = layerGroup().addTo(map);
+      map.setView([cityWithLocation.latitude, cityWithLocation.longitude], cityWithLocation.zoom);
+      markerLayer.current.addTo(map);
+      markerLayer.current.clearLayers();
+    }
+  }, [cityWithLocation, map]);
+
+  useEffect(() => {
+    if (map) {
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
@@ -44,12 +52,12 @@ function Map(props: MapProps): JSX.Element {
               ? currentCustomIcon
               : defaultCustomIcon
           )
-          .addTo(markerLayer);
+          .addTo(markerLayer.current);
       });
 
-      return () => {
-        map.removeLayer(markerLayer);
-      };
+      // return () => {
+      //   map.removeLayer(markerLayer.current);
+      // };
     }
   }, [map, offers, selectedPoint]);
 

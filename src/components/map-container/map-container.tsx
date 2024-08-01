@@ -4,7 +4,7 @@ import { Locations } from '../../const';
 
 type MapContainerProps = {
   offers: Offer[];
-  selectedPoint?: Offer | undefined;
+  selectedPoint?: Offer;
   activeCity: keyof typeof Locations;
 }
 

@@ -11,7 +11,7 @@ type PlacesMainContainerProps = {
   offers: Offer[];
   onActiveCardHover?: (card: Offer | undefined) => void;
   activeCity: keyof typeof Locations;
-  selectedPoint: Offer | undefined;
+  selectedPoint?: Offer;
 }
 
 function PlacesMainContainer ({sortType, offers, onActiveCardHover, activeCity, selectedPoint}: PlacesMainContainerProps): JSX.Element {
