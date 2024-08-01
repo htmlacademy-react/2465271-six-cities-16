@@ -4,12 +4,12 @@ import { OfferComment } from '../../types/offer-type';
 import { RATING } from '../../const';
 import { user } from '../../mocks/user';
 
-type OfferReviewProps = {
+type OfferReviewsProps = {
   offerComments: OfferComment[];
   rating: typeof RATING;
 }
 
-function OfferReviews ({offerComments, rating}: OfferReviewProps): JSX.Element {
+function OfferReviews ({offerComments, rating}: OfferReviewsProps): JSX.Element {
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{offerComments.length}</span></h2>

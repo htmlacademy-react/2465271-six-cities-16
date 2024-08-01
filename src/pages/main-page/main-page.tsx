@@ -2,9 +2,8 @@ import Header from '../../components/header/header';
 import MainLocationList from '../../components/main-location-list/main-location-list';
 import PlacesMainContainer from '../../components/places-main-container/places-main-container';
 import { Offer } from '../../types/offer-type';
-import { CITIES, SortList, Sign } from '../../const';
+import { CITIES, SortList, Sign, Locations } from '../../const';
 import { Helmet } from 'react-helmet-async';
-import { useState } from 'react';
 
 type MainPageProps = {
   cities: typeof CITIES;
@@ -12,14 +11,14 @@ type MainPageProps = {
   offers: Offer[];
   sign: typeof Sign;
   isActive?: boolean;
+  onActiveCardHover?: (card: Offer | undefined) => void;
+  onActiveCityClick: (city: keyof typeof Locations) => void;
+  activeCity: keyof typeof Locations;
+  selectedPoint?: Offer;
 }
 
-function MainPage ({cities, sortType, sign, offers, isActive = true}: MainPageProps): JSX.Element {
-  const [activeCard, setActiveCard] = useState<Offer | null>(null);
-  const handleActiveCardChange = (card: Offer | null) => {
-    setActiveCard(card);
-    return activeCard;
-  };
+function MainPage ({cities, sortType, sign, offers, isActive = true, onActiveCityClick, onActiveCardHover, activeCity, selectedPoint}: MainPageProps): JSX.Element {
+
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -28,8 +27,8 @@ function MainPage ({cities, sortType, sign, offers, isActive = true}: MainPagePr
       <Header sign={sign} isActive={isActive}/>
       <main className={`page__main page__main--index ${offers.length === 0 ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
-        <MainLocationList cities={cities} />
-        <PlacesMainContainer sortType={sortType} offers={offers} onActiveCardHover={handleActiveCardChange}/>
+        <MainLocationList cities={cities} activeCity={activeCity} onActiveCityClick={onActiveCityClick}/>
+        <PlacesMainContainer sortType={sortType} offers={offers} onActiveCardHover={onActiveCardHover} activeCity={activeCity} selectedPoint={selectedPoint} />
       </main>
     </div>
   );

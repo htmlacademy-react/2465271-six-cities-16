@@ -1,14 +1,15 @@
-import { offerRequest } from '../../mocks/offer-request';
+// import { offerRequest } from '../../mocks/offer-request';
+import { IncomingOffer } from '../../types/offer-type';
 
-type PlacesImageProps = {
-  placesImage: typeof offerRequest;
+type OfferGalleryProps = {
+  placesImage: IncomingOffer;
 }
 
-type PlaceImage = {
+type OfferImageProps = {
   placeImage: string;
 }
 
-function OfferImage ({placeImage}: PlaceImage):JSX.Element {
+function OfferImage ({placeImage}: OfferImageProps):JSX.Element {
   return (
     <div className="offer__image-wrapper">
       <img className="offer__image" src={placeImage} alt="Photo studio"/>
@@ -16,7 +17,7 @@ function OfferImage ({placeImage}: PlaceImage):JSX.Element {
   );
 }
 
-function OfferGallery ({placesImage}: PlacesImageProps): JSX.Element {
+function OfferGallery ({placesImage}: OfferGalleryProps): JSX.Element {
   return (
     <div className="offer__gallery-container container">
       <div className="offer__gallery">

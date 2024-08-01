@@ -1,17 +1,17 @@
 import { Offer } from '../../types/offer-type';
 import PlaceCard from '../place-card/place-card';
 
-type PlacesOffersProps = {
+type PlacesCardContainerProps = {
   offers: Offer[];
   isMainCard?: boolean;
-  onActiveCardHover?: (card: Offer | null) => void;
+  onActiveCardHover?: (card: Offer | undefined) => void;
 }
 
-function PlacesCardContainer ({offers, isMainCard = true, onActiveCardHover}: PlacesOffersProps): JSX.Element {
+function PlacesCardContainer ({offers, isMainCard = true, onActiveCardHover}: PlacesCardContainerProps): JSX.Element {
   return (
-    <div className="cities__places-list places__list tabs__content" >
-      {offers.map((placeCard) => (
-        <PlaceCard key={placeCard.id} placeCard={placeCard} isMainCard={isMainCard} onActiveCardHover={onActiveCardHover}/>
+    <div className="cities__places-list places__list tabs__content">
+      {offers.map((offer) => (
+        <PlaceCard key={offer.id} offer={offer} isMainCard={isMainCard} onActiveCardHover={onActiveCardHover}/>
       ))}
     </div>
   );

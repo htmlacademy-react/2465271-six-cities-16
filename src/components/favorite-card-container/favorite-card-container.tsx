@@ -3,12 +3,12 @@ import { Offer } from '../../types/offer-type';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
-type FavoritePlacesProps = {
+type FavoriteCardContainerProps = {
   city: string;
   offers: Offer[];
   isFavoriteCard?: boolean;
 }
-function FavoriteCardContainer ({city, offers, isFavoriteCard = true}: FavoritePlacesProps): JSX.Element {
+function FavoriteCardContainer ({city, offers, isFavoriteCard = true}: FavoriteCardContainerProps): JSX.Element {
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -19,8 +19,8 @@ function FavoriteCardContainer ({city, offers, isFavoriteCard = true}: FavoriteP
         </div>
       </div>
       <div className="favorites__places">
-        {offers.map((placeCard) => (
-          <PlaceCard key={placeCard.id} placeCard={placeCard} isFavoriteCard={isFavoriteCard}/>
+        {offers.map((offer) => (
+          <PlaceCard key={offer.id} offer={offer} isFavoriteCard={isFavoriteCard}/>
         ))}
       </div>
     </li>

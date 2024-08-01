@@ -1,30 +1,34 @@
 import PlacesFound from '../places-found/places-found';
 import PlacesSorting from '../places-sorting/places-sorting';
 import PlacesCardContainer from '../places-card-container/places-card-container';
-import PlaceMapContainer from '../place-map-container/place-map-container';
+import MapContainer from '../map-container/map-container';
 import EmptyPlaces from '../../components/empty-places/empty-places';
 import { Offer } from '../../types/offer-type';
-import { SortList } from '../../const';
+import { SortList, Locations } from '../../const';
 
 type PlacesMainContainerProps = {
   sortType: typeof SortList;
   offers: Offer[];
-  onActiveCardHover?: (card: Offer | null) => void;
+  onActiveCardHover?: (card: Offer | undefined) => void;
+  activeCity: keyof typeof Locations;
+  selectedPoint?: Offer;
 }
 
-function PlacesMainContainer ({sortType, offers, onActiveCardHover}: PlacesMainContainerProps): JSX.Element {
+function PlacesMainContainer ({sortType, offers, onActiveCardHover, activeCity, selectedPoint}: PlacesMainContainerProps): JSX.Element {
   return (
     <div className="cities">
       {offers.length === 0 ?
-        <EmptyPlaces/> :
+        <EmptyPlaces activeCity={activeCity}/> :
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <PlacesFound/>
+            <PlacesFound activeCity={activeCity} offers={offers}/>
             <PlacesSorting sortType={sortType}/>
             <PlacesCardContainer offers={offers} onActiveCardHover={onActiveCardHover}/>
           </section>
-          <PlaceMapContainer/>
+          <div className="cities__right-section">
+            <MapContainer offers={offers} selectedPoint={selectedPoint} activeCity={activeCity}/>
+          </div>
         </div>}
     </div>
   );

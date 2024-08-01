@@ -1,14 +1,14 @@
 import { RATING } from '../../const';
 import React, { Fragment, useState } from 'react';
 
-type RatingProps = {
+type OfferReviewFormProps = {
   ratings: typeof RATING;
 }
 
 const MIN_COMMENT_LENGTH = 50;
 const MAX_COMMENT_LENGTH = 300;
 
-function OfferReviewForm ({ratings}: RatingProps): JSX.Element {
+function OfferReviewForm ({ratings}: OfferReviewFormProps): JSX.Element {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState(0);
   const handleCommentValue = (evt: React.ChangeEvent<HTMLTextAreaElement>): void => setComment(evt.currentTarget.value);
