@@ -28,9 +28,10 @@ const Sign = {
   SignOut: 'Sign out'
 } as const;
 
-const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
-
-const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+const Markers = {
+  DEFAULT:  'markup/img/pin.svg',
+  ACTIVE: 'markup/img/pin-active.svg'
+} as const;
 
 const Locations = {
   'Paris': {
@@ -72,7 +73,6 @@ export {
   AppRoute,
   AuthorizationStatus,
   Sign,
-  URL_MARKER_DEFAULT,
-  URL_MARKER_CURRENT,
+  Markers,
   Locations
 };
