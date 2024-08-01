@@ -54,10 +54,6 @@ function Map(props: MapProps): JSX.Element {
           )
           .addTo(markerLayer.current);
       });
-
-      // return () => {
-      //   map.removeLayer(markerLayer.current);
-      // };
     }
   }, [map, offers, selectedPoint]);
 
