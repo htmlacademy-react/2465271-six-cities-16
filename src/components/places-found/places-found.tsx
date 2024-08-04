@@ -1,14 +1,13 @@
-import { Offer } from '../../types/offer-type';
-import { CitiesWhitLocations } from '../../const';
+import { Offer, City } from '../../types/offer-type';
 
 type PlacesFoundProps = {
-  activeCity: keyof typeof CitiesWhitLocations;
+  activeCity: City;
   offers: Offer[];
 }
 
 function PlacesFound ({activeCity, offers}: PlacesFoundProps):JSX.Element {
   return (
-    <b className="places__found">{offers.length} places to stay in {activeCity}</b>
+    <b className="places__found">{offers.length} places to stay in {activeCity.name}</b>
   );
 }
 

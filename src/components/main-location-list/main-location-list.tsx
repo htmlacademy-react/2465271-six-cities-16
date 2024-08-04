@@ -1,22 +1,24 @@
-import { AppRoute, CITIES, CitiesWhitLocations } from '../../const';
+import { City } from '../../types/offer-type';
+import { cities } from '../../const';
+import { AppRoute } from '../../const';
 import { Link } from 'react-router-dom';
 
 type MainLocationListProps = {
-  cities: typeof CITIES;
-  activeCity: keyof typeof CitiesWhitLocations;
-  onActiveCityClick: (city: keyof typeof CitiesWhitLocations) => void;
+  citiesWhitLocation: typeof cities;
+  activeCity: City;
+  onCityChange: (city: City) => void;
 }
 
 type MainLocationElementProps = {
-  city: keyof typeof CitiesWhitLocations;
-  activeCity: keyof typeof CitiesWhitLocations;
-  onActiveCityClick: (city: keyof typeof CitiesWhitLocations) => void;
+  city: City;
+  activeCity: City;
+  onCityChange: (city: City) => void;
 }
 
-function MainLocationElement ({city, activeCity, onActiveCityClick}: MainLocationElementProps): JSX.Element {
+function MainLocationElement ({city, activeCity, onCityChange}: MainLocationElementProps): JSX.Element {
   const handleCityClick = () => {
-    if (onActiveCityClick) {
-      onActiveCityClick(city);
+    if (onCityChange) {
+      onCityChange(city);
     }
   };
 
@@ -27,21 +29,21 @@ function MainLocationElement ({city, activeCity, onActiveCityClick}: MainLocatio
     >
       <Link
         to={AppRoute.Main}
-        className={`${city === activeCity ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}`}
+        className={`${city.name === activeCity.name ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}`}
       >
-        <span>{city}</span>
+        <span>{city.name}</span>
       </Link>
     </li>
   );
 }
 
-function MainLocationList ({cities, activeCity, onActiveCityClick}: MainLocationListProps): JSX.Element {
+function MainLocationList ({citiesWhitLocation, activeCity, onCityChange}: MainLocationListProps): JSX.Element {
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {cities.map((city) => (
-            <MainLocationElement key={city} city={city} activeCity={activeCity} onActiveCityClick={onActiveCityClick}/>
+          {citiesWhitLocation.map((city) => (
+            <MainLocationElement key={city.name} city={city} activeCity={activeCity} onCityChange={onCityChange}/>
           ))}
         </ul>
       </section>

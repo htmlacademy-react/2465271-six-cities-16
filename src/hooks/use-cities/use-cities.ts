@@ -14,5 +14,5 @@ export const useCities = () => {
 
   const setCity = (city: City) => dispatch(cityChanged(city));
 
-  return [ activeCity, activeOffers, setCity];
+  return {activeCity, activeOffers, setCity};
 };

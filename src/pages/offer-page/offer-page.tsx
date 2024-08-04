@@ -1,3 +1,4 @@
+import { useCities } from '../../hooks/use-cities/use-cities';
 import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferContainer from '../../components/offer-container/offer-container';
@@ -6,7 +7,7 @@ import MapContainer from '../../components/map-container/map-container';
 import { OfferComment } from '../../types/offer-type';
 import { IncomingOffer } from '../../types/offer-type';
 import { Offer } from '../../types/offer-type';
-import { RATING, Sign, CitiesWhitLocations } from '../../const';
+import { RATING, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 type OfferPageProps = {
@@ -17,10 +18,11 @@ type OfferPageProps = {
   sign: typeof Sign;
   isOfferCard?: boolean;
   selectedPoint?: Offer;
-  activeCity: keyof typeof CitiesWhitLocations;
 }
 
-function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOfferCard = true, selectedPoint, activeCity}: OfferPageProps):JSX.Element {
+function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOfferCard = true, selectedPoint}: OfferPageProps):JSX.Element {
+
+  const {activeCity} = useCities();
   return (
     <div className="page">
       <Helmet>

@@ -6,14 +6,14 @@ import FavoritePage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import { DEFAULT_CITY, CITIES, SortList, RATING, AppRoute, AuthorizationStatus, Sign, CitiesWhitLocations} from '../../const';
+import { cities, SortList, RATING, AppRoute, AuthorizationStatus, Sign} from '../../const';
 import { Offer } from '../../types/offer-type';
 import { OfferComment } from '../../types/offer-type';
 import { IncomingOffer } from '../../types/offer-type';
 import { useState } from 'react';
 
 type AppProps = {
-  cities: typeof CITIES;
+  citiesWithLocation: typeof cities;
   sortType: typeof SortList;
   offers: Offer[];
   incomingOffer: IncomingOffer;
@@ -22,21 +22,13 @@ type AppProps = {
   sign: typeof Sign;
 }
 
-function App ({cities, sortType, sign, offers, incomingOffer, offerComments, rating}: AppProps): JSX.Element {
+function App ({citiesWithLocation, sortType, sign, offers, incomingOffer, offerComments, rating}: AppProps): JSX.Element {
 
   const [activeCard, setActiveCard] = useState<Offer | undefined>();
-
-  const [activeCity, setActiveCity] = useState<keyof typeof CitiesWhitLocations>(DEFAULT_CITY);
 
   const handleActiveCardChange = (card: Offer | undefined) => {
     setActiveCard(card);
   };
-
-  const handleActiveCityClick = (city: keyof typeof CitiesWhitLocations) => {
-    setActiveCity(city);
-  };
-
-  const filterOffers = offers.filter((offer) => offer.city.name === activeCity);
 
   return (
     <HelmetProvider>
@@ -44,11 +36,11 @@ function App ({cities, sortType, sign, offers, incomingOffer, offerComments, rat
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage cities={cities} sortType={sortType} sign={sign} offers={filterOffers} onActiveCardHover={handleActiveCardChange} onActiveCityClick={handleActiveCityClick} activeCity={activeCity} selectedPoint={activeCard}/>}
+            element={<MainPage citiesWhitLocation={citiesWithLocation} sortType={sortType} sign={sign} onActiveCardHover={handleActiveCardChange} selectedPoint={activeCard}/>}
           />
           <Route
             path={`${AppRoute.Offer}:id`}
-            element={<OfferPage sign={sign} incomingOffer={incomingOffer} offerComments={offerComments} rating={rating} offers={filterOffers} activeCity={activeCity}/>}
+            element={<OfferPage sign={sign} incomingOffer={incomingOffer} offerComments={offerComments} rating={rating} offers={offers} />}
           />
           <Route
             path={AppRoute.Favorites}
