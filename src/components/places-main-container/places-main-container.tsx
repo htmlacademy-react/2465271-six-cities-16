@@ -4,13 +4,13 @@ import PlacesCardContainer from '../places-card-container/places-card-container'
 import MapContainer from '../map-container/map-container';
 import EmptyPlaces from '../../components/empty-places/empty-places';
 import { Offer } from '../../types/offer-type';
-import { SortList, Locations } from '../../const';
+import { SortList, CitiesWhitLocations } from '../../const';
 
 type PlacesMainContainerProps = {
   sortType: typeof SortList;
   offers: Offer[];
   onActiveCardHover?: (card: Offer | undefined) => void;
-  activeCity: keyof typeof Locations;
+  activeCity: keyof typeof CitiesWhitLocations;
   selectedPoint?: Offer;
 }
 

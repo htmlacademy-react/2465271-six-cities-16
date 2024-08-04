@@ -6,7 +6,7 @@ import MapContainer from '../../components/map-container/map-container';
 import { OfferComment } from '../../types/offer-type';
 import { IncomingOffer } from '../../types/offer-type';
 import { Offer } from '../../types/offer-type';
-import { RATING, Sign, Locations } from '../../const';
+import { RATING, Sign, CitiesWhitLocations } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 type OfferPageProps = {
@@ -17,7 +17,7 @@ type OfferPageProps = {
   sign: typeof Sign;
   isOfferCard?: boolean;
   selectedPoint?: Offer;
-  activeCity: keyof typeof Locations;
+  activeCity: keyof typeof CitiesWhitLocations;
 }
 
 function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOfferCard = true, selectedPoint, activeCity}: OfferPageProps):JSX.Element {

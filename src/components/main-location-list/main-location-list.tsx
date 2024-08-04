@@ -1,16 +1,16 @@
-import { AppRoute, CITIES, Locations } from '../../const';
+import { AppRoute, CITIES, CitiesWhitLocations } from '../../const';
 import { Link } from 'react-router-dom';
 
 type MainLocationListProps = {
   cities: typeof CITIES;
-  activeCity: keyof typeof Locations;
-  onActiveCityClick: (city: keyof typeof Locations) => void;
+  activeCity: keyof typeof CitiesWhitLocations;
+  onActiveCityClick: (city: keyof typeof CitiesWhitLocations) => void;
 }
 
 type MainLocationElementProps = {
-  city: keyof typeof Locations;
-  activeCity: keyof typeof Locations;
-  onActiveCityClick: (city: keyof typeof Locations) => void;
+  city: keyof typeof CitiesWhitLocations;
+  activeCity: keyof typeof CitiesWhitLocations;
+  onActiveCityClick: (city: keyof typeof CitiesWhitLocations) => void;
 }
 
 function MainLocationElement ({city, activeCity, onActiveCityClick}: MainLocationElementProps): JSX.Element {

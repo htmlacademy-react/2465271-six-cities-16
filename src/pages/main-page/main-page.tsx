@@ -2,7 +2,7 @@ import Header from '../../components/header/header';
 import MainLocationList from '../../components/main-location-list/main-location-list';
 import PlacesMainContainer from '../../components/places-main-container/places-main-container';
 import { Offer } from '../../types/offer-type';
-import { CITIES, SortList, Sign, Locations } from '../../const';
+import { CITIES, SortList, Sign, CitiesWhitLocations } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 type MainPageProps = {
@@ -12,8 +12,8 @@ type MainPageProps = {
   sign: typeof Sign;
   isActive?: boolean;
   onActiveCardHover?: (card: Offer | undefined) => void;
-  onActiveCityClick: (city: keyof typeof Locations) => void;
-  activeCity: keyof typeof Locations;
+  onActiveCityClick: (city: keyof typeof CitiesWhitLocations) => void;
+  activeCity: keyof typeof CitiesWhitLocations;
   selectedPoint?: Offer;
 }
 

@@ -1,11 +1,11 @@
 import Map from '../map/map';
 import { Offer } from '../../types/offer-type';
-import { Locations } from '../../const';
+import { CitiesWhitLocations } from '../../const';
 
 type MapContainerProps = {
   offers: Offer[];
   selectedPoint?: Offer;
-  activeCity: keyof typeof Locations;
+  activeCity: keyof typeof CitiesWhitLocations;
 }
 
 function MapContainer ({offers, selectedPoint, activeCity}: MapContainerProps): JSX.Element {

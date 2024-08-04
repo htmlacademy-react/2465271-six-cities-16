@@ -1,8 +1,8 @@
 import { Offer } from '../../types/offer-type';
-import { Locations } from '../../const';
+import { CitiesWhitLocations } from '../../const';
 
 type PlacesFoundProps = {
-  activeCity: keyof typeof Locations;
+  activeCity: keyof typeof CitiesWhitLocations;
   offers: Offer[];
 }
 
