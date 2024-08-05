@@ -1,3 +1,4 @@
+import { useCities } from '../../hooks/use-cities/use-cities';
 import { City } from '../../types/offer-type';
 import { cities } from '../../const';
 import { AppRoute } from '../../const';
@@ -5,8 +6,6 @@ import { Link } from 'react-router-dom';
 
 type MainLocationListProps = {
   citiesWhitLocation: typeof cities;
-  activeCity: City;
-  onCityChange: (city: City) => void;
 }
 
 type MainLocationElementProps = {
@@ -37,13 +36,18 @@ function MainLocationElement ({city, activeCity, onCityChange}: MainLocationElem
   );
 }
 
-function MainLocationList ({citiesWhitLocation, activeCity, onCityChange}: MainLocationListProps): JSX.Element {
+function MainLocationList ({citiesWhitLocation}: MainLocationListProps): JSX.Element {
+  const { activeCity, setCity} = useCities();
+  const handleCityChange = (city: City) => {
+    setCity(city);
+  };
+
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
           {citiesWhitLocation.map((city) => (
-            <MainLocationElement key={city.name} city={city} activeCity={activeCity} onCityChange={onCityChange}/>
+            <MainLocationElement key={city.name} city={city} activeCity={activeCity} onCityChange={handleCityChange}/>
           ))}
         </ul>
       </section>

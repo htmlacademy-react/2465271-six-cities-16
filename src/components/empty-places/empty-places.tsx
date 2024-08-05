@@ -1,10 +1,7 @@
-import { City } from '../../types/offer-type';
+import { useCities } from '../../hooks/use-cities/use-cities';
 
-type EmptyPlacesProps = {
-  activeCity: City;
-}
-
-function EmptyPlaces ({activeCity}: EmptyPlacesProps): JSX.Element {
+function EmptyPlaces (): JSX.Element {
+  const { activeCity } = useCities();
   return (
     <div className="cities__places-container cities__places-container--empty container">
       <section className="cities__no-places">

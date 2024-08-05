@@ -2,18 +2,24 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { placesOffers } from '../mocks/places-offers';
 import { Offer } from '../types/offer-type';
 
-type OffersState = Offer[];
+type OffersState = {
+  offers: Offer[];
+};
 
-const initialState: OffersState = placesOffers;
+const initialState: OffersState = {
+  offers: placesOffers
+};
 
 export const OffersSlice = createSlice({
   name: 'offers',
   initialState,
   reducers: {
-    loaded: (state, action: PayloadAction<Offer[]>) => action.payload,
+    load: (state, action: PayloadAction<Offer[]>) => {
+      state.offers = action.payload;
+    },
   },
 });
 
-export const { loaded: offersLoaded} = OffersSlice.actions;
+export const { load: offersLoaded} = OffersSlice.actions;
 
 export default OffersSlice.reducer;

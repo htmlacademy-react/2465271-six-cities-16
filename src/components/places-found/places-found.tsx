@@ -1,13 +1,9 @@
-import { Offer, City } from '../../types/offer-type';
+import { useCities } from '../../hooks/use-cities/use-cities';
 
-type PlacesFoundProps = {
-  activeCity: City;
-  offers: Offer[];
-}
-
-function PlacesFound ({activeCity, offers}: PlacesFoundProps):JSX.Element {
+function PlacesFound ():JSX.Element {
+  const { activeCity, activeOffers } = useCities();
   return (
-    <b className="places__found">{offers.length} places to stay in {activeCity.name}</b>
+    <b className="places__found">{activeOffers.length} places to stay in {activeCity.name}</b>
   );
 }
 

@@ -11,7 +11,6 @@ import { RATING, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 type OfferPageProps = {
-  offers: Offer[];
   incomingOffer: IncomingOffer;
   offerComments: OfferComment[];
   rating: typeof RATING;
@@ -20,9 +19,9 @@ type OfferPageProps = {
   selectedPoint?: Offer;
 }
 
-function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOfferCard = true, selectedPoint}: OfferPageProps):JSX.Element {
+function OfferPage ({sign, incomingOffer, offerComments, rating, isOfferCard = true, selectedPoint}: OfferPageProps):JSX.Element {
 
-  const {activeCity} = useCities();
+  const {activeOffers} = useCities();
   return (
     <div className="page">
       <Helmet>
@@ -38,13 +37,13 @@ function OfferPage ({offers, sign, incomingOffer, offerComments, rating, isOffer
             offerComments={offerComments}
             rating={rating}
           />
-          <MapContainer offers={offers.slice(0,3)} selectedPoint={selectedPoint} activeCity={activeCity}/>
+          <MapContainer offers={activeOffers.slice(0,3)} selectedPoint={selectedPoint} />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {offers.slice(0,3).map((offer) => (
+              {activeOffers.slice(0,3).map((offer) => (
                 <PlaceCard key={offer.id} offer={offer} isOfferCard={isOfferCard} />
               ))}
             </div>

@@ -3,10 +3,10 @@ import { City } from '../../types/offer-type';
 import { cityChanged } from '../../store/active-city';
 
 export const useCities = () => {
-  const {activeCity, offers} = useAppSelector((state) => ({
-    activeCity: state.activeCity,
-    offers: state.offers
-  }));
+
+  const activeCity = useAppSelector((state) => state.activeCity.activeCity);
+
+  const offers = useAppSelector((state) => state.offers.offers);
 
   const activeOffers = offers.filter((offer) => offer.city.name === activeCity.name);
 
