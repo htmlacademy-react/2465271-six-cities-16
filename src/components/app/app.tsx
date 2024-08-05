@@ -15,14 +15,13 @@ import { useState } from 'react';
 type AppProps = {
   citiesWithLocation: typeof cities;
   sortType: typeof SortList;
-  offers: Offer[];
   incomingOffer: IncomingOffer;
   offerComments: OfferComment[];
   rating: typeof RATING;
   sign: typeof Sign;
 }
 
-function App ({citiesWithLocation, sortType, sign, offers, incomingOffer, offerComments, rating}: AppProps): JSX.Element {
+function App ({citiesWithLocation, sortType, sign, incomingOffer, offerComments, rating}: AppProps): JSX.Element {
 
   const [activeCard, setActiveCard] = useState<Offer | undefined>();
 
@@ -40,7 +39,7 @@ function App ({citiesWithLocation, sortType, sign, offers, incomingOffer, offerC
           />
           <Route
             path={`${AppRoute.Offer}:id`}
-            element={<OfferPage sign={sign} incomingOffer={incomingOffer} offerComments={offerComments} rating={rating} offers={offers} />}
+            element={<OfferPage sign={sign} incomingOffer={incomingOffer} offerComments={offerComments} rating={rating} />}
           />
           <Route
             path={AppRoute.Favorites}

@@ -15,6 +15,7 @@ type MainLocationElementProps = {
 }
 
 function MainLocationElement ({city, activeCity, onCityChange}: MainLocationElementProps): JSX.Element {
+
   const handleCityClick = () => {
     if (onCityChange) {
       onCityChange(city);
@@ -37,7 +38,9 @@ function MainLocationElement ({city, activeCity, onCityChange}: MainLocationElem
 }
 
 function MainLocationList ({citiesWhitLocation}: MainLocationListProps): JSX.Element {
+
   const { activeCity, setCity} = useCities();
+
   const handleCityChange = (city: City) => {
     setCity(city);
   };

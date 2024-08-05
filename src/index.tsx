@@ -4,7 +4,6 @@ import { store } from './store';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { cities, SortList, RATING, Sign } from './const';
-import { placesOffers } from './mocks/places-offers';
 import { offerRequest } from './mocks/offer-request';
 import { offerComments } from './mocks/offer-comments';
 
@@ -15,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App citiesWithLocation={cities} sortType={SortList} sign={Sign} offers={placesOffers} incomingOffer={offerRequest} offerComments={offerComments} rating={RATING} />
+      <App citiesWithLocation={cities} sortType={SortList} sign={Sign} incomingOffer={offerRequest} offerComments={offerComments} rating={RATING} />
     </Provider>
   </React.StrictMode>
 );
