@@ -4,30 +4,30 @@ import PlacesCardContainer from '../places-card-container/places-card-container'
 import MapContainer from '../map-container/map-container';
 import EmptyPlaces from '../../components/empty-places/empty-places';
 import { Offer } from '../../types/offer-type';
-import { SortList, Locations } from '../../const';
+import { SortList } from '../../const';
+import { useCities } from '../../hooks/use-cities/use-cities';
 
 type PlacesMainContainerProps = {
   sortType: typeof SortList;
-  offers: Offer[];
   onActiveCardHover?: (card: Offer | undefined) => void;
-  activeCity: keyof typeof Locations;
   selectedPoint?: Offer;
 }
 
-function PlacesMainContainer ({sortType, offers, onActiveCardHover, activeCity, selectedPoint}: PlacesMainContainerProps): JSX.Element {
+function PlacesMainContainer ({sortType, onActiveCardHover, selectedPoint}: PlacesMainContainerProps): JSX.Element {
+  const { activeOffers } = useCities();
   return (
     <div className="cities">
-      {offers.length === 0 ?
-        <EmptyPlaces activeCity={activeCity}/> :
+      {activeOffers.length === 0 ?
+        <EmptyPlaces /> :
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <PlacesFound activeCity={activeCity} offers={offers}/>
+            <PlacesFound />
             <PlacesSorting sortType={sortType}/>
-            <PlacesCardContainer offers={offers} onActiveCardHover={onActiveCardHover}/>
+            <PlacesCardContainer onActiveCardHover={onActiveCardHover}/>
           </section>
           <div className="cities__right-section">
-            <MapContainer offers={offers} selectedPoint={selectedPoint} activeCity={activeCity}/>
+            <MapContainer offers={activeOffers} selectedPoint={selectedPoint} />
           </div>
         </div>}
     </div>
