@@ -15,4 +15,10 @@ const getDateToLocaleFormat = (dateString: string): string => {
   return formatedDate;
 };
 
-export { capitalizeFirstLetter, checkMassiveLength, getDateFormat, getDateToLocaleFormat };
+const setRating = (rating: number): number => {
+  const multiplicateNumber = 20;
+  const roundRating = Math.round(rating);
+  return roundRating * multiplicateNumber;
+};
+
+export { capitalizeFirstLetter, checkMassiveLength, getDateFormat, getDateToLocaleFormat, setRating };

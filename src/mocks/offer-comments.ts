@@ -4,7 +4,7 @@ export const offerComments = [
     comment:
       'What an amazing view! The house is stunning and in an amazing location. The large glass wall had an amazing view of the river!',
     date: '2024-07-08T21:00:00.603Z',
-    rating: 1,
+    rating: 1.8,
     user: {
       name: 'Jack',
       avatarUrl: 'https://16.design.htmlacademy.pro/static/avatar/10.jpg',
@@ -16,7 +16,7 @@ export const offerComments = [
     comment:
       'This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.',
     date: '2024-07-05T21:00:00.603Z',
-    rating: 2,
+    rating: 2.4,
     user: {
       name: 'Zak',
       avatarUrl: 'https://16.design.htmlacademy.pro/static/avatar/2.jpg',
@@ -28,7 +28,7 @@ export const offerComments = [
     comment:
       'Home is amazing. It"s like staying in a museum. The rooms, furnishings and artworks are incredible. The views of My Vesuvius',
     date: '2024-07-05T21:00:00.603Z',
-    rating: 3,
+    rating: 3.6,
     user: {
       name: 'Mollie',
       avatarUrl: 'https://16.design.htmlacademy.pro/static/avatar/7.jpg',
