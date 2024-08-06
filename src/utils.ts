@@ -1,3 +1,5 @@
+import { Offer } from './types/offer-type';
+
 const capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 const checkMassiveLength = <T, K extends keyof T> (massive: T[], key: K) => massive.filter((element) => element[key]);
@@ -21,4 +23,10 @@ const setRating = (rating: number): number => {
   return roundRating * multiplicateNumber;
 };
 
-export { capitalizeFirstLetter, checkMassiveLength, getDateFormat, getDateToLocaleFormat, setRating };
+const sortByRating = (offers: Offer[]) => [...offers].sort((leftPoint, rightPoint) => rightPoint.rating - leftPoint.rating);
+
+const sortByHighToLow = (offers: Offer[]) => [...offers].sort((leftPoint, rightPoint) => rightPoint.price - leftPoint.price);
+
+const sortByLowToHigh = (offers: Offer[]) => [...offers].sort((leftPoint, rightPoint) => leftPoint.price - rightPoint.price);
+
+export { capitalizeFirstLetter, checkMassiveLength, getDateFormat, getDateToLocaleFormat, setRating, sortByRating, sortByLowToHigh, sortByHighToLow };
