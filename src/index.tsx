@@ -6,10 +6,13 @@ import App from './components/app/app';
 import { cities, SortList, RATING, Sign } from './const';
 import { offerRequest } from './mocks/offer-request';
 import { offerComments } from './mocks/offer-comments';
+import { fetchOffers } from './store/offers';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+store.dispatch(fetchOffers());
 
 root.render(
   <React.StrictMode>
