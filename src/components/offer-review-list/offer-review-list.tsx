@@ -1,5 +1,5 @@
 import { OfferComment } from '../../types/offer-type';
-import { getDateFormat, getDateToLocaleFormat } from '../../utils';
+import { getDateFormat, getDateToLocaleFormat, setRating } from '../../utils';
 
 type OfferReviewListProps = {
   offerComments: OfferComment[];
@@ -23,7 +23,7 @@ function OfferReview ({offerCommentElement}: OfferReviewProps): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={{width: `${setRating(offerCommentElement.rating)}%`}}></span>
             <span className="visually-hidden">{offerCommentElement.rating}</span>
           </div>
         </div>

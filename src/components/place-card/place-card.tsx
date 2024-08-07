@@ -1,6 +1,6 @@
 import { AppRoute, ImageSize, SVGSize } from '../../const';
 import { Offer } from '../../types/offer-type';
-import { capitalizeFirstLetter } from '../../utils';
+import { capitalizeFirstLetter, setRating } from '../../utils';
 import { Link } from 'react-router-dom';
 
 type PlaceCardProps = {
@@ -12,7 +12,7 @@ type PlaceCardProps = {
 }
 
 function PlaceCard ({offer, isMainCard = false, isFavoriteCard = false, isOfferCard = false, onActiveCardHover}: PlaceCardProps): JSX.Element {
-  const {isPremium, isFavorite, id, previewImage, price, type, title} = offer;
+  const {isPremium, isFavorite, id, previewImage, price, type, title, rating} = offer;
   const handleMouseEnter = () => {
     if(onActiveCardHover) {
       onActiveCardHover(offer);
@@ -66,7 +66,7 @@ function PlaceCard ({offer, isMainCard = false, isFavoriteCard = false, isOfferC
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style= {{ width: '80%' }}></span>
+            <span style= {{ width: `${setRating(rating)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

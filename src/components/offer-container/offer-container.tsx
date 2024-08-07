@@ -4,7 +4,7 @@ import OfferReviews from '../offer-reviews/offer-reviews';
 import { IncomingOffer } from '../../types/offer-type';
 import { OfferComment } from '../../types/offer-type';
 import { RATING } from '../../const';
-import { capitalizeFirstLetter } from '../../utils';
+import { capitalizeFirstLetter, setRating } from '../../utils';
 
 type OfferContainerProps = {
   incomingOffer: IncomingOffer;
@@ -34,7 +34,7 @@ function OfferContainer ({incomingOffer, offerComments, rating}: OfferContainerP
         </div>
         <div className="offer__rating rating">
           <div className="offer__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={{width: `${setRating(incomingOffer.rating)}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
           <span className="offer__rating-value rating__value">{incomingOffer.rating}</span>

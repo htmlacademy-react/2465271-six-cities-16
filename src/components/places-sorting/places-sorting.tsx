@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SortList } from '../../const';
+import { useSort } from '../../hooks/use-sort/use-sort';
 
 type PlacesSortingProps = {
   sortType: typeof SortList;
@@ -8,12 +9,13 @@ type PlacesSortingProps = {
 type SortListItemProps = {
   sortType: SortType;
   onSortClick: (sorting: SortType) => void;
-  activeSortType: SortType;
 }
 
 type SortType = typeof SortList[number];
 
-function SortListItem ({sortType, onSortClick, activeSortType}: SortListItemProps): JSX.Element {
+function SortListItem ({sortType, onSortClick}: SortListItemProps): JSX.Element {
+
+  const { sortOffers } = useSort();
 
   const handleSortClick = () => {
     onSortClick(sortType);
@@ -21,7 +23,7 @@ function SortListItem ({sortType, onSortClick, activeSortType}: SortListItemProp
 
   return (
     <li
-      className={`${sortType !== activeSortType ? 'places__option' : 'places__option places__option--active'}`}
+      className={`${sortType !== sortOffers ? 'places__option' : 'places__option places__option--active'}`}
       tabIndex={0}
       onClick={handleSortClick}
     >
@@ -32,15 +34,16 @@ function SortListItem ({sortType, onSortClick, activeSortType}: SortListItemProp
 
 function PlacesSorting ({sortType}: PlacesSortingProps): JSX.Element {
 
+  const { sortOffers, setSort } = useSort();
+
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSortType, setActiveSortType] = useState<SortType>(sortType[0]);
 
   const handleIsOpenChange = () => {
     setIsOpen((prevState) => !prevState);
   };
 
   const handleSortType = (sorting: SortType) => {
-    setActiveSortType(sorting);
+    setSort(sorting);
     setIsOpen(false);
   };
 
@@ -52,7 +55,7 @@ function PlacesSorting ({sortType}: PlacesSortingProps): JSX.Element {
         tabIndex={0}
         onClick={handleIsOpenChange}
       >
-        {activeSortType}
+        {sortOffers}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
@@ -61,7 +64,7 @@ function PlacesSorting ({sortType}: PlacesSortingProps): JSX.Element {
         className={`${!isOpen ? 'places__options places__options--custom' : 'places__options places__options--custom places__options--opened'}`}
       >
         {sortType.map((sortListItem) => (
-          <SortListItem key={sortListItem} sortType={sortListItem} onSortClick={handleSortType} activeSortType={activeSortType}/>
+          <SortListItem key={sortListItem} sortType={sortListItem} onSortClick={handleSortType} />
         ))}
       </ul>
     </form>
