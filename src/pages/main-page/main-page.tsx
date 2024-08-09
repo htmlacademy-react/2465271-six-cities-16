@@ -26,7 +26,7 @@ function MainPage ({citiesWhitLocation, sortType, sign, isActive = true, onActiv
         <title>6 cities. Главная страница</title>
       </Helmet>
       <Header sign={sign} isActive={isActive}/>
-      <main className={`page__main page__main--index ${activeOffers ? 'page__main--index-empty' : ''}`}>
+      <main className={`page__main page__main--index ${activeOffers.length === 0 ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
         <MainLocationList citiesWhitLocation={citiesWhitLocation} />
         <PlacesMainContainer sortType={sortType} onActiveCardHover={onActiveCardHover} selectedPoint={selectedPoint} />

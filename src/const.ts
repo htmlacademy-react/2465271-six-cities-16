@@ -103,6 +103,12 @@ enum APIRoute {
   Logout = '/logout',
 }
 
+enum Status {
+  LOADING = 'loading',
+  SUCCESS = 'completed',
+  ERROR = 'error',
+}
+
 export {
   DEFAULT_CITY,
   SortList,
@@ -114,5 +120,6 @@ export {
   ImageSize,
   SVGSize,
   cities,
-  APIRoute
+  APIRoute,
+  Status
 };
