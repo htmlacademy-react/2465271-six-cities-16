@@ -97,6 +97,18 @@ const cities = [
   },
 ] as const;
 
+enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+enum Status {
+  LOADING = 'loading',
+  SUCCESS = 'completed',
+  ERROR = 'error',
+}
+
 export {
   DEFAULT_CITY,
   SortList,
@@ -107,5 +119,7 @@ export {
   Markers,
   ImageSize,
   SVGSize,
-  cities
+  cities,
+  APIRoute,
+  Status
 };
