@@ -2,10 +2,13 @@ import { ReactNode } from 'react';
 import { useCities } from '../../hooks/use-cities/use-cities';
 import Header from '../../components/header/header';
 import MainLocationList from '../../components/main-location-list/main-location-list';
+import Spinner from '../../components/spinner/spinner';
 import PlacesMainContainer from '../../components/places-main-container/places-main-container';
 import { Offer } from '../../types/offer-type';
 import { SortList, Sign, cities } from '../../const';
 import { Helmet } from 'react-helmet-async';
+import { useAppSelector } from '../../hooks/store/store';
+import { RequestStatus } from '../../const';
 
 type MainPageProps = {
   citiesWhitLocation: typeof cities;
@@ -19,6 +22,11 @@ type MainPageProps = {
 function MainPage ({citiesWhitLocation, sortType, sign, isActive = true, onActiveCardHover, selectedPoint}: MainPageProps): ReactNode {
 
   const {activeOffers} = useCities();
+
+  const status = useAppSelector((state) => state.offers.status);
+  if (status === RequestStatus.LOADING) {
+    return <Spinner />;
+  }
 
   return (
     <div className="page page--gray page--main">

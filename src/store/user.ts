@@ -1,61 +1,96 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { APIRoute } from '../const';
+import { saveToken, dropToken } from '../services/token';
+import { APIRoute, AuthorizationStatus, RequestStatus } from '../const';
 import { UserType } from '../types/user-type';
+import { AuthType } from '../types/auth-type';
 
-type UserState = UserType;
-
-const initialState: UserState = {
-  name: null,
-  avatarUrl: null,
-  isPro: false,
-  email: null,
-  token: null,
+type UserState = {
+  user: UserType | null;
+  authStatus: AuthorizationStatus;
+  requestStatus: RequestStatus;
 };
 
-export const fetchUser = createAsyncThunk<UserState, undefined, {extra: AxiosInstance}> (
+const initialState: UserState = {
+  user: null,
+  authStatus: AuthorizationStatus.Unknown,
+  requestStatus: RequestStatus.IDLE,
+};
+
+export const fetchUser = createAsyncThunk<UserType, undefined, {extra: AxiosInstance}> (
   'user/fetchUser',
   async (_arg, { extra: api }) => {
-    const {data} = await api.get<UserState>(APIRoute.Login);
+    const {data} = await api.get<UserType>(APIRoute.Login);
     return data;
   }
 );
 
+export const checkAuthAction = createAsyncThunk<UserType, undefined, {extra: AxiosInstance}> (
+  'user/checkAuth',
+  async (_arg, { extra: api }) => {
+    const {data} = await api.get<UserType>(APIRoute.Login);
+    return data;
+  }
+);
+
+export const loginAction = createAsyncThunk<void, AuthType, { extra: AxiosInstance}> (
+  'user/login',
+  async ({email, password}, {extra: api}) => {
+    const {data: {token}} = await api.post<UserType>(APIRoute.Login, {email, password});
+    saveToken(token);
+  }
+);
+
+export const logoutAction = createAsyncThunk<void, undefined, {extra: AxiosInstance}>(
+  'user/logout',
+  async (_arg, {extra: api}) => {
+    await api.delete(APIRoute.Logout);
+    dropToken();
+  },
+);
+
+function processFulfilled (state: UserState, action: PayloadAction<UserType>) {
+  state.user = action.payload;
+  state.authStatus = AuthorizationStatus.Auth;
+  state.requestStatus = RequestStatus.SUCCESS;
+}
+
+function processRejected(state: UserState) {
+  state.authStatus = AuthorizationStatus.NoAuth;
+  state.requestStatus = RequestStatus.ERROR;
+}
+
+function processPending (state: UserState) {
+  state.authStatus = AuthorizationStatus.Unknown;
+  state.requestStatus = RequestStatus.LOADING;
+}
+
 export const UserSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    // user: (state, action: PayloadAction<UserState>) => {
-    //   state.avatarUrl = action.payload.avatarUrl;
-    //   state.email = action.payload.email;
-    //   state.isPro = action.payload.isPro;
-    //   state.name = action.payload.name;
-    //   state.token = action.payload.token;
-    // }
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchUser.pending, (state) => {
-        state.avatarUrl = null;
-        state.email = null;
-        state.isPro = false;
-        state.name = null;
-        state.token = null;
+      .addCase(checkAuthAction.pending, processPending)
+      .addCase(checkAuthAction.fulfilled, processFulfilled)
+      .addCase(checkAuthAction.rejected, processRejected)
+      .addCase(loginAction.pending, processPending)
+      .addCase(loginAction.fulfilled, (state) => {
+        state.authStatus = AuthorizationStatus.Auth;
+        state.requestStatus = RequestStatus.SUCCESS;
       })
-      .addCase(fetchUser.fulfilled, (state, action) => {
-        state.avatarUrl = action.payload.avatarUrl;
-        state.email = action.payload.email;
-        state.isPro = action.payload.isPro;
-        state.name = action.payload.name;
-        state.token = action.payload.token;
+      .addCase(loginAction.rejected, processRejected)
+      .addCase(logoutAction.fulfilled, (state) => {
+        state.user = null;
+        state.authStatus = AuthorizationStatus.NoAuth;
+      })
+      .addCase(fetchUser.pending, (state) => {
+        state.user = null;
       })
       .addCase(fetchUser.rejected, (state) => {
-        state.avatarUrl = null;
-        state.email = null;
-        state.isPro = false;
-        state.name = null;
-        state.token = null;
-      });
+        state.user = null;
+      })
+      .addCase(fetchUser.fulfilled, processFulfilled);
   },
 });
 

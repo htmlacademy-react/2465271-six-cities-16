@@ -101,9 +101,12 @@ enum APIRoute {
   Offers = '/offers',
   Login = '/login',
   Logout = '/logout',
+  Comments = '/comments',
+  Favorite = '/favorite',
 }
 
-enum Status {
+enum RequestStatus {
+  IDLE = 'idle',
   LOADING = 'loading',
   SUCCESS = 'completed',
   ERROR = 'error',
@@ -121,5 +124,5 @@ export {
   SVGSize,
   cities,
   APIRoute,
-  Status
+  RequestStatus
 };

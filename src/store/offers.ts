@@ -1,16 +1,18 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { Offer } from '../types/offer-type';
-import { APIRoute, Status } from '../const';
+import { APIRoute, RequestStatus } from '../const';
 import { AxiosInstance } from 'axios';
 
 type OffersState = {
   offers: Offer[];
-  status: Status;
+  status: RequestStatus;
+  setActiveId: Offer['id'] | null;
 };
 
 const initialState: OffersState = {
   offers: [],
-  status: Status.LOADING
+  status: RequestStatus.IDLE,
+  setActiveId: null,
 };
 
 export const fetchOffers = createAsyncThunk<Offer[], undefined, {extra: AxiosInstance}>(
@@ -25,27 +27,27 @@ export const OffersSlice = createSlice({
   name: 'offers',
   initialState,
   reducers: {
-    load: (state, action: PayloadAction<Offer[]>) => {
-      state.offers = action.payload;
+    setActiveId: (state, action: PayloadAction<Offer['id']>) => {
+      state.setActiveId = action.payload;
     },
   },
   extraReducers(builder) {
     builder
       .addCase(fetchOffers.pending, (state) => {
-        state.status = Status.LOADING;
+        state.status = RequestStatus.LOADING;
         state.offers = [];
       })
       .addCase(fetchOffers.fulfilled, (state, action) => {
         state.offers = action.payload;
-        state.status = Status.SUCCESS;
+        state.status = RequestStatus.SUCCESS;
       })
       .addCase(fetchOffers.rejected, (state) => {
-        state.status = Status.ERROR;
+        state.status = RequestStatus.ERROR;
         state.offers = [];
       });
   },
 });
 
-// export const { load: offersLoaded} = OffersSlice.actions;
+export const { setActiveId: setActiveId } = OffersSlice.actions;
 
 export default OffersSlice.reducer;
