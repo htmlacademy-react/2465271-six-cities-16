@@ -33,11 +33,12 @@ export const checkAuthAction = createAsyncThunk<UserType, undefined, {extra: Axi
   }
 );
 
-export const loginAction = createAsyncThunk<void, AuthType, { extra: AxiosInstance}> (
+export const loginAction = createAsyncThunk<UserType, AuthType, { extra: AxiosInstance}> (
   'user/login',
   async ({email, password}, {extra: api}) => {
-    const {data: {token}} = await api.post<UserType>(APIRoute.Login, {email, password});
-    saveToken(token);
+    const {data} = await api.post<UserType>(APIRoute.Login, {email, password});
+    saveToken(data.token);
+    return data;
   }
 );
 
@@ -75,10 +76,7 @@ export const UserSlice = createSlice({
       .addCase(checkAuthAction.fulfilled, processFulfilled)
       .addCase(checkAuthAction.rejected, processRejected)
       .addCase(loginAction.pending, processPending)
-      .addCase(loginAction.fulfilled, (state) => {
-        state.authStatus = AuthorizationStatus.Auth;
-        state.requestStatus = RequestStatus.SUCCESS;
-      })
+      .addCase(loginAction.fulfilled, processFulfilled)
       .addCase(loginAction.rejected, processRejected)
       .addCase(logoutAction.fulfilled, (state) => {
         state.user = null;
