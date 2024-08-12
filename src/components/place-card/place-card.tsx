@@ -1,3 +1,4 @@
+// import { useCard } from '../../hooks/use-card/use-card';
 import { AppRoute, ImageSize, SVGSize } from '../../const';
 import { Offer } from '../../types/offer-type';
 import { capitalizeFirstLetter, setRating } from '../../utils';

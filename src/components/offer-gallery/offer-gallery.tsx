@@ -2,7 +2,7 @@
 import { IncomingOffer } from '../../types/offer-type';
 
 type OfferGalleryProps = {
-  placesImage: IncomingOffer;
+  placesImage: IncomingOffer | undefined;
 }
 
 type OfferImageProps = {
@@ -21,7 +21,7 @@ function OfferGallery ({placesImage}: OfferGalleryProps): JSX.Element {
   return (
     <div className="offer__gallery-container container">
       <div className="offer__gallery">
-        {placesImage.images.map((placeImage) => (
+        {placesImage?.images.map((placeImage) => (
           <OfferImage key={placeImage} placeImage={placeImage}/>
         ))}
       </div>

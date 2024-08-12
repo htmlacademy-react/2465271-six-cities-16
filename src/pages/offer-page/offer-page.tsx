@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { useCities } from '../../hooks/use-cities/use-cities';
 import Header from '../../components/header/header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
@@ -5,13 +6,17 @@ import OfferContainer from '../../components/offer-container/offer-container';
 import PlaceCard from '../../components/place-card/place-card';
 import MapContainer from '../../components/map-container/map-container';
 import { OfferComment } from '../../types/offer-type';
-import { IncomingOffer } from '../../types/offer-type';
+// import { IncomingOffer } from '../../types/offer-type';
 import { Offer } from '../../types/offer-type';
 import { RATING, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
+import { fetchIncommingOffer } from '../../store/offers';
+import { useAppDispatch, useAppSelector } from '../../hooks/store/store';
+import { useEffect } from 'react';
+// import { useOffer } from '../../hooks/use-offer/use-offer';
 
 type OfferPageProps = {
-  incomingOffer: IncomingOffer;
+  // incomingOffer: IncomingOffer;
   offerComments: OfferComment[];
   rating: typeof RATING;
   sign: typeof Sign;
@@ -19,7 +24,18 @@ type OfferPageProps = {
   selectedPoint?: Offer;
 }
 
-function OfferPage ({sign, incomingOffer, offerComments, rating, isOfferCard = true, selectedPoint}: OfferPageProps):JSX.Element {
+function OfferPage ({sign, offerComments, rating, isOfferCard = true, selectedPoint}: OfferPageProps):JSX.Element {
+
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchIncommingOffer({id}));
+    }
+  },[dispatch, id]);
+
+  const incomingOffer = useAppSelector((state) => state.offers.incommingOffer);
 
   const {activeOffers} = useCities();
   return (

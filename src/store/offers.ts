@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { Offer } from '../types/offer-type';
+import { Offer, IncomingOffer } from '../types/offer-type';
 import { APIRoute, RequestStatus } from '../const';
 import { AxiosInstance } from 'axios';
 
@@ -7,12 +7,14 @@ type OffersState = {
   offers: Offer[];
   status: RequestStatus;
   setActiveId: Offer['id'] | null;
+  incommingOffer: IncomingOffer | undefined;
 };
 
 const initialState: OffersState = {
   offers: [],
   status: RequestStatus.IDLE,
   setActiveId: null,
+  incommingOffer: undefined,
 };
 
 export const fetchOffers = createAsyncThunk<Offer[], undefined, {extra: AxiosInstance}>(
@@ -23,11 +25,19 @@ export const fetchOffers = createAsyncThunk<Offer[], undefined, {extra: AxiosIns
   }
 );
 
+export const fetchIncommingOffer = createAsyncThunk<IncomingOffer, {id: Offer['id'] | undefined}, {extra: AxiosInstance}> (
+  'offers/incommingOffer',
+  async ({id}, { extra: api }) => {
+    const {data} = await api.get<IncomingOffer>(`${APIRoute.Offers}/${id}`);
+    return data;
+  }
+);
+
 export const OffersSlice = createSlice({
   name: 'offers',
   initialState,
   reducers: {
-    setActiveId: (state, action: PayloadAction<Offer['id']>) => {
+    setActiveId: (state, action: PayloadAction<Offer['id'] | null>) => {
       state.setActiveId = action.payload;
     },
   },
@@ -44,6 +54,15 @@ export const OffersSlice = createSlice({
       .addCase(fetchOffers.rejected, (state) => {
         state.status = RequestStatus.ERROR;
         state.offers = [];
+      })
+      .addCase(fetchIncommingOffer.pending, (state) => {
+        state.incommingOffer = undefined;
+      })
+      .addCase(fetchIncommingOffer.fulfilled, (state, action) => {
+        state.incommingOffer = action.payload;
+      })
+      .addCase(fetchIncommingOffer.rejected, (state) => {
+        state.incommingOffer = undefined;
       });
   },
 });

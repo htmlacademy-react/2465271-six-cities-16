@@ -25,10 +25,14 @@ function LoginPage ({sign}: LoginPageProps):JSX.Element {
       dispatch(loginAction({
         email: loginRef.current.value,
         password: passwordRef.current.value
-      }));
+      }))
+        .then((response) => {
+          if (response.meta.requestStatus === 'fulfilled') {
+            navigate(AppRoute.Main);
+          }
+        });
     }
   };
-
   return (
     <div className="page page--gray page--login">
       <Helmet>
@@ -49,7 +53,7 @@ function LoginPage ({sign}: LoginPageProps):JSX.Element {
                 <label className="visually-hidden">Password</label>
                 <input className="login__input form__input" ref={passwordRef} type="password" name="password" placeholder="Password" autoComplete='off' required/>
               </div>
-              <button className="login__submit form__submit button" type="submit" onClick={() => navigate(AppRoute.Main)}>Sign in</button>
+              <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>
           </section>
           <section className="locations locations--login locations--current">

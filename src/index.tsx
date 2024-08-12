@@ -15,7 +15,6 @@ const root = ReactDOM.createRoot(
 );
 
 store.dispatch(fetchOffers());
-// store.dispatch(fetchUser());
 store.dispatch(checkAuthAction());
 
 root.render(
