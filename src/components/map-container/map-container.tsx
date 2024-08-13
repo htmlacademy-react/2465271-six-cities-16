@@ -2,7 +2,7 @@ import Map from '../map/map';
 import { Offer } from '../../types/offer-type';
 
 type MapContainerProps = {
-  offers: Offer[];
+  offers: Offer[] | undefined;
   selectedPoint?: Offer;
 }
 

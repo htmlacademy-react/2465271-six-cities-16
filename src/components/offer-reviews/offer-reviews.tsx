@@ -5,15 +5,15 @@ import { RATING } from '../../const';
 import { user } from '../../mocks/user';
 
 type OfferReviewsProps = {
-  offerComments: OfferComment[];
+  comments: OfferComment[] | undefined;
   rating: typeof RATING;
 }
 
-function OfferReviews ({offerComments, rating}: OfferReviewsProps): JSX.Element {
+function OfferReviews ({comments, rating}: OfferReviewsProps): JSX.Element {
   return (
     <section className="offer__reviews reviews">
-      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{offerComments.length}</span></h2>
-      <OfferReviewList offerComments={offerComments}/>
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments?.length}</span></h2>
+      <OfferReviewList comments={comments}/>
       {user.email && <OfferReviewForm ratings={rating}/>}
     </section>
   );

@@ -8,7 +8,7 @@ import { useCities } from '../../hooks/use-cities/use-cities';
 
 type MapProps = {
   selectedPoint?: Offer;
-  offers: Offer[];
+  offers: Offer[] | undefined;
 };
 
 const defaultCustomIcon = new Icon({
@@ -40,7 +40,7 @@ function Map(props: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      offers.forEach((offer) => {
+      offers?.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
           lng: offer.location.longitude

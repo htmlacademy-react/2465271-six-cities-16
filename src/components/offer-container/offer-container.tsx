@@ -8,11 +8,11 @@ import { capitalizeFirstLetter, setRating, setBedroomsEnding } from '../../utils
 
 type OfferContainerProps = {
   incomingOffer: IncomingOffer | undefined;
-  offerComments: OfferComment[];
+  comments: OfferComment[] | undefined;
   rating: typeof RATING;
 }
 
-function OfferContainer ({incomingOffer, offerComments, rating}: OfferContainerProps): JSX.Element {
+function OfferContainer ({incomingOffer, comments, rating}: OfferContainerProps): JSX.Element {
   return (
     <div className="offer__container container">
       <div className="offer__wrapper">
@@ -57,7 +57,7 @@ function OfferContainer ({incomingOffer, offerComments, rating}: OfferContainerP
         <OfferInside key={incomingOffer?.id} incomingOffer={incomingOffer}/>
         <OffersHost incomingOffer={incomingOffer}/>
         <OfferReviews
-          offerComments={offerComments}
+          comments={comments}
           rating={rating}
         />
       </div>

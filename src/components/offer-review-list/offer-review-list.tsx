@@ -2,7 +2,7 @@ import { OfferComment } from '../../types/offer-type';
 import { getDateFormat, getDateToLocaleFormat, setRating } from '../../utils';
 
 type OfferReviewListProps = {
-  offerComments: OfferComment[];
+  comments: OfferComment[] | undefined;
 }
 
 type OfferReviewProps = {
@@ -36,10 +36,10 @@ function OfferReview ({offerCommentElement}: OfferReviewProps): JSX.Element {
   );
 }
 
-function OfferReviewList ({offerComments}: OfferReviewListProps): JSX.Element {
+function OfferReviewList ({comments}: OfferReviewListProps): JSX.Element {
   return (
     <ul className="reviews__list">
-      {offerComments.map((offerCommentElement) => (
+      {comments?.map((offerCommentElement) => (
         <OfferReview key={offerCommentElement.id} offerCommentElement={offerCommentElement}/>
       ))}
     </ul>
