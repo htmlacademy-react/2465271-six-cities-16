@@ -54,7 +54,7 @@ function OfferContainer ({incomingOffer, offerComments, rating}: OfferContainerP
           <b className="offer__price-value">&euro;{incomingOffer?.price}</b>
           <span className="offer__price-text">&nbsp; night</span>
         </div>
-        <OfferInside key={incomingOffer?.type} incomingOffer={incomingOffer}/>
+        <OfferInside key={incomingOffer?.id} incomingOffer={incomingOffer}/>
         <OffersHost incomingOffer={incomingOffer}/>
         <OfferReviews
           offerComments={offerComments}

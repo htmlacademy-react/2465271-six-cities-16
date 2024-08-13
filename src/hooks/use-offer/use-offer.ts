@@ -1,13 +1,16 @@
-// import { useAppSelector } from '../store/store';
-// import { store } from '../../store';
-// // import { IncomingOffer } from '../../types/offer-type';
-// import { fetchIncommingOffer } from '../../store/offers';
+import { useAppDispatch, useAppSelector } from '../store/store';
+import { useEffect } from 'react';
+import { fetchIncommingOffer } from '../../store/offers';
 
-// export const useOffer = (id: string | undefined) => {
-//   if (id) {
-//     store.dispatch(fetchIncommingOffer({id}));
-//   }
-//   const incomingOffer = useAppSelector((state) => state.offers.incommingOffer);
+export const useOffer = (id: string | undefined) => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchIncommingOffer({id}));
+    }
+  },[dispatch, id]);
 
-//   return { incomingOffer };
-// };
+  const incomingOffer = useAppSelector((state) => state.offers.incommingOffer);
+
+  return { incomingOffer };
+};
