@@ -4,8 +4,6 @@ import { store } from './store';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { cities, SortList, RATING, Sign } from './const';
-import { offerRequest } from './mocks/offer-request';
-import { offerComments } from './mocks/offer-comments';
 import { fetchOffers } from './store/offers';
 import { fetchFavorites } from './store/favorite';
 // import { fetchUser } from './store/user';
@@ -22,7 +20,7 @@ store.dispatch(fetchFavorites());
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App citiesWithLocation={cities} sortType={SortList} sign={Sign} incomingOffer={offerRequest} offerComments={offerComments} rating={RATING} />
+      <App citiesWithLocation={cities} sortType={SortList} sign={Sign} rating={RATING} />
     </Provider>
   </React.StrictMode>
 );
