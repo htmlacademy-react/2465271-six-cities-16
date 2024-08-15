@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { saveToken, dropToken } from '../services/token';
-import { APIRoute, AuthorizationStatus, RequestStatus } from '../const';
+import { APIRoute, AuthorizationStatus, RequestStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { UserType } from '../types/user-type';
 import { AuthType } from '../types/auth-type';
+import { store } from '.';
+import { setError } from './error';
 
 type UserState = {
   user: UserType | null;
@@ -47,6 +49,16 @@ export const logoutAction = createAsyncThunk<void, undefined, {extra: AxiosInsta
   async (_arg, {extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
+  },
+);
+
+export const clearErrorAction = createAsyncThunk(
+  'user/clearError',
+  () => {
+    setTimeout(
+      () => store.dispatch(setError(null)),
+      TIMEOUT_SHOW_ERROR,
+    );
   },
 );
 

@@ -1,8 +1,11 @@
 // import { useCard } from '../../hooks/use-card/use-card';
+// import { FormEvent } from 'react';
 import { AppRoute, ImageSize, SVGSize } from '../../const';
 import { Offer } from '../../types/offer-type';
 import { capitalizeFirstLetter, setRating } from '../../utils';
 import { Link } from 'react-router-dom';
+// import { useAppDispatch, useAppSelector } from '../../hooks/store/store';
+// import { changeFavoriteStatus, fetchFavorites } from '../../store/favorite';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -14,6 +17,20 @@ type PlaceCardProps = {
 
 function PlaceCard ({offer, isMainCard = false, isFavoriteCard = false, isOfferCard = false, onActiveCardHover}: PlaceCardProps): JSX.Element {
   const {isPremium, isFavorite, id, previewImage, price, type, title, rating} = offer;
+  // const dispatch = useAppDispatch();
+  // const favorites = useAppSelector((state) => state.favorites.favorites);
+  // // const favoriteWithStatus = useAppSelector((state) => state.favorites.favoritesWithStatus);
+  // const handleFavoriteClick = (evt: FormEvent<HTMLButtonElement>) => {
+  //   evt.preventDefault();
+  //   if (favorites?.filter((favorite) => favorite.id === id).length !== 0) {
+  //     dispatch(changeFavoriteStatus({id, status: 0}));
+  //     dispatch(fetchFavorites());
+  //   } else {
+  //     dispatch(changeFavoriteStatus({id, status: 1}));
+  //     dispatch(fetchFavorites());
+  //   }
+  // };
+
   const handleMouseEnter = () => {
     if(onActiveCardHover) {
       onActiveCardHover(offer);

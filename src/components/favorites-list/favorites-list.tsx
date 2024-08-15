@@ -1,4 +1,5 @@
-import { placesOffers } from '../../mocks/places-offers';
+import { useAppSelector } from '../../hooks/store/store';
+// import { placesOffers } from '../../mocks/places-offers';
 import { Offer } from '../../types/offer-type';
 import FavoriteCardContainer from '../favorite-card-container/favorite-card-container';
 
@@ -16,7 +17,8 @@ function groupFavoriteOffersByLocation (offers: Offer[]) {
 }
 
 function FavoritesList (): JSX.Element {
-  const getFavoriteOffers = placesOffers.filter((offer) => offer.isFavorite);
+  const favorites = useAppSelector((state) => state.favorites.favorites);
+  const getFavoriteOffers = favorites.filter((offer) => offer.isFavorite);
   const getOffersGroup = groupFavoriteOffersByLocation(getFavoriteOffers);
 
   return (

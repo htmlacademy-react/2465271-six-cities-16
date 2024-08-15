@@ -7,6 +7,7 @@ import { cities, SortList, RATING, Sign } from './const';
 import { offerRequest } from './mocks/offer-request';
 import { offerComments } from './mocks/offer-comments';
 import { fetchOffers } from './store/offers';
+import { fetchFavorites } from './store/favorite';
 // import { fetchUser } from './store/user';
 import { checkAuthAction } from './store/user';
 
@@ -16,6 +17,7 @@ const root = ReactDOM.createRoot(
 
 store.dispatch(fetchOffers());
 store.dispatch(checkAuthAction());
+store.dispatch(fetchFavorites());
 
 root.render(
   <React.StrictMode>

@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { FormEvent } from 'react';
 import { AppRoute, Sign } from '../../const';
 // import { placesOffers } from '../../mocks/places-offers';
-import { checkMassiveLength } from '../../utils';
+// import { checkMassiveLength } from '../../utils';
 import { AuthorizationStatus } from '../../const';
 // import { useAppSelector } from '../../hooks/store/store';
 
@@ -33,9 +33,10 @@ function HeaderSign ({sign}: HeaderSignProps): JSX.Element {
 }
 
 function HeaderNavigation ({sign}: HeaderNavigationProps): JSX.Element {
+  const favotites = useAppSelector((state) => state.favorites.favorites);
   const authCheck = useAppSelector((state) => state.user.authStatus);
   const email = useAppSelector((state) => state.user.user?.email);
-  const offers = useAppSelector((state) => state.offers.offers);
+  // const offers = useAppSelector((state) => state.offers.offers);
 
   return (
     <nav className="header__nav">
@@ -47,7 +48,7 @@ function HeaderNavigation ({sign}: HeaderNavigationProps): JSX.Element {
             {authCheck === AuthorizationStatus.Auth ?
               <>
                 <span className="header__user-name user__name">{email}</span>
-                <span className="header__favorite-count">{checkMassiveLength(offers, 'isFavorite').length}</span>
+                <span className="header__favorite-count">{favotites.length}</span>
               </> :
               <span className="header__login">{sign.SignIn}</span>}
           </Link>

@@ -112,6 +112,8 @@ enum RequestStatus {
   ERROR = 'error',
 }
 
+const TIMEOUT_SHOW_ERROR = 2000;
+
 export {
   DEFAULT_CITY,
   SortList,
@@ -124,5 +126,6 @@ export {
   SVGSize,
   cities,
   APIRoute,
-  RequestStatus
+  RequestStatus,
+  TIMEOUT_SHOW_ERROR
 };
