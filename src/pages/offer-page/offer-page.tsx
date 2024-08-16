@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useOffer } from '../../hooks/use-offer/use-offer';
-// import { useCities } from '../../hooks/use-cities/use-cities';
 import { useComments } from '../../hooks/use-comments/use-comments';
 import { useNearby } from '../../hooks/use-nearby/use-nearby';
 import Header from '../../components/header/header';
@@ -8,14 +7,12 @@ import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferContainer from '../../components/offer-container/offer-container';
 import PlaceCard from '../../components/place-card/place-card';
 import MapContainer from '../../components/map-container/map-container';
-// import { OfferComment } from '../../types/offer-type';
 import { Offer } from '../../types/offer-type';
 import { RATING, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 
 type OfferPageProps = {
-  // offerComments: OfferComment[];
   rating: typeof RATING;
   sign: typeof Sign;
   isOfferCard?: boolean;
@@ -32,8 +29,6 @@ function OfferPage ({sign, rating, isOfferCard = true, selectedPoint}: OfferPage
 
   const { nearbyOffers } = useNearby(id);
 
-  // const {activeOffers} = useCities();
-
   return (
     <div className="page">
       <Helmet>
@@ -43,7 +38,7 @@ function OfferPage ({sign, rating, isOfferCard = true, selectedPoint}: OfferPage
 
       <main className="page__main page__main--offer">
         <section className="offer">
-          <OfferGallery placesImage={incomingOffer}/>
+          <OfferGallery incomingOffer={incomingOffer}/>
           <OfferContainer
             incomingOffer={incomingOffer}
             comments={comments}

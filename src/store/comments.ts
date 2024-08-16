@@ -4,11 +4,11 @@ import { APIRoute } from '../const';
 import { AxiosInstance } from 'axios';
 
 type CommentsState = {
-  comments: OfferComment[] | undefined;
+  comments: OfferComment[];
 };
 
 const initialState: CommentsState = {
-  comments: undefined,
+  comments: [],
 };
 
 export const fetchComments = createAsyncThunk<OfferComment[], {id: Offer['id'] | undefined}, {extra: AxiosInstance}> (
@@ -26,13 +26,13 @@ export const CommentsSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchComments.pending, (state) => {
-        state.comments = undefined;
+        state.comments = [];
       })
       .addCase(fetchComments.fulfilled, (state, action) => {
         state.comments = action.payload;
       })
       .addCase(fetchComments.rejected, (state) => {
-        state.comments = undefined;
+        state.comments = [];
       });
   },
 });

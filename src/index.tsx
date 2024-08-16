@@ -6,7 +6,6 @@ import App from './components/app/app';
 import { cities, SortList, RATING, Sign } from './const';
 import { fetchOffers } from './store/offers';
 import { fetchFavorites } from './store/favorite';
-// import { fetchUser } from './store/user';
 import { checkAuthAction } from './store/user';
 
 const root = ReactDOM.createRoot(
@@ -14,8 +13,11 @@ const root = ReactDOM.createRoot(
 );
 
 store.dispatch(fetchOffers());
-store.dispatch(checkAuthAction());
-store.dispatch(fetchFavorites());
+store.dispatch(checkAuthAction()).then((response) => {
+  if (response.meta.requestId === 'fulfilled') {
+    store.dispatch(fetchFavorites());
+  }
+});
 
 root.render(
   <React.StrictMode>

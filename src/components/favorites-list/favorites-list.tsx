@@ -1,5 +1,4 @@
 import { useAppSelector } from '../../hooks/store/store';
-// import { placesOffers } from '../../mocks/places-offers';
 import { Offer } from '../../types/offer-type';
 import FavoriteCardContainer from '../favorite-card-container/favorite-card-container';
 

@@ -1,11 +1,10 @@
-// import { useCard } from '../../hooks/use-card/use-card';
-// import { FormEvent } from 'react';
 import { AppRoute, ImageSize, SVGSize } from '../../const';
+import { useAppDispatch } from '../../hooks/store/store';
+import { changeFavoriteStatus, fetchFavorites } from '../../store/favorite';
+import { fetchOffers } from '../../store/offers';
 import { Offer } from '../../types/offer-type';
 import { capitalizeFirstLetter, setRating } from '../../utils';
 import { Link } from 'react-router-dom';
-// import { useAppDispatch, useAppSelector } from '../../hooks/store/store';
-// import { changeFavoriteStatus, fetchFavorites } from '../../store/favorite';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -17,19 +16,28 @@ type PlaceCardProps = {
 
 function PlaceCard ({offer, isMainCard = false, isFavoriteCard = false, isOfferCard = false, onActiveCardHover}: PlaceCardProps): JSX.Element {
   const {isPremium, isFavorite, id, previewImage, price, type, title, rating} = offer;
-  // const dispatch = useAppDispatch();
-  // const favorites = useAppSelector((state) => state.favorites.favorites);
-  // // const favoriteWithStatus = useAppSelector((state) => state.favorites.favoritesWithStatus);
-  // const handleFavoriteClick = (evt: FormEvent<HTMLButtonElement>) => {
-  //   evt.preventDefault();
-  //   if (favorites?.filter((favorite) => favorite.id === id).length !== 0) {
-  //     dispatch(changeFavoriteStatus({id, status: 0}));
-  //     dispatch(fetchFavorites());
-  //   } else {
-  //     dispatch(changeFavoriteStatus({id, status: 1}));
-  //     dispatch(fetchFavorites());
-  //   }
-  // };
+
+  const dispatch = useAppDispatch();
+
+  const handleFavoriteClick = () => {
+    if(isFavorite) {
+      dispatch(changeFavoriteStatus({id, status: 0}))
+        .then((response) => {
+          if(response.meta.requestStatus === 'fulfilled') {
+            dispatch(fetchFavorites());
+            dispatch(fetchOffers());
+          }
+        });
+    } else {
+      dispatch(changeFavoriteStatus({id, status: 1}))
+        .then((response) => {
+          if(response.meta.requestStatus === 'fulfilled') {
+            dispatch(fetchFavorites());
+            dispatch(fetchOffers());
+          }
+        });
+    }
+  };
 
   const handleMouseEnter = () => {
     if(onActiveCardHover) {
@@ -75,7 +83,7 @@ function PlaceCard ({offer, isMainCard = false, isFavoriteCard = false, isOfferC
             <b className="place-card__price-value">&euro;{ price }</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : ''} button`} type="button">
+          <button onClick={handleFavoriteClick} className={`place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : ''} button`} type="button">
             <svg className="place-card__bookmark-icon" width={SVGSize.WIDTH} height={SVGSize.HEIGHT}>
               <use xlinkHref="#icon-bookmark"></use>
             </svg>

@@ -1,8 +1,8 @@
 import { Offer } from './types/offer-type';
 
-const capitalizeFirstLetter = (str: string | undefined) => {
-  if (str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+const capitalizeFirstLetter = (word: string | undefined) => {
+  if (word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
   }
 };
 

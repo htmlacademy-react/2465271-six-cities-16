@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { APIRoute } from '../const';
-// import { FavoritesType } from '../types/favorites-type';
 import { Offer, IncomingOffer } from '../types/offer-type';
 
 type FavoritesState = {
@@ -57,7 +56,5 @@ export const FavoritesSlice = createSlice({
       });
   },
 });
-
-// export const { updateFavorite: updateFavorite } = FavoritesSlice.actions;
 
 export default FavoritesSlice.reducer;

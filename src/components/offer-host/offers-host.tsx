@@ -1,7 +1,7 @@
 import { IncomingOffer } from '../../types/offer-type';
 
 type OfferHostProps = {
-  incomingOffer: IncomingOffer | undefined;
+  incomingOffer: IncomingOffer | null;
 }
 
 function OfferDescription ({incomingOffer}: OfferHostProps): JSX.Element {

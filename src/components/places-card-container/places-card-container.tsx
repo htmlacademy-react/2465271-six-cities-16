@@ -1,4 +1,3 @@
-// import { useCard } from '../../hooks/use-card/use-card';
 import { useCities } from '../../hooks/use-cities/use-cities';
 import { Offer } from '../../types/offer-type';
 import PlaceCard from '../place-card/place-card';

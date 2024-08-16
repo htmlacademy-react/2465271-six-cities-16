@@ -1,8 +1,7 @@
-// import { offerRequest } from '../../mocks/offer-request';
 import { IncomingOffer } from '../../types/offer-type';
 
 type OfferInsideProps = {
-  incomingOffer: IncomingOffer | undefined;
+  incomingOffer: IncomingOffer | null;
 }
 
 type OfferGoodsElementProps = {

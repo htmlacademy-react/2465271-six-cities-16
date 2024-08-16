@@ -7,8 +7,8 @@ import { RATING } from '../../const';
 import { capitalizeFirstLetter, setRating, setBedroomsEnding } from '../../utils';
 
 type OfferContainerProps = {
-  incomingOffer: IncomingOffer | undefined;
-  comments: OfferComment[] | undefined;
+  incomingOffer: IncomingOffer | null;
+  comments: OfferComment[];
   rating: typeof RATING;
 }
 

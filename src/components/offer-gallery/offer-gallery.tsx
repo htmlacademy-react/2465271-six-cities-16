@@ -1,8 +1,7 @@
-// import { offerRequest } from '../../mocks/offer-request';
 import { IncomingOffer } from '../../types/offer-type';
 
 type OfferGalleryProps = {
-  placesImage: IncomingOffer | undefined;
+  incomingOffer: IncomingOffer | null;
 }
 
 type OfferImageProps = {
@@ -17,11 +16,11 @@ function OfferImage ({placeImage}: OfferImageProps):JSX.Element {
   );
 }
 
-function OfferGallery ({placesImage}: OfferGalleryProps): JSX.Element {
+function OfferGallery ({incomingOffer}: OfferGalleryProps): JSX.Element {
   return (
     <div className="offer__gallery-container container">
       <div className="offer__gallery">
-        {placesImage?.images.map((placeImage) => (
+        {incomingOffer?.images.map((placeImage) => (
           <OfferImage key={placeImage} placeImage={placeImage}/>
         ))}
       </div>
