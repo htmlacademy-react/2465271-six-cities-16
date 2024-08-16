@@ -4,14 +4,14 @@ import { APIRoute } from '../const';
 import { AxiosInstance } from 'axios';
 
 type IncomingOffersState = {
-  incommingOffer: IncomingOffer | undefined;
+  incommingOffer: IncomingOffer | null;
 };
 
 const initialState: IncomingOffersState = {
-  incommingOffer: undefined,
+  incommingOffer: null,
 };
 
-export const fetchIncommingOffer = createAsyncThunk<IncomingOffer, {id: Offer['id'] | undefined}, {extra: AxiosInstance}> (
+export const fetchIncommingOffer = createAsyncThunk<IncomingOffer, {id: Offer['id'] | null}, {extra: AxiosInstance}> (
   'incommingOffer/fetchOffer',
   async ({id}, { extra: api }) => {
     const {data} = await api.get<IncomingOffer>(`${APIRoute.Offers}/${id}`);
@@ -26,13 +26,13 @@ export const IncomingOfferSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchIncommingOffer.pending, (state) => {
-        state.incommingOffer = undefined;
+        state.incommingOffer = null;
       })
       .addCase(fetchIncommingOffer.fulfilled, (state, action) => {
         state.incommingOffer = action.payload;
       })
       .addCase(fetchIncommingOffer.rejected, (state) => {
-        state.incommingOffer = undefined;
+        state.incommingOffer = null;
       });
   },
 });
