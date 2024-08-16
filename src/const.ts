@@ -97,6 +97,23 @@ const cities = [
   },
 ] as const;
 
+enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+  Comments = '/comments',
+  Favorite = '/favorite',
+}
+
+enum RequestStatus {
+  IDLE = 'idle',
+  LOADING = 'loading',
+  SUCCESS = 'completed',
+  ERROR = 'error',
+}
+
+const TIMEOUT_SHOW_ERROR = 2000;
+
 export {
   DEFAULT_CITY,
   SortList,
@@ -107,5 +124,8 @@ export {
   Markers,
   ImageSize,
   SVGSize,
-  cities
+  cities,
+  APIRoute,
+  RequestStatus,
+  TIMEOUT_SHOW_ERROR
 };

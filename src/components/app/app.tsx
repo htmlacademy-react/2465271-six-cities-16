@@ -6,22 +6,21 @@ import FavoritePage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import { cities, SortList, RATING, AppRoute, AuthorizationStatus, Sign} from '../../const';
+import { cities, SortList, RATING, AppRoute, Sign} from '../../const';
 import { Offer } from '../../types/offer-type';
-import { OfferComment } from '../../types/offer-type';
-import { IncomingOffer } from '../../types/offer-type';
 import { useState } from 'react';
+import { useAppSelector } from '../../hooks/store/store';
 
 type AppProps = {
   citiesWithLocation: typeof cities;
   sortType: typeof SortList;
-  incomingOffer: IncomingOffer;
-  offerComments: OfferComment[];
   rating: typeof RATING;
   sign: typeof Sign;
 }
 
-function App ({citiesWithLocation, sortType, sign, incomingOffer, offerComments, rating}: AppProps): JSX.Element {
+function App ({citiesWithLocation, sortType, sign, rating}: AppProps): JSX.Element {
+
+  const authCheck = useAppSelector((state) => state.user.authStatus);
 
   const [activeCard, setActiveCard] = useState<Offer | undefined>();
 
@@ -39,13 +38,13 @@ function App ({citiesWithLocation, sortType, sign, incomingOffer, offerComments,
           />
           <Route
             path={`${AppRoute.Offer}:id`}
-            element={<OfferPage sign={sign} incomingOffer={incomingOffer} offerComments={offerComments} rating={rating} />}
+            element={<OfferPage sign={sign} rating={rating} />}
           />
           <Route
             path={AppRoute.Favorites}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.Auth}
+                authorizationStatus={authCheck}
               >
                 <FavoritePage sign={sign} />
               </PrivateRoute>

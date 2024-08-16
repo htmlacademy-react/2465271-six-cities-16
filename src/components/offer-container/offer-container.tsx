@@ -4,26 +4,26 @@ import OfferReviews from '../offer-reviews/offer-reviews';
 import { IncomingOffer } from '../../types/offer-type';
 import { OfferComment } from '../../types/offer-type';
 import { RATING } from '../../const';
-import { capitalizeFirstLetter, setRating } from '../../utils';
+import { capitalizeFirstLetter, setRating, setBedroomsEnding } from '../../utils';
 
 type OfferContainerProps = {
-  incomingOffer: IncomingOffer;
-  offerComments: OfferComment[];
+  incomingOffer: IncomingOffer | null;
+  comments: OfferComment[];
   rating: typeof RATING;
 }
 
-function OfferContainer ({incomingOffer, offerComments, rating}: OfferContainerProps): JSX.Element {
+function OfferContainer ({incomingOffer, comments, rating}: OfferContainerProps): JSX.Element {
   return (
     <div className="offer__container container">
       <div className="offer__wrapper">
-        {incomingOffer.isPremium && (
+        {incomingOffer?.isPremium && (
           <div className="offer__mark">
             <span>Premium</span>
           </div>
         )}
         <div className="offer__name-wrapper">
           <h1 className="offer__name">
-            {incomingOffer.title}
+            {incomingOffer?.title}
           </h1>
           <button className="offer__bookmark-button button" type="button">
             <svg className="offer__bookmark-icon" width="31" height="33">
@@ -34,30 +34,30 @@ function OfferContainer ({incomingOffer, offerComments, rating}: OfferContainerP
         </div>
         <div className="offer__rating rating">
           <div className="offer__stars rating__stars">
-            <span style={{width: `${setRating(incomingOffer.rating)}%`}}></span>
+            <span style={{width: `${setRating(incomingOffer?.rating)}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
-          <span className="offer__rating-value rating__value">{incomingOffer.rating}</span>
+          <span className="offer__rating-value rating__value">{incomingOffer?.rating}</span>
         </div>
         <ul className="offer__features">
           <li className="offer__feature offer__feature--entire">
-            {capitalizeFirstLetter(incomingOffer.type)}
+            {capitalizeFirstLetter(incomingOffer?.type)}
           </li>
           <li className="offer__feature offer__feature--bedrooms">
-            {`${incomingOffer.bedrooms} ${incomingOffer.bedrooms > 1 ? 'Bedrooms' : 'Bedroom'}`}
+            {`${incomingOffer?.bedrooms} ${setBedroomsEnding(incomingOffer?.bedrooms)}`}
           </li>
           <li className="offer__feature offer__feature--adults">
-            {`Max ${incomingOffer.maxAdults} adults`}
+            {`Max ${incomingOffer?.maxAdults} adults`}
           </li>
         </ul>
         <div className="offer__price">
-          <b className="offer__price-value">&euro;{incomingOffer.price}</b>
+          <b className="offer__price-value">&euro;{incomingOffer?.price}</b>
           <span className="offer__price-text">&nbsp; night</span>
         </div>
-        <OfferInside key={incomingOffer.type} offerList={incomingOffer}/>
-        <OffersHost/>
+        <OfferInside key={incomingOffer?.id} incomingOffer={incomingOffer}/>
+        <OffersHost incomingOffer={incomingOffer}/>
         <OfferReviews
-          offerComments={offerComments}
+          comments={comments}
           rating={rating}
         />
       </div>

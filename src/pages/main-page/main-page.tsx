@@ -2,10 +2,13 @@ import { ReactNode } from 'react';
 import { useCities } from '../../hooks/use-cities/use-cities';
 import Header from '../../components/header/header';
 import MainLocationList from '../../components/main-location-list/main-location-list';
+import Spinner from '../../components/spinner/spinner';
 import PlacesMainContainer from '../../components/places-main-container/places-main-container';
 import { Offer } from '../../types/offer-type';
 import { SortList, Sign, cities } from '../../const';
 import { Helmet } from 'react-helmet-async';
+import { useAppSelector } from '../../hooks/store/store';
+import { RequestStatus } from '../../const';
 
 type MainPageProps = {
   citiesWhitLocation: typeof cities;
@@ -20,13 +23,18 @@ function MainPage ({citiesWhitLocation, sortType, sign, isActive = true, onActiv
 
   const {activeOffers} = useCities();
 
+  const status = useAppSelector((state) => state.offers.status);
+  if (status === RequestStatus.LOADING) {
+    return <Spinner />;
+  }
+
   return (
     <div className="page page--gray page--main">
       <Helmet>
         <title>6 cities. Главная страница</title>
       </Helmet>
       <Header sign={sign} isActive={isActive}/>
-      <main className={`page__main page__main--index ${activeOffers ? 'page__main--index-empty' : ''}`}>
+      <main className={`page__main page__main--index ${activeOffers.length === 0 ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
         <MainLocationList citiesWhitLocation={citiesWhitLocation} />
         <PlacesMainContainer sortType={sortType} onActiveCardHover={onActiveCardHover} selectedPoint={selectedPoint} />
