@@ -2,15 +2,16 @@ import { useAppDispatch, useAppSelector } from '../store/store';
 import { City } from '../../types/offer-type';
 import { SortType } from '../../types/sort-type';
 import { cityChanged } from '../../store/active-city';
+import { selectSortOffers, selectOffers, selectActiveCity } from '../../services/selectors';
 import { sortByHighToLow, sortByLowToHigh, sortByRating } from '../../utils';
 
 export const useCities = () => {
 
-  const activeCity = useAppSelector((state) => state.activeCity.activeCity);
+  const activeCity = useAppSelector(selectActiveCity);
 
-  const offers = useAppSelector((state) => state.offers.offers);
+  const offers = useAppSelector(selectOffers);
 
-  const sortOffers = useAppSelector((state) => state.sortOffers.sortOffers);
+  const sortOffers = useAppSelector(selectSortOffers);
 
   const setOffersBySorting = (sorter: SortType[number]) => {
     switch (sorter) {

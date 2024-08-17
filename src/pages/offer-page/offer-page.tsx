@@ -10,6 +10,7 @@ import MapContainer from '../../components/map-container/map-container';
 import { Offer } from '../../types/offer-type';
 import { RATING, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
+import Error from '../../components/error/error';
 
 
 type OfferPageProps = {
@@ -28,6 +29,10 @@ function OfferPage ({sign, rating, isOfferCard = true, selectedPoint}: OfferPage
   const { comments } = useComments(id);
 
   const { nearbyOffers } = useNearby(id);
+
+  if(!incomingOffer) {
+    return < Error />;
+  }
 
   return (
     <div className="page">

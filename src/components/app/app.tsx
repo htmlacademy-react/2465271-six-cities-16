@@ -10,6 +10,7 @@ import { cities, SortList, RATING, AppRoute, Sign} from '../../const';
 import { Offer } from '../../types/offer-type';
 import { useState } from 'react';
 import { useAppSelector } from '../../hooks/store/store';
+import { selectAuthStatus } from '../../services/selectors';
 
 type AppProps = {
   citiesWithLocation: typeof cities;
@@ -20,7 +21,7 @@ type AppProps = {
 
 function App ({citiesWithLocation, sortType, sign, rating}: AppProps): JSX.Element {
 
-  const authCheck = useAppSelector((state) => state.user.authStatus);
+  const authCheck = useAppSelector(selectAuthStatus);
 
   const [activeCard, setActiveCard] = useState<Offer | undefined>();
 

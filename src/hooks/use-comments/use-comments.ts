@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { useEffect } from 'react';
 import { fetchComments } from '../../store/comments';
+import { selectComments } from '../../services/selectors';
 
 export const useComments = (id: string | undefined) => {
   const dispatch = useAppDispatch();
@@ -10,7 +11,7 @@ export const useComments = (id: string | undefined) => {
     }
   },[dispatch, id]);
 
-  const comments = useAppSelector((state) => state.comments.comments);
+  const comments = useAppSelector(selectComments);
 
   return { comments };
 };
