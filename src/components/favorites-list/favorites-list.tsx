@@ -1,4 +1,5 @@
 import { useAppSelector } from '../../hooks/store/store';
+import { selectFavorites } from '../../services/selectors';
 import { Offer } from '../../types/offer-type';
 import FavoriteCardContainer from '../favorite-card-container/favorite-card-container';
 
@@ -16,7 +17,7 @@ function groupFavoriteOffersByLocation (offers: Offer[]) {
 }
 
 function FavoritesList (): JSX.Element {
-  const favorites = useAppSelector((state) => state.favorites.favorites);
+  const favorites = useAppSelector(selectFavorites);
   const getFavoriteOffers = favorites.filter((offer) => offer.isFavorite);
   const getOffersGroup = groupFavoriteOffersByLocation(getFavoriteOffers);
 

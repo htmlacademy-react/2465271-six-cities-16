@@ -1,5 +1,6 @@
 import { logoutAction } from '../../store/user';
 import { useAppDispatch, useAppSelector } from '../../hooks/store/store';
+import { selectFavorites, selectAuthStatus, selectEmail } from '../../services/selectors';
 import { Link, NavLink } from 'react-router-dom';
 import { FormEvent } from 'react';
 import { AppRoute, Sign } from '../../const';
@@ -29,9 +30,9 @@ function HeaderSign ({sign}: HeaderSignProps): JSX.Element {
 }
 
 function HeaderNavigation ({sign}: HeaderNavigationProps): JSX.Element {
-  const favotites = useAppSelector((state) => state.favorites.favorites);
-  const authCheck = useAppSelector((state) => state.user.authStatus);
-  const email = useAppSelector((state) => state.user.user?.email);
+  const favotites = useAppSelector(selectFavorites);
+  const authCheck = useAppSelector(selectAuthStatus);
+  const email = useAppSelector(selectEmail);
 
   return (
     <nav className="header__nav">

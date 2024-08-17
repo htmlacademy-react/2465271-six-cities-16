@@ -3,9 +3,10 @@ import FavoritesEmptyContainer from '../favorites-empty-container/favorites-empt
 import { placesOffers } from '../../mocks/places-offers';
 import { checkMassiveLength } from '../../utils';
 import { useAppSelector } from '../../hooks/store/store';
+import { selectFavorites } from '../../services/selectors';
 
 function FavoritesMainContainer (): JSX.Element {
-  const favorites = useAppSelector((state) => state.favorites.favorites);
+  const favorites = useAppSelector(selectFavorites);
   return (
     <main className={`page__main page__main--favorites ${favorites.length === 0 ? 'page__main--favorites-empty' : ''}`}>
       <div className="page__favorites-container container">

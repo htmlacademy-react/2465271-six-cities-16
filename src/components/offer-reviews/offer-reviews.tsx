@@ -4,6 +4,7 @@ import { OfferComment } from '../../types/offer-type';
 import { RATING } from '../../const';
 import { AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks/store/store';
+import { selectAuthStatus } from '../../services/selectors';
 
 type OfferReviewsProps = {
   comments: OfferComment[];
@@ -11,7 +12,7 @@ type OfferReviewsProps = {
 }
 
 function OfferReviews ({comments, rating}: OfferReviewsProps): JSX.Element {
-  const authCheck = useAppSelector((state) => state.user.authStatus);
+  const authCheck = useAppSelector(selectAuthStatus);
   return (
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments?.length}</span></h2>

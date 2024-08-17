@@ -5,3 +5,13 @@ export type UserType = {
   email: string;
   token: string;
   }
+
+export type UserAuthorizathionError = {
+    errorType: string;
+    message: string;
+    details: [{
+    property: string;
+    value: string;
+    messages: [string];
+    }];
+  };
