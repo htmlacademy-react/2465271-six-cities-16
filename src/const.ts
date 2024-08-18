@@ -106,13 +106,10 @@ enum APIRoute {
 }
 
 enum RequestStatus {
-  IDLE = 'idle',
   LOADING = 'loading',
   SUCCESS = 'completed',
   ERROR = 'error',
 }
-
-const TIMEOUT_SHOW_ERROR = 2000;
 
 export {
   DEFAULT_CITY,
@@ -127,5 +124,4 @@ export {
   cities,
   APIRoute,
   RequestStatus,
-  TIMEOUT_SHOW_ERROR
 };

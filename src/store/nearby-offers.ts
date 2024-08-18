@@ -3,16 +3,16 @@ import { Offer } from '../types/offer-type';
 import { APIRoute } from '../const';
 import { AxiosInstance } from 'axios';
 
-type NierbyState = {
+type NearbyState = {
   nearbyOffers: Offer[] | undefined;
 };
 
-const initialState: NierbyState = {
+const initialState: NearbyState = {
   nearbyOffers: undefined,
 };
 
 export const fetchNearbyOffers = createAsyncThunk<Offer[], {id: Offer['id'] | undefined}, {extra: AxiosInstance}> (
-  'nearbyOffers/fetchNierbyOffers',
+  'nearbyOffers/fetchNearbyOffers',
   async ({id}, { extra: api }) => {
     const {data} = await api.get<Offer[]>(`${APIRoute.Offers}/${id}/nearby`);
     return data;

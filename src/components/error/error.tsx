@@ -15,8 +15,8 @@ function Error (): JSX.Element {
       </div>
       <div>
         <div className="favorites__status-wrapper">
-          <h1 className="favorites__status"><b>Error 404</b></h1>
-          <h1 className="favorites__status">Page Not Found</h1>
+          <h1 className="favorites__status"><b>Что то пошло не так</b></h1>
+          <h1 className="favorites__status">Страница не найдена</h1>
         </div>
         <Link to={AppRoute.Main}>
           <span className={styles.notFoundLink}>Вернуться на главную страницу</span>

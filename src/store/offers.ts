@@ -6,13 +6,13 @@ import { AxiosInstance } from 'axios';
 type OffersState = {
   offers: Offer[];
   status: RequestStatus;
-  setActiveId: Offer['id'] | null;
+  setActiveCard: Offer | null;
 };
 
 const initialState: OffersState = {
   offers: [],
-  status: RequestStatus.IDLE,
-  setActiveId: null,
+  status: RequestStatus.LOADING,
+  setActiveCard: null,
 };
 
 export const fetchOffers = createAsyncThunk<Offer[], undefined, {extra: AxiosInstance}>(
@@ -27,8 +27,8 @@ export const OffersSlice = createSlice({
   name: 'offers',
   initialState,
   reducers: {
-    setActiveId: (state, action: PayloadAction<Offer['id'] | null>) => {
-      state.setActiveId = action.payload;
+    setActiveCard: (state, action: PayloadAction<Offer | null>) => {
+      state.setActiveCard = action.payload;
     },
   },
   extraReducers(builder) {
@@ -48,6 +48,6 @@ export const OffersSlice = createSlice({
   },
 });
 
-export const { setActiveId: setActiveId } = OffersSlice.actions;
+export const { setActiveCard: setActiveCard } = OffersSlice.actions;
 
 export default OffersSlice.reducer;

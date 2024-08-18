@@ -1,7 +1,8 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
 type Error = {
-  error: string | null;
+  error: AxiosError | null;
 }
 
 const initialState: Error = {
@@ -12,7 +13,7 @@ export const ErrorSlice = createSlice({
   name: 'error',
   initialState,
   reducers: {
-    setError: (state, action: PayloadAction<string | null>) => {
+    setError: (state, action: PayloadAction<AxiosError | null>) => {
       state.error = action.payload;
     }
   }
