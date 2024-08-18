@@ -7,7 +7,6 @@ import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferContainer from '../../components/offer-container/offer-container';
 import PlaceCard from '../../components/place-card/place-card';
 import MapContainer from '../../components/map-container/map-container';
-import { Offer } from '../../types/offer-type';
 import { RATING, RequestStatus, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
 import Error from '../../components/error/error';
@@ -20,10 +19,9 @@ type OfferPageProps = {
   rating: typeof RATING;
   sign: typeof Sign;
   isOfferCard?: boolean;
-  selectedPoint?: Offer;
 }
 
-function OfferPage ({sign, rating, isOfferCard = true, selectedPoint}: OfferPageProps):JSX.Element {
+function OfferPage ({sign, rating, isOfferCard = true}: OfferPageProps):JSX.Element {
 
   const checkIncomingOfferLoadingStatus = useAppSelector(selectIncomingOfferStatus);
   const checkErrorStatus = useAppSelector(selectIncomingErrorStatus);
@@ -35,6 +33,8 @@ function OfferPage ({sign, rating, isOfferCard = true, selectedPoint}: OfferPage
   const { comments } = useComments(id);
 
   const { nearbyOffers } = useNearby(id);
+
+  const offersOnMap = nearbyOffers?.slice(0, 3);
 
   if(checkIncomingOfferLoadingStatus === RequestStatus.LOADING) {
     return <Spinner/>;
@@ -59,13 +59,13 @@ function OfferPage ({sign, rating, isOfferCard = true, selectedPoint}: OfferPage
             comments={comments}
             rating={rating}
           />
-          <MapContainer offers={nearbyOffers} selectedPoint={selectedPoint} />
+          <MapContainer offers={offersOnMap} />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {nearbyOffers?.map((offer) => (
+              {offersOnMap?.map((offer) => (
                 <PlaceCard key={offer.id} offer={offer} isOfferCard={isOfferCard} />
               ))}
             </div>
