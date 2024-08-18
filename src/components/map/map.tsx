@@ -1,5 +1,7 @@
 import {useRef, useEffect} from 'react';
 import {Icon, LayerGroup, Marker, layerGroup} from 'leaflet';
+import { useAppSelector } from '../../hooks/store/store';
+import { selectActiveCard } from '../../services/selectors';
 import useMap from '../../hooks/use-map/use-map';
 import { Offer } from '../../types/offer-type';
 import {Markers} from '../../const';
@@ -7,7 +9,6 @@ import 'leaflet/dist/leaflet.css';
 import { useCities } from '../../hooks/use-cities/use-cities';
 
 type MapProps = {
-  selectedPoint?: Offer;
   offers: Offer[] | undefined;
 };
 
@@ -24,8 +25,9 @@ const currentCustomIcon = new Icon({
 });
 
 function Map(props: MapProps): JSX.Element {
+  const selectedPoint = useAppSelector(selectActiveCard);
   const { activeCity } = useCities();
-  const { offers, selectedPoint} = props;
+  const { offers} = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, activeCity);
   const markerLayer = useRef<LayerGroup>(layerGroup());
@@ -48,7 +50,7 @@ function Map(props: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            selectedPoint !== undefined && offer.id === selectedPoint.id
+            selectedPoint !== undefined && offer.id === selectedPoint?.id
               ? currentCustomIcon
               : defaultCustomIcon
           )

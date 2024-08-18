@@ -2,30 +2,40 @@ import { ReactNode } from 'react';
 import { useCities } from '../../hooks/use-cities/use-cities';
 import Header from '../../components/header/header';
 import MainLocationList from '../../components/main-location-list/main-location-list';
-import Spinner from '../../components/spinner/spinner';
 import PlacesMainContainer from '../../components/places-main-container/places-main-container';
-import { Offer } from '../../types/offer-type';
-import { SortList, Sign, cities } from '../../const';
+import { SortList, Sign, cities, RequestStatus } from '../../const';
 import { Helmet } from 'react-helmet-async';
 import { useAppSelector } from '../../hooks/store/store';
-import { RequestStatus } from '../../const';
+import { selectOffers, selectOffersLoadingStatus } from '../../services/selectors';
+import Spinner from '../../components/spinner/spinner';
+import Error from '../../components/error/error';
+
 
 type MainPageProps = {
   citiesWhitLocation: typeof cities;
   sortType: typeof SortList;
   sign: typeof Sign;
   isActive?: boolean;
-  onActiveCardHover?: (card: Offer | undefined) => void;
-  selectedPoint?: Offer;
 }
 
-function MainPage ({citiesWhitLocation, sortType, sign, isActive = true, onActiveCardHover, selectedPoint}: MainPageProps): ReactNode {
+function MainPage ({citiesWhitLocation, sortType, sign, isActive = true}: MainPageProps): ReactNode {
 
   const {activeOffers} = useCities();
 
-  const status = useAppSelector((state) => state.offers.status);
-  if (status === RequestStatus.LOADING) {
-    return <Spinner />;
+  const checkLoadingStatus = useAppSelector(selectOffersLoadingStatus);
+
+  const checkOffers = useAppSelector(selectOffers);
+
+  if(checkLoadingStatus === RequestStatus.LOADING) {
+    return (
+      <Spinner/>
+    );
+  }
+
+  if(checkOffers.length === 0) {
+    return (
+      <Error/>
+    );
   }
 
   return (
@@ -37,7 +47,7 @@ function MainPage ({citiesWhitLocation, sortType, sign, isActive = true, onActiv
       <main className={`page__main page__main--index ${activeOffers.length === 0 ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
         <MainLocationList citiesWhitLocation={citiesWhitLocation} />
-        <PlacesMainContainer sortType={sortType} onActiveCardHover={onActiveCardHover} selectedPoint={selectedPoint} />
+        <PlacesMainContainer sortType={sortType} />
       </main>
     </div>
   );

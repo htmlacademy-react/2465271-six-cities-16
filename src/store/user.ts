@@ -14,7 +14,7 @@ type UserState = {
 const initialState: UserState = {
   user: null,
   authStatus: AuthorizationStatus.Unknown,
-  requestStatus: RequestStatus.IDLE,
+  requestStatus: RequestStatus.LOADING,
 };
 
 export const checkAuthAction = createAsyncThunk<UserType, undefined, {extra: AxiosInstance}> (

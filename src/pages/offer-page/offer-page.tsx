@@ -8,9 +8,12 @@ import OfferContainer from '../../components/offer-container/offer-container';
 import PlaceCard from '../../components/place-card/place-card';
 import MapContainer from '../../components/map-container/map-container';
 import { Offer } from '../../types/offer-type';
-import { RATING, Sign } from '../../const';
+import { RATING, RequestStatus, Sign } from '../../const';
 import { Helmet } from 'react-helmet-async';
 import Error from '../../components/error/error';
+import { selectIncomingErrorStatus, selectIncomingOfferStatus } from '../../services/selectors';
+import { useAppSelector } from '../../hooks/store/store';
+import Spinner from '../../components/spinner/spinner';
 
 
 type OfferPageProps = {
@@ -22,6 +25,9 @@ type OfferPageProps = {
 
 function OfferPage ({sign, rating, isOfferCard = true, selectedPoint}: OfferPageProps):JSX.Element {
 
+  const checkIncomingOfferLoadingStatus = useAppSelector(selectIncomingOfferStatus);
+  const checkErrorStatus = useAppSelector(selectIncomingErrorStatus);
+
   const { id } = useParams();
 
   const { incomingOffer } = useOffer(id);
@@ -30,8 +36,12 @@ function OfferPage ({sign, rating, isOfferCard = true, selectedPoint}: OfferPage
 
   const { nearbyOffers } = useNearby(id);
 
-  if(!incomingOffer) {
-    return < Error />;
+  if(checkIncomingOfferLoadingStatus === RequestStatus.LOADING) {
+    return <Spinner/>;
+  }
+
+  if(checkErrorStatus) {
+    return <Error />;
   }
 
   return (

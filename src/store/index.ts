@@ -5,7 +5,7 @@ import sortOffersReducer from './sort-offers';
 import userReducer from './user';
 import incomingOfferReducer from './incoming-offer';
 import commentsReducer from './comments';
-import nearbyOffersReducer from './nierby-offers';
+import nearbyOffersReducer from './nearby-offers';
 import favoritesReducer from './favorite';
 import errorReducer from './error';
 import { createAPI } from '../services/api';

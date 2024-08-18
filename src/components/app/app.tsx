@@ -6,9 +6,7 @@ import FavoritePage from '../../pages/favorites-page/favorites-page';
 import LoginPage from '../../pages/login-page/login-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import { cities, SortList, RATING, AppRoute, Sign} from '../../const';
-import { Offer } from '../../types/offer-type';
-import { useState } from 'react';
+import { cities, SortList, RATING, AppRoute, Sign } from '../../const';
 import { useAppSelector } from '../../hooks/store/store';
 import { selectAuthStatus } from '../../services/selectors';
 
@@ -23,19 +21,13 @@ function App ({citiesWithLocation, sortType, sign, rating}: AppProps): JSX.Eleme
 
   const authCheck = useAppSelector(selectAuthStatus);
 
-  const [activeCard, setActiveCard] = useState<Offer | undefined>();
-
-  const handleActiveCardChange = (card: Offer | undefined) => {
-    setActiveCard(card);
-  };
-
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainPage citiesWhitLocation={citiesWithLocation} sortType={sortType} sign={sign} onActiveCardHover={handleActiveCardChange} selectedPoint={activeCard}/>}
+            element={<MainPage citiesWhitLocation={citiesWithLocation} sortType={sortType} sign={sign} />}
           />
           <Route
             path={`${AppRoute.Offer}:id`}
